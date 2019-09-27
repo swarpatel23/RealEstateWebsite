@@ -1,0 +1,239 @@
+.my-roboto
+{
+    font-family: 'Roboto', sans-serif;
+}
+.my-hepta
+{
+    font-family: 'Hepta Slab', serif;
+}
+.card
+{
+    padding-right: 5px;
+    padding-left:5px;
+    padding-top: 10px;
+    margin-top: 5px;
+    border: 0;
+    transform: scale(0.4);
+    animation: demo 0.5s ease-in-out forwards;
+
+}
+@keyframes demo
+{
+  0%
+  {
+    transform: scale(0.8);
+  }
+  100%
+  {
+    transform: scale(1);
+  }
+}
+.card-body
+{
+    padding: 0.6em;
+    border: 1px solid rgb(155, 155, 155);
+    border-top: 0px;
+}
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid rgb(155, 155, 155);
+    border-bottom: 0px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;    
+    padding: 0px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);    
+    padding: 15px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .grid-container small{
+    font-size: 0.5em;
+  }
+  #apply
+  {
+    border-width: 1px;
+    border-style: solid;
+    font-size:1.1em;
+    border-color: black; 
+    background-color:white;
+    color:black;
+    padding: 9px 20px;
+    transition: all 0.5s ;
+  }
+  #apply:hover{    
+    background-color:black;
+    color:white;
+    
+  }
+  #more
+  {
+    border-width: 1px;
+    border-style: solid;
+    font-size:1.1em;
+    border-color: black; 
+    background-color:white;
+    color:black;
+    opacity: 0.8;
+    padding: 9px 20px;
+    transition: all 0.5s ;
+  }
+  #more:hover{    
+    background-color:black;
+    color:white;
+    
+  }
+  
+  .my-extra-fluid-img
+  {
+    position: relative;
+    top:40%; 
+  }
+  .my-form-text-input
+  {
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-color: initial;
+    padding-top: 40px;  
+    width:50%;
+  }
+  .under-line
+  {
+    border-bottom: 2px solid white;
+    transition: all 0.5s ease-in-out;
+  }  
+  .under-line-active
+  {
+    border-bottom: 2px solid black;
+    transition: all 0.5s ease-in-out;
+  }
+  .my-shodows
+  {
+    /* box-shadow: 20px 0px 8px 0px rgba(0,0,0,0.63); */
+    box-shadow: 3px 1px 9px 2px rgba(0,0,0,0.63);
+  }
+  .my-shadow-body
+  {
+    box-shadow: 20px 1px 0px 0px rgba(0,0,0,0.63);
+  }
+  .my-close-btn-house-detail
+  {
+    position: sticky; 
+    top:15px;left:15px;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);
+  }
+  .house-thumbnail
+  {
+    width:100vw; height:56vh;overflow: hidden;  transform: translateY(-68px);
+  }
+  .my-more
+  {
+    position: absolute; bottom:0px;right:16px;z-index: 1;
+  }
+  .pink-color
+  {
+    color:#ff3366 ;
+  }
+  .value {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    margin: 0 0 0 -20px;
+    width: 40px;
+    text-align: center;
+    display: block;
+    
+    /* optional */
+    
+    font-weight: normal;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .price-range-both.value {
+    width: 100px;
+    margin: 0 0 0 -50px;
+    top: 26px;
+  }
+  
+  .price-range-both {
+    display: none; 
+  }
+  
+  .value i {
+    font-style: normal;
+  }
+@media screen and (max-width:300px)
+{
+    .card-img-top
+    {
+        /*max-height: 245px;*/
+        max-height: 183px;
+        min-height: 300px;
+    }    
+    
+}
+@media screen and (min-width:990px) and (max-width:1200px)
+{
+  #main-house-thumbnail
+  {
+    transform: scale(2.2); 
+  }
+}
+@media screen and (min-width:800px) and (max-width:990px)
+{
+  #main-house-thumbnail
+  {
+    transform: scale(1.2); 
+  }
+}
+
+@media screen and (min-width:560px) and (max-width:800px)
+{
+  #main-house-thumbnail
+  {
+    transform: scale(2.5); 
+  }
+}
+@media screen and (min-width:0px) and (max-width:560px)
+{
+  #main-house-thumbnail
+  {
+    transform: scale(4); 
+  }
+}
+@media screen and (min-width:1200px)
+{
+    .card-img-top
+    {
+        /*max-height: 245px;*/
+        max-height: 183px;
+        min-height: 225px;
+    }    
+    #main-house-thumbnail
+    {
+      transform: scale(1.2); 
+    }
+}
+@Keyframes anim
+{
+			0%
+			{
+				clip-path: circle(0% at 50% 50%);
+			}
+			100%
+			{
+				clip-path: circle(200% at 15% 18%);
+			}
+        
+}

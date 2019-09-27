@@ -1,0 +1,185 @@
+<div class="container-fluid">
+    <div class="modal" id="myModal">
+        <div class="fas fa-times-circle fa-3x" data-dismiss="modal" style="z-index:1;position: absolute ;top:50px;right:50px;    background-color: white;
+            color: black;
+            clip-path: circle(48% at 24px 24px);"></div>
+        <div class="row text-center" style="position: relative;
+        top: 50%;
+        transform: translateY(-50%);">
+            <div class="col-2">
+                <a class="carousel-control" href="#demo" role="button" data-slide="prev" style="position: relative;
+                top: 50%;
+                transform: translateY(50%);">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="col-8">
+                <div id="demo" class="carousel slide" data-ride="carousel" style="background:none;">
+                    <div class="carousel-inner" style="position: relative;
+                    top: 50%;
+                    transform: translateY(10%);">
+                        <!--style="						
+                        transform: translateY(-50%);"-->
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+
+                <a class="carousel-control" href="#demo" role="button" data-slide="next" style="position: relative;
+                top: 50%;
+                transform: translateY(50%);">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid overflow-hidden">
+    <div class="row flex-column-reverse flex-lg-row ">
+        <div id="map" class="col-xs-12 col-lg-6 d-none d-lg-flex overflow-hidden"
+            style="height:90vh;padding-left: 0px;background-color: red">
+            <!--d-xs-block d-sm-block d-md-block d-lg-block-->
+        </div>
+        <div id="field" class="col-xs-12 col-lg-6 " style="height:90vh;overflow-x:hidden;overflow-y: auto;">
+            <nav class="navbar navbar-white bg-white row" style="position: sticky;
+				top: -0.1vh;z-index: 1;">
+                <div class="row col-12 pt-2 pb-1 text-center">
+                    <div class="col-4 my-roboto under-line-active" style="font-size:1.1rem;"
+                        onclick="underline_price(this)" id="price-high-low">
+                        Price -- high to low
+
+                    </div>
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" onclick="underline_price(this)"
+                        id="price-low-high">
+                        Price -- low to high
+                    </div>
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" onclick="underline_price(this)"
+                        id="newest-first">
+                        Newest First
+                    </div>
+                </div>
+                <div class=" collapsed" type="" data-toggle="collapse" data-target="#navbarsExample01"
+                    aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                    <img class="float-right" src="../../assets/image/Incon- bar.svg"
+                        style="width:25px; position: relative; right: 1px;" />
+                </div>
+                <div class="navbar-collapse collapse" id="navbarsExample01" style="height: 85vh;">
+                    <!-- <ul class="navbar-nav mr-auto" >
+							<li class="mt-4">
+								<div class="heading">
+									<h5>BathRooms <i class="fas fa-chevron-down float-right" data-toggle="collapse" data-target="#bath"></i></h5>
+									
+								</div>
+								<div class="input-field collapse " id="bath">
+									<input type="text"/>
+								</div>																
+							</li>					 -->
+                    <!-- </ul> -->
+                    <div class="accordion mt-5 mb-5 pb-1" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header my-shodows" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Bathrooms
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body my-shadow-body">
+                                    <div class="row mt-4 mb-3 ml-3">
+                                        <div class="col-3">
+                                            <i class="fa fa-bath fa-2x" aria-hidden="true" data-toggle="tooltip"
+                                                title="" data-original-title="bathrooms"></i>
+                                        </div>
+                                        <div class="col-8 mr-1">
+                                            <div id="slider-bath"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header my-shodows" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        BedRooms
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
+                                <div class="card-body my-shadow-body">
+                                    <div class="row mt-4 mb-3 ml-3">
+                                        <div class="col-3">
+                                            <i class="fa fa-bed fa-2x" aria-hidden="true" data-toggle="tooltip" title=""
+                                                data-original-title="Beds"></i>
+                                        </div>
+                                        <div class="col-8 mr-1">
+                                            <div id="slider-bed"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header my-shodows" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Size of Plot
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordionExample">
+                                <div class="card-body my-shadow-body">
+                                    <div class="row mt-4 mb-5 ml-3">
+                                        <div class="col-3">
+                                            <i class="far fa-square fa-2x" aria-hidden="true" data-toggle="tooltip"
+                                                title="" data-original-title="plot size"></i>
+                                        </div>
+                                        <div class="col-8 mr-1">
+                                            <div id="slider-plot"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div *ngFor="let base_house of obj_houselist" style="padding-right:0px">
+                <div id="{{ base_house['hid'] }}" onclick="house_click(this)" class="card col-xs-12 col-xl-6">
+                    <img class="card-img-top" src="../../assets/{{base_house['photos'][0]  }}" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <h5>$ {{base_house['user_price']}}</h5>
+                            </div>
+                            <div class="col-7">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>{{base_house["bedroom"]}} Bds| {{base_house["bathroom"]}} Ba|
+                                            {{base_house["plot"]}} ft</h6>
+                                        <small> {{base_house["address"]}} </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<button (click)="call_me()">LOG</button>

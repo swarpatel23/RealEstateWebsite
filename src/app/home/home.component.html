@@ -1,0 +1,147 @@
+<div class="container-flex overflow-hidden">		
+		<div class="my-hero-jumbotron jumbotron-fluid">			
+			<form>			
+				<div class="pt-5 pb-xs-5 pb-md-0 text-center">
+				<h3 
+				
+				class="display-3 my-maven-pro">Live In <br>Your Dream House</h3>
+			</div>
+				<div class="row" id="Search-bar" style="position: relative;">
+					<div class="col-xs-1 col-lg-2">
+						&nbsp;
+					</div>
+					<div class="col-xs-11 col-lg-2" style="padding-left:40px;padding-right:30px">
+						<div class="form-group">
+							<!-- <select class="form-control" id="city-input">
+								<option value="" disabled selected>Select City</option>
+								<option>Mumbai</option>
+								<option>Surat</option>
+								<option>Pune</option>
+								<option>Jaipur</option>
+								<option>Lucknow</option>
+								<option>Kanpur</option>
+							</select> -->
+							
+							<select [(ngModel)]="selectedcity" class="form-control city-input" placeholder="Select City"  name="selectedcity">
+								<option value="" disabled selected>Select City</option>
+								<option *ngFor="let city of city_list" [value]="city">
+								  {{city}}
+								</option>
+							  </select>
+						</div>
+					</div>
+					<div class="col-xs-11 col-lg-5" style="padding-left:40px;padding-right:30px">
+						<div class="form-group">
+							<input type="text" class="form-control city-search" placeholder="Search" name="search_field" [(ngModel)]="search_field">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-11 col-lg-1 text-center">
+						<div class="form-group">							
+							<div class="input-group-btn">
+								<div class="btn my-btn" (click)="search_address()">
+									Submit
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container-flex overflow-hidden text-center mt-5">
+			<div class="row mt-5">
+				<div class="col-4">
+
+				</div>
+				<div 
+			
+				class="col-4">
+					<p class="my-prate-font my-head mb-md-5">What Makes Us The Preferred Choice</p>
+				</div>
+			</div>
+			<br>
+			<div class="row mt-md-5">
+				<div class="col-sm-12 col-md-1">
+					<i 
+		
+					class="far fa-handshake fa-4x"></i>
+				</div>
+				<div class="col-sm-12  col-md-3 text-center ">
+					<h4 
+			
+					class="text-uppercase my-patua-font pt-5 pt-md-0">Buyers Trust Us </h4>
+					<p 
+	
+					class="my-releway-font pt-2 pb-3">12 million users visit us every month for their buying and
+						renting needs</p>
+				</div>
+				<div class="col-sm-12 col-md-1 mt-sm-5 mt-md-0">
+					<i 
+
+					class="far fa-thumbs-up fa-4x"></i>
+				</div>
+				<div class="col-sm-12  col-md-3 text-center">
+					<h4 
+	
+					class="text-uppercase my-patua-font pt-5 pt-md-0">Seller Prefer Us</h4>
+					<p 
+
+					class="my-releway-font pt-2 pb-3">27,000 new properties posted daily, making us the biggest
+						platform to sell & rent properties</p>
+				</div>
+				<div class="col-sm-12 col-md-1 mt-sm-5 mt-md-0">
+					<i 
+			
+					class="fas fa-poll fa-4x"></i>
+				</div>
+				<div class="col-sm-12  col-md-3 text-center ">
+					<h4 
+		
+					class="text-uppercase my-patua-font pt-4 pt-md-0">Maximum Choices</h4>
+					<p 
+			
+					class="my-releway-font pt-2 pb-3">15 Lac + & counting. New properties every hour to help buyers
+						find the right home</p>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class="container-flex">
+			<div class="row mt-md-5 pt-md-5 mb-5">
+				<div class="col-12 text-center">
+					<h1 
+				
+					class="display-2">How It Works?</h1>
+				</div>
+			</div>
+			<div class="row pt-2 mb-5">
+				<div class="col-md-12 col-lg-6 mb-5 pb-3 text-center">
+					<img 
+				
+					src="../../assets/image/handsake.svg"  class="img-fluid" /><!--style="height:75vh;width:50vw;transform: translateY(-13vh)"-->
+				</div>	
+				<div class="col-md-12 col-lg-6 my-maven-pro pt-xs-5 pt-sm-0">
+						<ol style="list-style: inside; font-size: 1.4rem;">
+							<li
+					>Select any two date for your appointment.</li><br>
+							<li
+						>Write your purchase or rent price.</li><br>
+							<li
+						>Owner of the house select one of date.</li><br>
+							<li
+						
+							>We will let you know about that dates via mail.</li><br>
+							<li
+						
+							>If you don't get mail means owner is not free on both of dates.</li>
+                    </ol>	
+					</div>													
+			</div>
+		</div>
+    </div>    
+    <app-footer>
+        
+    </app-footer>
