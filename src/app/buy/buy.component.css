@@ -225,7 +225,7 @@
       transform: scale(1.2); 
     }
 }
-@Keyframes anim
+@keyframes anim
 {
 			0%
 			{

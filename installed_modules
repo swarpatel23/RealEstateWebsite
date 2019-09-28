@@ -1,0 +1,28 @@
+----bootstrap-----
+npm install bootstrap@latest --save
+
+Change in angular.json 
+		"styles": ["src/styles.css"],
+	to
+	"styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+
+
+---------------------
+
+----jquery------
+
+npm install jquery --save
+npm install @types/jquery --save-dev
+
+scripts should come before styles
+"scripts": ["node_modules/jquery/dist/jquery.min.js"]
+
+uses this in components
+import * as $ from 'jquery';
+
+
+
+

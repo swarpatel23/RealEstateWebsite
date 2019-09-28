@@ -23,11 +23,13 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "scripts": ["node_modules/jquery/dist/jquery.min.js","src/assets/sal.js/dist/sal.js"],
+
             "styles": [
               "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sal.js/dist/sal.css"
-            ],
-            "scripts": ["src/assets/sal.js/dist/sal.js"]
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Viga&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+
+
+.quote{
+	color: #ffffff;
+	text-transform: capitalize;
+	font-family: 'Oswald', sans-serif;
+	font-size: 4em;
+	position: absolute;
+  	top: 50%;
+  	left: 30%;
+    transform: translateX(-50%) translateY(-50%);
+    text-shadow: 2px 2px #9a99a0;
+
+}
+.sbody{
+  padding: 0%;
+  margin: 0%;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  display: table;
+  background-image: radial-gradient(circle, rgb(255, 225, 52),rgb(255, 217, 0),rgb(255, 183, 0));  
+
+
+}
+
+.signup,.signin{
+  margin: auto;
+  margin-top:2em;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: .5em;
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  background: radial-gradient(circle,white,rgb(230, 221, 221));
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+
+  
+}
+
+
+
+.h2header{
+  font-family: 'Oswald', sans-serif;
+  font-weight: lighter;
+  text-align: center;
+  color:black;
+  font-size: 2em;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel]{
+
+  display: block;
+  width: 25vw;
+  height: 7vh;
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: lighter;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.4);
+
+
+}
+
+input[type=submit]{
+  cursor: pointer; 
+  width: 25vw;
+  height: 7vh;
+  font-size: 18px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background: #000000;
+  font-weight: lighter;
+  color: #fff;
+  border: 0px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 480px)
+{
+	.signup,.signin{
+		position: absolute;
+  		top: 50%;
+  		left: 50%;
+    	transform: translateX(-50%) translateY(-50%);
+
+  }
+  
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  input[type=tel]{
+    width:70vw;
+}
+
+  input[type=submit]{
+    margin-left: 50%;
+    transform: translate(-50%,0%)
+  }
+
+
+	.quote{
+		display: none;
+	}
+}
+.link,.copyright{
+
+  text-align: center;
+    font-family: 'Viga', sans-serif;
+    font-weight: lighter;
+    color: rgb(0, 0, 0);
+}
+
+.tab-content > div:first-child {
+  display:none;
+}
+#privacytext{
+  font-family: "Viga", sans-serif;
+  padding-left: 10px;  
+}

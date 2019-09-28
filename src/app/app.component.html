@@ -1,1 +1,33 @@
-<router-outlet></router-outlet>
+<header>
+<nav class="navbar navbar-expand-xl navbar-light bg-trasparen my-navbar pr-md-3">
+    <a class="navbar-brand" href="#"><img src="assets\image\logo-final.svg" style="width:180px;" id="my_logo"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto ml-xs-0 ml-xl-5">
+            <li class="nav-item pr-md-2 pl-xs-0  ">
+                <a class="nav-link" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item  pr-md-2 pl-xs-0 ">
+                <a class="nav-link" routerLink="/buy">Buy						
+                </a>
+            </li>
+            <li class="nav-item pr-md-2 pl-xs-0 ">
+                <a class="nav-link" href="#">Rent</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto pr-md-4">
+            <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
+                <a class="nav-link" routerLink="/entry"
+                 >Sign Up</a>
+            </li>
+            <li class="nav-item my-maven-pro  pl-xs-0 pl-xl-3 pr-md-4 ml-xs-0">
+                <a class="nav-link" routerLink="/entry">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</header>
+    <router-outlet></router-outlet>

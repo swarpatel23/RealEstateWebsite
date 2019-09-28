@@ -6,12 +6,17 @@ import { HomeComponent } from './home/home.component';
 import { BuyComponent } from './buy/buy.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { EntryComponent } from './entry/entry.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     BuyComponent,
-    FooterComponent
+    FooterComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,
