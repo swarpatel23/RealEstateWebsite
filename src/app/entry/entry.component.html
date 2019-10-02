@@ -6,17 +6,17 @@
 <div class="signup">
     <form method="POST" action="">
         <h2 class="h2header">Sign Up</h2>
-        <input type="text" name="username" placeholder="Username" spellcheck="false" required>
-        <input type="email" placeholder="E-mail" name="email" spellcheck="false" autocomplete="off" required>
-        <input type="password" placeholder="Password" name="password" required>
-        <input type="tel" placeholder="Contact Number" name="Contactnumber" required>
-        <input type="text" placeholder="Address" name="Address" spellcheck="false" required>
+        <input type="text" [(ngModel)]="username" placeholder="Username" spellcheck="false" required>
+        <input type="email" placeholder="E-mail" [(ngModel)]="email" spellcheck="false" autocomplete="off" required>
+        <input type="password" placeholder="Password" [(ngModel)]="password" required>
+        <input type="tel" placeholder="Contact Number" [(ngModel)]="contactno" required>
+        <input type="text" placeholder="Address" [(ngModel)]="address" spellcheck="false" required>
         <br>
         <input type="checkbox" value="check" required><span id="privacytext">I agree to the Privacy
             Policy</span>
         <br>
         <br>
-        <input type="submit" value="Register" required>
+        <input type="submit" (click)="signup()" value="Register" required>
 
 
     </form>
@@ -26,9 +26,9 @@
 <div class="signin">
     <form method="POST" action="">
         <h2 class="h2header">Sign In</h2>
-        <input type="email" placeholder="E-mail" name="email" autocomplete="off" spellcheck="false" required>
-        <input type="password" placeholder="Password" name="password" autocomplete="off" required>
-        <input type="submit" value="Login">
+        <input type="email" placeholder="E-mail" [(ngModel)]="email" autocomplete="off" spellcheck="false" required>
+        <input type="password" placeholder="Password" [(ngModel)]="password" autocomplete="off" required>
+        <input type="submit" value="Login" (click)="signin()">
 
     </form>
     <p class="link">Creata a account? <a href="#signup">Sign Up</a>"</p>

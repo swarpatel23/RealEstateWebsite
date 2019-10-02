@@ -156,8 +156,9 @@
                     </div>
                 </div>
             </nav>
-            <div *ngFor="let base_house of obj_houselist" style="padding-right:0px">
-                <div id="{{ base_house['hid'] }}" onclick="house_click(this)" class="card col-xs-12 col-xl-6">
+            <div><div class="row">
+                <div *ngFor="let base_house of obj_houselist" id="{{ base_house['hid'] }}" onclick="house_click(this)" class="card col-xs-12 col-md-6">
+                    
                     <img class="card-img-top" src="../../assets/{{base_house['photos'][0]  }}" alt="Card image cap">
                     <div class="card-body">
                         <div class="row">
@@ -176,6 +177,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 
