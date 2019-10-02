@@ -7,7 +7,7 @@ import * as $ from 'jquery';
 })
 export class BuyComponent implements OnInit {
    house_click(house):void {						
-    var hid = house["id"];
+    var hid = house.id;
     var house_list = this.obj_houselist;
     let shouse:any;
     shouse = house_list.find(function(house){			
