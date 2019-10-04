@@ -30,9 +30,12 @@
                     <li class="nav-item my-maven-pro  pl-xs-0 pl-xl-3 pr-md-4 ml-xs-0">
                         <a class="nav-link" [routerLink]="['/entry',{disp:'signin'}]">Login</a>
                     </li>
+                    <li>
+                        {{message}}
+                    </li>
                 </ul>
         </ng-template>
     </div>
 </nav>
 </header>
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <router-outlet></router-outlet>

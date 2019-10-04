@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 
 
 import * as $ from 'jquery';
+import { DataService } from '../data.service';
 
 
 @Component({
@@ -17,17 +18,22 @@ export class EntryComponent implements OnInit {
   public contactno:number;
   public address:string;
   public email:string;
+  public signedin:boolean;
   
-  @Output() public childevent =new EventEmitter();
 
   signin(){
-      this.childevent.emit(true)
+    console.log("hi");
+    this.data.changeMessage(true);
   }
 
   signup(){
-    this.childevent.emit(true)
+    this.signedin=true;
+    this.data.changeMessage(true);
+
   }
-  constructor(private route: ActivatedRoute) {
+
+  
+  constructor(private route: ActivatedRoute,private data: DataService) {
     this.route.url.subscribe(url => {
       //console.log(url);
       this.chk();
@@ -48,6 +54,7 @@ export class EntryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(signedin=>this.signedin=signedin)
     let target;
     // let searchParams = new URLSearchParams(window.location.search);
     // if(searchParams.has('disp'))

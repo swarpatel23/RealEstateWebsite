@@ -1,21 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { DataService } from "./data.service"
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   private title:string = 'realtor';
   public signedin:boolean=false;
+  public message:string;
+  
+  
+
+  constructor(private data:DataService){
+
+  }
+
+  ngOnInit()
+  {
+    this.data.currentMessage.subscribe(signedin=>this.signedin=signedin)
+  }
  
-  onActivate(componentReference) {
-    console.log(componentReference)
-    componentReference.signin();
-    //Below will subscribe to the searchItem emitter
-    componentReference.searchItem.subscribe((data) => {
-       // Will receive the data from child here 
-       console.log(data);
-    })
- }
 }
