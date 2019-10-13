@@ -21,32 +21,11 @@
                     top: 50%;
                     transform: translateY(10%);">
                         <!--style="						
-                        transform: translateY(-50%);"-->
-                        <div class="carousel-item active">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Dscn3308-rg-e-from-w_900x500.jpg"
-                                class="img-fluid ">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://www.familyhui.org/images/04_080629_BrilliantSunset_Pano08_900x500_opt9ADV.jpg"
-                                alt="Los Angeles" class="img-fluid">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://www.familyhui.org/images/04_080629_BrilliantSunset_Pano08_900x500_opt9ADV.jpg"
-                                alt="Los Angeles" class="img-fluid">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://www.familyhui.org/images/04_080629_BrilliantSunset_Pano08_900x500_opt9ADV.jpg"
-                                alt="Los Angeles" class="img-fluid">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="http://www.familyhui.org/images/04_080629_BrilliantSunset_Pano08_900x500_opt9ADV.jpg"
-                                alt="Los Angeles" class="img-fluid">
-                        </div>
+                        transform: translateY(-50%);"-->                
                     </div>
                 </div>
             </div>
             <div class="col-2">
-
                 <a class="carousel-control" href="#demo" role="button" data-slide="next" style="position: relative;
                 top: 50%;
                 transform: translateY(50%);">
@@ -63,171 +42,152 @@
             style="height:90vh;padding-left: 0px;">
             <!--d-xs-block d-sm-block d-md-block d-lg-block-->
         </div>
+       
         <div id="house_detail" class="col-xs-12 col-lg-6"
-            style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: white;">
-            <div class="row text-center">
-                <i class="fas fa-times-circle fa-3x my-close-btn-house-detail" onclick="close_details()"></i>
-                <div class="col-12 house-thumbnail">						
-                    <img src="../../assets/image/house/h2.jpg" class="img-fluid" alt="h1" data-toggle="modal"
-                        data-target="#myModal" onclick="" id="main-house-thumbnail"/>
-                    <div data-toggle="modal" data-target="#myModal"
-                        class="my-more" id="more">
-                        More
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <small>Expected Price</small>
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <h3 id="house_price">$75,000,000
-                                <small>/mo</small>
-                            </h3>
+				style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: white;">
+				<div class="row text-center">
+					<i class="fas fa-times-circle fa-3x my-close-btn-house-detail" (click)="close_details()"></i>
+					<div class="col-12 house-thumbnail">						
+						<img src="../../assets/{{hcover}}" class="img-fluid" alt="h1" id="main-house-thumbnail"/>
+						<div data-toggle="modal" data-target="#myModal"
+							class="my-more" id="more">
+							More
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<small>Expected Price</small>
+						<div class="row">
+							<div class="col-lg-6 col-xs-12">
+								<h3 id="house_price">{{house_price}}
+									<small>/mo</small>
+								</h3>
+							</div>
+							<div class="col-lg-4 col-xs-12">
+								<p id="house_address">
+									{{house_address}}
+								</p>
+							</div>
+							<div class="col-lg-2 col-xs-12">
+								<small>Year build</small>
+								<p>{{house_year}}</p>
+							</div>
+							<div class="col-12">
+								<div class="row text-center pt-5 pb-5">
+									<div class="col-4">
+										<h4 class="my-hepta" id="no_of_bed">{{no_of_bed}}</h4>
+										<p>
+											<i class="fa fa-bed fa-3x" aria-hidden="true" data-toggle="tooltip"
+												title="Beds"></i>
+										</p>
+									</div>
+									<div class="col-4">
+										<h4 class="my-hepta" id="no_of_bathroom">{{no_of_bathroom}}</h4>
+										<p>
+											<i class="fa fa-bath fa-3x" aria-hidden="true" data-toggle="tooltip"
+												title="Bathrooms	"></i>
+										</p>
+									</div>
+									<div class="col-4">
+										<h6 class="my-hepta" id="plot_size">{{plot_size}}
+											<small>ft</small>
+										</h6>
+										<p>
+											<i class="fas fa-home fa-3x" aria-hidden="true" data-toggle="tooltip"
+												title="Plot size"></i>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 mt-sm-5 mt-md-5 text-center">
+								<button id="apply" class="w-50" (click)="appointment_click(this)">Get
+									Appointment</button>
+								<i class="far fa-heart fa-3x float-right pr-0 pr-sm-5 pink-color" 
+									data-toggle="tooltip" title="Like" (click)="heart_clicked();" id="heart"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 mt-4">
+						<h1>Overview</h1>
+						<hr>
+						<p id="overview">{{overview}}</p>
+						<div class="row text-center  mt-5 mb-4">
+							<div class="col-6">
+								<h2 class="my-hepta" id="total_view">{{total_view}}</h2>
+								<p class="text-muted">Views</p>
+							</div>
+							<div class="col-6">
+								<h2 class="my-hepta" id="days_on_web">{{days_on_web}} </h2>
+								<p class="text-muted">Day(s) since on website</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 mt-5">
+						<h1>Ammenities</h1>
+						<hr>
+						<h6>General Fetures</h6>
+						<ul id="g_feture_list">
+                            <li *ngFor="let ammenity of g_feture">
+                                {{ammenity}}
+                            </li>
+							<!-- <li>Balcony or deck</li>
+							<li>Furnished</li>
+							<li>Hardwood floor</li> -->
+						</ul>
+						<h6>Building Fetures</h6>
+						<div class="grid-container" id="b_feture">                                                        
+                            <div class="grid-item" *ngIf="ac"><i class="fas fa-wind fa-2x" aria-hidden="true" data-toggle="tooltip" title="AC"></i><br><small>Air Conditioning </small></div>
+                            <div class="grid-item" *ngIf="garage"><i class="fa fa-car fa-2x" aria-hidden="true" data-toggle="tooltip" title="Garage"></i><br><small>Garage </small></div>
+                            <div class="grid-item" *ngIf="swimming"><i class="fas fa-swimmer fa-2x" aria-hidden="true" data-toggle="tooltip" title="Swimming"></i><br> <small>Swimming Pool</small></div>
+                            <div class="grid-item" *ngIf="pet"><i class="fa fa-paw fa-2x" aria-hidden="true" data-toggle="tooltip" title="Pets Allowed"></i><br> <small>Pets Allowed</small></div>
+                            <div class="grid-item" *ngIf="gym"><i class="fas fa-dumbbell fa-2x" aria-hidden="true" data-toggle="tooltip" title="Gym"></i><br> <small>Gym</small></div>
+                            <div class="grid-item" *ngIf="elevator"><i class="fas fa-arrows-alt-v fa-2x" aria-hidden="true" data-toggle="tooltip" title="Elevator"></i><br> <small>Elevator</small></div>
+                            <div class="grid-item" *ngIf="indoor_game"><i class="fas fa-chess fa-2x" aria-hidden="true" data-toggle="tooltip" title="Indoor game"></i><br> <small>Indoor game</small></div>
                         </div>
-                        <div class="col-lg-4 col-xs-12">
-                            <p id="house_address">
-                                B-2039, Lorem, Epsum
-                            </p>
-                        </div>
-                        <div class="col-lg-2 col-xs-12">
-                            <small>Year build</small>
-                            <p>1999</p>
-                        </div>
-                        <div class="col-12">
-                            <div class="row text-center pt-5 pb-5">
-                                <div class="col-4">
-                                    <h4 class="my-hepta" id="no_of_bed">5</h4>
-                                    <p>
-                                        <i class="fa fa-bed fa-3x" aria-hidden="true" data-toggle="tooltip"
-                                            title="Beds"></i>
-                                    </p>
-                                </div>
-                                <div class="col-4">
-                                    <h4 class="my-hepta" id="no_of_bathroom">5</h4>
-                                    <p>
-                                        <i class="fa fa-bath fa-3x" aria-hidden="true" data-toggle="tooltip"
-                                            title="Bathrooms	"></i>
-                                    </p>
-                                </div>
-                                <div class="col-4">
-                                    <h6 class="my-hepta" id="plot_size">1500
-                                        <small>ft</small>
-                                    </h6>
-                                    <p>
-                                        <i class="fas fa-home fa-3x" aria-hidden="true" data-toggle="tooltip"
-                                            title="Plot size"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mt-sm-5 mt-md-5 text-center">
-                            <button id="apply" class="w-50" onclick="appointment_click(this)">Get
-                                Appointment
-                            </button>
-                            <i class="far fa-heart fa-3x float-right pr-0 pr-sm-5 pink-color" 
-                                data-toggle="tooltip" title="Like" onclick="heart_clicked();" id="heart"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-4">
-                    <h1>Overview</h1>
-                    <hr>
-                    <p id="overview">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam
-                        praesentium pariatur
-                        consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad
-                        amet rerum, labore adipisci
-                        distinctio.
-                    </p>
-                    <div class="row text-center  mt-5 mb-4">
-                        <div class="col-6">
-                            <h2 class="my-hepta" id="total_view">123</h2>
-                            <p class="text-muted">Views</p>
-                        </div>
-                        <div class="col-6">
-                            <h2 class="my-hepta" id="days_on_web">1 </h2>
-                            <p class="text-muted">Day(s) since on website</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-5">
-                    <h1>Ammenities</h1>
-                    <hr>
-                    <h6>General Fetures</h6>
-                    <ul id="g_feture">
+					</div>
+				</div>				
+			</div>
 
-                        <li>Balcony or deck</li>
-                        <li>Furnished</li>
-                        <li>Hardwood floor</li>
-                    </ul>
-                    <h6>Building Fetures</h6>
-                    <div class="grid-container" id="b_feture">
-                        
-                    </div>
-                </div>
-            </div>				
-        </div>
         <div id="appointment_detail" class="col-xs-12 col-lg-6"
-            style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: #f1f7fc;">
-            <div class="contact-clean">
-                <form method="post">
-                    <i class="fas fa-times-circle fa-3x" onclick="close_appointment()"
-                        style="position: relative; top:-35px;right:-35px;float: right;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);">
-                    </i>
-                    <h2 class="text-center">Get Appointment</h2>
-                    <div class="form-group">
-                        <label for="d1" class="mb-0">
-                            Date1:
-                        </label>
-                        <input class="form-control"
-                            id="d1" type="date" name="date1"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="d2" class="mb-0">
-                            Date2:
-                        </label>
-                        <input class="form-control"
-                            id="d2" type="date" name="date2"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="currency-field" class="mb-0">
-                            Your Purchase/Rent Price:
-                        </label>
-                        <input type="text" class="form-control" name="currency-field" id="currency-field"
-                           value="" data-type="currency"
-                            />
-                    </div>
-                    <div class="form-group">
-                        <label for="msg" class="mb-0">What you like in my
-                            place?
-                        </label>
-                        <textarea id="msg" class="form-control" name="message"
-                            placeholder="Write Something...." rows="14">
-                        </textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">
-                            send
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+				style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: #f1f7fc;">
+				<div class="contact-clean">
+					<form method="post">
+						<i class="fas fa-times-circle fa-3x" (click)="close_appointment()"
+							style="position: relative; top:-35px;right:-35px;float: right;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);"></i>
+						<h2 class="text-center">Get Appointment</h2>
+						<div class="form-group"><label for="d1" class="mb-0">Date1:</label><input class="form-control"
+								id="d1" type="date" name="date1"></div>
+						<div class="form-group"><label for="d2" class="mb-0">Date2:</label><input class="form-control"
+								id="d2" type="date" name="date2"></div>
+						<div class="form-group"><label for="currency-field" class="mb-0">Your Purchase/Rent Price:
+							</label>
+							<input type="text" class="form-control" name="currency-field" id="currency-field"
+								 value="" data-type="currency"
+                            ></div>
+						<div class="form-group"><label for="msg" class="mb-0">What you like in my
+								place?</label><textarea id="msg" class="form-control" name="message"
+								placeholder="Write Something...." rows="14"></textarea></div>
+						<div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
+					</form>
+				</div>
+			</div>
+			
         <div id="field" class="col-xs-12 col-lg-6 " style="height:90vh;overflow-x:hidden;overflow-y: auto;">
             <nav class="navbar navbar-white bg-white row" style="position: sticky;
             top: -0.1vh;z-index: 1;">
                 <div class="row col-12 pt-2 pb-1 text-center">
                     <div class="col-4 my-roboto under-line-active" style="font-size:1.1rem;"
-                        onclick="underline_price(this)" id="price-high-low">
+                        (click)="underline_price(price_high_low)" #price_high_low id="price_high_low">
                         Price -- high to low
 
                     </div>
-                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" onclick="underline_price(this)"
-                        id="price-low-high">
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" (click)="underline_price(price_low_high)"
+                        #price_low_high id="price_low_high">
                         Price -- low to high
                     </div>
-                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" onclick="underline_price(this)"
-                        id="newest-first">
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" (click)="underline_price(newest_first)"
+                        #newest_first id="newest_first">
                         Newest First
                     </div>
                 </div>
@@ -255,7 +215,12 @@
                                             <i class="fa fa-bath fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="bathrooms"></i>
                                         </div>
                                         <div class="col-8 mr-1">
-                                            <div id="slider-bath"></div>
+                                            <mat-slider style="width: 100%;"
+                                            min="1"
+                                            max="5"
+                                            thumbLabel
+                                            [displayWith]="formatLabel"
+                                            ></mat-slider>
                                         </div>
                                     </div>
                                     
@@ -280,8 +245,12 @@
                                             <i class="fa fa-bed fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="Beds"></i>
                                         </div>
                                         <div class="col-8 mr-1">
-                                            <div id="slider-bed">
-                                            </div>
+                                            <mat-slider style="width: 100%;"
+                                            min="1"
+                                            max="8"
+                                            thumbLabel
+                                            [displayWith]="formatLabel"
+                                            ></mat-slider>
                                         </div>
                                     </div>										
                                 </div>
@@ -293,7 +262,7 @@
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseThree" aria-expanded="false"
                                         aria-controls="collapseThree">
-                                        Size of Plot
+                                        Size of Plot<small> (sqft)</small>
                                     </button>
                                 </h2>
                             </div>
@@ -305,7 +274,12 @@
                                             <i class="far fa-square fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="plot size"></i>
                                         </div>
                                         <div class="col-8 mr-1">
-                                            <div id="slider-plot"></div>
+                                            <mat-slider style="width: 100%;"
+                                            min="10000"
+                                            max="100000"
+                                            thumbLabel
+                                            [displayWith]="formatLabelPlot"
+                                            ></mat-slider>
                                         </div>
                                     </div>
                                 </div>
@@ -340,3 +314,5 @@
     </div>
 
 
+    
+ 

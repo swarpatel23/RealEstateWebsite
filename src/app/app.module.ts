@@ -7,8 +7,8 @@ import { BuyComponent } from './buy/buy.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { EntryComponent } from './entry/entry.component';
-
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialModule} from './material'
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { EntryComponent } from './entry/entry.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
