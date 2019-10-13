@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
-import { BuiltinVar } from '@angular/compiler';
+import { HouseService } from '../house.service';
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
@@ -25,10 +25,15 @@ export class BuyComponent implements OnInit {
 	gym:boolean = false;
 	elevator:boolean = false;
 	indoor_game:boolean = false;
+	json_houselist:string;
+	obj_houselist:any;
+	  shouse:any;
+	  constructor(houseservice:HouseService) { 
+		this.json_houselist = houseservice.getHouses();
+		this.obj_houselist = JSON.parse(this.json_houselist);  
+		this.shouse = this.obj_houselist.find(function(){return 1;}); 
+	}
 	
-	json_houselist:string = '[{"hid":1,"uid":2,"cid":3,"address":"B-2039, Lorem, Epsum","lat":51.359657,"long":12.968053,"year_bulit":2000,"user_price":19000,"bathroom":5,"bedroom":5,"kitchen":2,"type":"row house","stories":2,"plot":1334.12,"overview":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam praesentium pariatur consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad amet rerum, labore adipisci distinctio.","g_amenities_list":["Balcony or deck","Hardwood"],"b_amenities_list":["garage","cooling","swimming","elevator","indoor_game","hardwood_floor","furnished","balcony"],"sales_rent":1,"view":123,"day_web":12,"photos":["image/house/h1.jpg","image/house/interior/h1-4.jpg","image/house/interior/h1-5.jpg","image/house/interior/h1-1.jpg"]},{"hid":20,"uid":2,"cid":3,"address":"B-1025, Lorem, SUrat","lat":26.359657,"long":81.968053,"year_bulit":1699,"user_price":15500,"bathroom":2,"bedroom":3,"kitchen":1,"type":"Flat","stories":11,"plot":129.12,"overview":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam praesentium pariatur consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad amet rerum, labore adipisci distinctio.","g_amenities_list":["Balcony or deck","Hardwood"],"b_amenities_list":["garage","swimming","pet","gym","elevator"],"sales_rent":1,"view":10,"day_web":23,"photos":["image/house/h2.jpg","image/house/interior/h1-1.jpg","image/house/interior/h1-2.jpg","image/house/interior/h1-1.jpg"]},{"hid":17,"uid":2,"cid":3,"address":"B-1025, Lorem, SUrat","lat":95.359657,"long":42.968053,"year_bulit":1699,"user_price":15000,"bathroom":1,"bedroom":1,"kitchen":4,"type":"Flat","stories":10,"plot":159.12,"overview":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam praesentium pariatur consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad amet rerum, labore adipisci distinctio.","g_amenities_list":["Balcony or deck","Hardwood"],"b_amenities_list":["garage","swimming","pet","gym","elevator"],"sales_rent":1,"view":145,"day_web":50,"photos":["image/house/h3.jpg","image/house/interior/h1-3.jpg","image/house/interior/h1-4.jpg","image/house/interior/h1-1.jpg"]},{"hid":4,"uid":2,"cid":3,"address":"B-1025, Lorem, SUrat","lat":15.359657,"long":42.968053,"year_bulit":1699,"user_price":1205,"bathroom":2,"bedroom":5,"kitchen":1,"type":"Flat","stories":10,"plot":159.12,"overview":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam praesentium pariatur consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad amet rerum, labore adipisci distinctio.","g_amenities_list":["Balcony or deck","Hardwood"],"b_amenities_list":["garage","swimming","pet","gym","elevator"],"sales_rent":1,"view":200,"day_web":50,"photos":["image/house/h4.jpg","image/house/interior/h1-5.jpg","image/house/interior/h1-6.jpg","image/house/interior/h1-7.jpg"]},{"hid":5,"uid":2,"cid":3,"address":"B-1025, Lorem, SUrat","lat":15.359657,"long":42.968053,"year_bulit":2015,"user_price":55000,"bathroom":5,"bedroom":5,"kitchen":2,"type":"Flat","stories":10,"plot":159.12,"overview":"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore beatae dolore, iusto magnam praesentium pariatur consectetur doloribus vero aperiam reiciendis ullam repudiandae, molestias dignissimos ad amet rerum, labore adipisci distinctio.","g_amenities_list":["Balcony or deck","Hardwood"],"b_amenities_list":["garage","swimming","pet","gym","elevator"],"sales_rent":1,"view":145,"day_web":50,"photos":["image/house/h5.jpg","image/house/interior/h1-2.jpg","image/house/interior/h1-4.jpg","image/house/interior/h1-5.jpg"]}]';
-  	obj_houselist = JSON.parse(this.json_houselist);  
-	  shouse:any = this.obj_houselist.find(function(){return 1;}); 
    house_click(house):void {						
     var hid = house.id;
     var house_list = this.obj_houselist;
@@ -109,9 +114,6 @@ export class BuyComponent implements OnInit {
 
   }
 
-  constructor() { 
-	  
-  }
   heart_clicked() {
 	if ($("#heart").hasClass("far")) {
 		$("#heart").addClass('fas').removeClass('far');
@@ -219,6 +221,7 @@ underline_price(element) {
 	}
 }
   ngOnInit() {
+	  
     	
 		
 		$(window).resize(function () {

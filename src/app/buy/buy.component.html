@@ -60,7 +60,7 @@
 						<small>Expected Price</small>
 						<div class="row">
 							<div class="col-lg-6 col-xs-12">
-								<h3 id="house_price">{{house_price}}
+								<h3 id="house_price">{{house_price | currency:'USD':true}}
 									<small>/mo</small>
 								</h3>
 							</div>
@@ -294,7 +294,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5">
-                                <h5>$ {{base_house['user_price']}}</h5>
+                                <h5>{{base_house['user_price'] | currency:'USD':true}}</h5>
                             </div>
                             <div class="col-7">
                                 <div class="row">
