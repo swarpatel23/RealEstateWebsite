@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro|Nunito|Patua+One|Prata&display=swap');
-
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 img
 {
 	transition: all 1s cubic-bezier(0, 0, 0.56, 0.87);
