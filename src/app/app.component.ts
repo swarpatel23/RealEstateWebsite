@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { DataService } from "./data.service"
+import { AuthService } from './auth.service'
 
 @Component({
   selector: 'app-root',
@@ -13,13 +14,13 @@ export class AppComponent implements OnInit{
   
   
 
-  constructor(private data:DataService){
+  constructor(private data:DataService,public _authService:AuthService){
 
   }
 
   ngOnInit()
   {
-    this.data.currentMessage.subscribe(signedin=>this.signedin=signedin)
+    this.data.currentMessage.subscribe(x=>this.signedin=x)
   }
  
 }

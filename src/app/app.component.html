@@ -18,8 +18,11 @@
                 <a class="nav-link" href="#">Rent</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav ml-auto pr-md-4" *ngIf="signedin;else elseblock">
-            ok signind in
+        <ul class="nav navbar-nav ml-auto pr-md-4" *ngIf="_authService.loggedIn();else elseblock">
+                <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
+                        <a class="nav-link" (click)="_authService.logoutUser()"
+                         >Logout</a>
+                    </li>
         </ul>
         <ng-template #elseblock>
             <ul class="nav navbar-nav ml-auto pr-md-4">
@@ -30,9 +33,9 @@
                     <li class="nav-item my-maven-pro  pl-xs-0 pl-xl-3 pr-md-4 ml-xs-0">
                         <a class="nav-link" [routerLink]="['/entry',{disp:'signin'}]">Login</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         {{message}}
-                    </li>
+                    </li> -->
                 </ul>
         </ng-template>
     </div>
