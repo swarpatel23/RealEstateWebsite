@@ -15,9 +15,8 @@ import { DataService } from '../data.service';
 })
 export class EntryComponent implements OnInit {
 
-  public signedin:boolean;
-  registeredUserData={}
-  loginUserData={}
+  registeredUserData={username:"",password:"",email:"",contactnumber:"",address:""}
+  loginUserData={email:"",password:""}
 
   constructor(private route: ActivatedRoute,private data: DataService,private _auth:AuthService,
     private _router:Router) {
@@ -26,14 +25,17 @@ export class EntryComponent implements OnInit {
       this.chk();
     });
   }
-  
+  public userid:string=""
   signin(){
     //console.log("hi");
-    this.data.changeMessage(true);
     this._auth.loginUser(this.loginUserData).subscribe(
       res=>{
         console.log(res)
         localStorage.setItem('token',res.token)
+        this.data.changeMessage(res.user._id);
+        this.userid=res.user._id
+        console.log(res.user._id)
+
         this._router.navigate(['/buy'])
       },
       err=>console.log(err)
@@ -41,18 +43,21 @@ export class EntryComponent implements OnInit {
   }
 
   signup(){
-    this.signedin=true;
-    this.data.changeMessage(true);
+    
     //console.log(this.registeredUserData)
     this._auth.registerUser(this.registeredUserData).subscribe(
       res=>{
         console.log(res)
         localStorage.setItem('token',res.token)
+        this.data.changeMessage(res.user._id);
+        this.userid=res.user._id
+        console.log(res.user._id)
         this._router.navigate(['/buy'])
 
       },
       err=>console.log(err)
     )
+    
   }
 
   
@@ -84,7 +89,8 @@ export class EntryComponent implements OnInit {
       $('.signup').hide();
       $('.signin').show();
     }
-    this.data.currentMessage.subscribe(signedin=>this.signedin=signedin)
+    this.data.currentMessage.subscribe(x=>this.userid=x)
+    
     let target;
     // let searchParams = new URLSearchParams(window.location.search);
     // if(searchParams.has('disp'))

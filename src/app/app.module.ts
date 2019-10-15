@@ -14,7 +14,10 @@ import { TokenInterceptorService } from './token-interceptor.service';
 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from './material'
+import {MaterialModule} from './material';
+import { HousedetailComponent } from './housedetail/housedetail.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ContactusComponent } from './contactus/contactus.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import {MaterialModule} from './material'
     HomeComponent,
     BuyComponent,
     FooterComponent,
-    EntryComponent
+    EntryComponent,
+    HousedetailComponent,
+    UserprofileComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,

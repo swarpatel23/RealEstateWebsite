@@ -1,0 +1,300 @@
+<body>
+        <div class="pt-5"></div>
+        <form method="POST" action="#">
+            <diV class="container">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#profile" style="color:red;">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#places" style="color:green;">Your Places</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#appointment" style="color:blueviolet;">Appointments Detail</a>
+                    </li>
+                </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="profile">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <br>
+                                    <br>
+                                    <div class="text-center">
+                                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                            class="avatar img-thumbnail" alt="avatar">
+                                        <h6>Upload a different photo...</h6>
+                                        <br>
+                                        <input type="file" class="text-center center-block file-upload">
+                                    </div>
+                                    <hr><br>
+                                </div>
+    
+    
+                                <div class="col-sm-12 col-md-4">
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="username" class="mb-0">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="abc"
+                                            disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstname" class="mb-0">First name</label>
+                                        <input type="text" class="form-control" id="firstname" name="firstname"
+                                            value="absdc">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname" class="mb-0">Last name</label>
+                                        <input type="text" class="form-control" id="lastname" name="lastname" value="adsbc">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" class="mb-0">Address</label>
+                                        <textarea class="form-control" rows="6" id="address"
+                                            placeholder="20, Indraprasth Society, near santram mandir,nadiad-387002"></textarea>
+                                    </div>
+    
+                                </div>
+    
+                                <div class="col-sm-12 col-md-4">
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="email" class="mb-0">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" value="abc@xyz.com"
+                                            disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email2" class="mb-0"> Additional email</label>
+                                        <input type="email" class="form-control" id="email2" name="email2"
+                                            value="abc@xyz.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactno" class="mb-0">Contact No</label>
+                                        <input type="text" class="form-control" id="contactno" name="contactno"
+                                            value="9999312422">
+                                    </div>
+                                    <div class="">
+                                        <label for="Password" class="mb-0">Password</label>
+                                        <br>
+                                        <p id="pchange" style="color:#00b0ff;text-decoration: underline;cursor: pointer;">
+                                            Change Password</p>
+                                    </div>
+                                    <div class="form-group" id="opass" style="display: none ">
+                                        <label for="oldpass" class="mb-0">Enter Old Password</label>
+                                        <input type="password" class="form-control" id="oldpass" name="oldpass" value="">
+                                    </div>
+                                    <div class="form-group" style="display: none" id="npass">
+                                        <label for="newpass" class="mb-0">Enter New Password</label>
+                                        <input type="text" class="form-control" id="newpass" name="newpass" value="">
+                                    </div>
+                                    <!-- <script>
+                                        $("#contactno").change(function () {
+                                            ///^\d{10}$/.test(str)
+                                            var str = $(this).val();
+                                            if (str.match(/^\d{10}$/)) {
+                                                console.log("1");
+                                                $(this).css("border-color", "");
+                                            }
+                                            else {
+                                                console.log("2");
+    
+                                                $(this).css("border-color", "red");
+                                            }
+                                        });
+    
+                                        $("#pchange").click(function () {
+                                            $("#opass").show(1000);
+                                            $("#npass").show(1000);
+                                        });
+                                    </script> -->
+                                </div>
+                            </div>
+    
+                            <div class="col-md-12 text-center">
+                                <br>
+                                <br>
+                                <input type="submit" class="btn btn-info" value="Submit Details">
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="tab-pane container-fluid fade" id="places">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                        <div class="row mx-auto">
+                                            <br>
+                                            <div class="card-deck">
+                                                    <a href="../housedetail/housedetail.html">
+    
+                                                <div class="card shadow">
+                                                    <img class="card-img-top" src="i2.jfif" alt="Card image cap">
+                                                    <div class="card-block">
+                                                        <br>
+                                                        <h4 class="card-title p-2">Card title</h4>
+                                                        <p class="card-text p-2">This is a longer card with supporting text
+                                                            below as a natural lead-in to additional content. This content
+                                                            is a little bit longer.</p>
+    
+                                                    </div>
+                                                </div>
+                                                </a>
+                                                <br>
+                                                <a href="../housedetail/housedetail.html">
+                                                <div class="card shadow">
+                                                    <img class="card-img-top" src="i1.jfif" alt="Card image cap">
+                                                    <div class="card-block">
+                                                        <br>
+                                                        <h4 class="card-title p-2">Card title</h4>
+                                                        <p class="card-text p-2">This card has supporting text below as a
+                                                            natural lead-in to additional content.</p>
+    
+                                                    </div>
+                                                </div>
+                                                </a>
+                                                <br>
+                                                <a href="../housedetail/housedetail.html">
+    
+                                                <div class="card shadow">
+                                                    <img class="card-img-top" src="i2.jfif" alt="Card image cap">
+                                                    <div class="card-block">
+                                                        <br>
+                                                        <h4 class="card-title p-2">Card title</h4>
+                                                        <p class="card-text p-2">This is a wider card with supporting text
+                                                            below as a natural lead-in to additional content. This card has
+                                                            even longer content than the first to show that equal height
+                                                            action.</p>
+    
+                                                    </div>
+                                                </div>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane container fade" id="appointment">
+                            <br>
+                            <br>
+                            <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                        <img src="person.jpg" class="img-fluid" alt="Responsive image">
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <p>Appointment For: <span id="address">20,chirag park,near patel bakery</span></p>
+                                    <br>
+                                    <div class="form-group">
+                                            <label for="description" class="mb-0">What he likes in your house?</label>
+                                            <textarea class="form-control" rows="6" id="description"
+                                                placeholder="It's well mainted.m Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                " disabled></textarea>
+                                        </div>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                        <label for="money" class="mb-0">His price for your place?</label><br>
+                                        <div class="input-group mb-3">
+                                                
+                                                <input type="text" class="form-control" id="money" aria-describedby="basic-addon2" disabled value="5000000">
+                                                
+                                                <div class="input-group-append">
+                                                  <span class="input-group-text" id="basic-addon2"><i class="fa fa-inr"></i></span>
+                                                </div>
+                                        </div>
+                                        <p><input type="radio" name="date" id="date1"/>&nbsp;&nbsp;Date1: <span id="date1">12/09/2019</span></p>
+                                        <p><input type="radio" name="date" id="date2"/>&nbsp;&nbsp;Date2: <span id="date1">14/09/2019</span></p>
+                                        <br><br>
+                                        <button type="button" id="b1" class="btn btn-success" disabled="disabled">Accept</button>&nbsp;&nbsp;&nbsp;
+                                        <button type="button" id="b2" class="btn btn-danger">Reject</button>
+    
+                                        <p style="display:none" id="accepted">Status: <span class="badge badge-success">Accepted</span></p>
+                                        <p style="display: none" id="rejected">Status: <span class="badge badge-danger">Rejected</span></p>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <!-- <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">
+                                            <img src="person2.jpg" class="img-fluid mx-auto d-block" alt="Responsive image" style="height:300">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                        <p>Appointment For: <span id="address">20,chirag park,near patel bakery</span></p>
+                                        <br>
+                                        <div class="form-group">
+                                                <label for="address" class="mb-0">What he likes in your house?</label>
+                                                <textarea class="form-control" rows="6" id="address"
+                                                    placeholder="It's well mainted.m Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                    Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                                    "></textarea>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
+                                            <label for="money" class="mb-0">His price for your place?</label><br>
+                                            <div class="input-group mb-3">
+                                                    
+                                                    <input type="text" class="form-control" id="money" aria-describedby="basic-addon2" disabled value="5000000">
+                                                    
+                                                    <div class="input-group-append">
+                                                      <span class="input-group-text" id="basic-addon2"><i class="fa fa-inr"></i></span>
+                                                    </div>
+                                            </div>
+                                            <p><input type="radio" name="date" id="date1"/>&nbsp;&nbsp;Date1: <span id="date1">12/09/2019</span></p>
+                                            <p><input type="radio" name="date" id="date2"/>&nbsp;&nbsp;Date2: <span id="date1">14/09/2019</span></p>
+                                            <br><br>
+                                            <button type="button" id="b1" class="btn btn-success">Accept</button>&nbsp;&nbsp;&nbsp;
+                                            <button type="button" id="b2" class="btn btn-danger">Reject</button>
+        
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+    
+    
+    
+            </diV>
+    
+        </form>
+        <!-- <script>
+            $(document).ready(function () {
+    
+    
+                var readURL = function (input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+    
+                        reader.onload = function (e) {
+                            $('.avatar').attr('src', e.target.result);
+                        }
+    
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+    
+                
+                $(".file-upload").on('change', function () {
+                    readURL(this);
+                });
+    
+                $("input:radio").change(function () {$("#b1").prop("disabled", false);});
+    
+                $("#b1").click(function(){
+                    $(this).hide();
+                    $('#b2').hide();
+                    //console.log("b1");
+                    $('#accepted').show();
+                });
+    
+                $("#b2").click(function(){
+                    $(this).hide();
+                    $('#b1').hide();
+                    $('#rejected').show();
+                });
+            });
+    
+            
+        </script> -->
+    </body>
+    

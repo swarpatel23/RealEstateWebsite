@@ -4,6 +4,7 @@ const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
 const router = express.Router()
+const IncomingForm = require('formidable').IncomingForm
 
 mongoose.connect(db,function(err){
     if(err)
@@ -35,6 +36,7 @@ function verifyToken(req,res,next)
     req.userId = payload.subject
     next()
 }
+
 router.get('/',function(req,res){
     res.end("jsadkfjaksd")
 })
@@ -54,7 +56,7 @@ router.post('/register',function(req,res)
         else{
             let payload = { subject: registeredUser._id}
             let token = jwt.sign(payload,'secretKey')
-            res.status(200).send({token})
+            res.status(200).send({token,registeredUser })
         }
     })
 })
@@ -84,11 +86,16 @@ router.post('/login',function(req,res)
                 {   
                     let payload = { subject: user._id}
                     let token = jwt.sign(payload,'secretKey')
-                    res.status(200).send({token})
+                    res.status(200).send({token,user})
                 }
             }
         }
     })
 })
 
+router.post('/upload_house_details',function(req,res)
+{
+    
+
+})
 module.exports = router;

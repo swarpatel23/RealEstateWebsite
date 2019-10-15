@@ -6,7 +6,7 @@
 <div class="signup">
     <form method="POST" action="">
         <h2 class="h2header">Sign Up</h2>
-        <input type="text" [(ngModel)]="registeredUserData.username" name="username" placeholder="Username" spellcheck="false" required>
+        <input type="text" [(ngModel)]="registeredUserData.username" name="username" placeholder="Username" spellcheck="false" required autocomplete=”off”>
         <input type="email" placeholder="E-mail" [(ngModel)]="registeredUserData.email" name="email" spellcheck="false" autocomplete="off" required>
         <input type="password" placeholder="Password" [(ngModel)]="registeredUserData.password" name="password" required>
         <input type="tel" placeholder="Contact Number" [(ngModel)]="registeredUserData.contactnumber" name="contactnumber" required>

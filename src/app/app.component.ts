@@ -9,7 +9,7 @@ import { AuthService } from './auth.service'
 })
 export class AppComponent implements OnInit{
   private title:string = 'realtor';
-  public signedin:boolean=false;
+  public userid:string="";
   public message:string;
   
   
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit()
   {
-    this.data.currentMessage.subscribe(x=>this.signedin=x)
+    this.data.currentMessage.subscribe(x=>this.userid=x)
   }
  
 }

@@ -25,4 +25,8 @@ import * as $ from 'jquery';
 
 
 
+npm install mapbox-gl --save
+
+
+
 

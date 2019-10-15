@@ -1,0 +1,296 @@
+<body>
+    <div class="container text-center" style="margin-bottom:0">
+        <div id='map' style='max-width: 1100px; height: 300px;'></div>
+    </div>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link">Details & Description <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Contact Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">Amenities and rules</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <!-- <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+            $("a").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 1000, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
+    </script> -->
+    <form method="POST" action="#">
+        <div class="container" style="margin-top:30px">
+            <div class="row">
+                <div class="col-sm-6" id="sec1">
+                    <h2>Details and Description</h2>
+                    <h5>For:</h5>
+                    <div class="form-group form-check">
+                        <input class="form-check-input" [(ngModel)]="housedetail.type" type="radio" name="typeRadios"
+                            id="Radios1" value="sale" checked>
+                        <label class="form-check-label" for="Radios1">
+                            Sale
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="radio" name="typeRadios" id="Radios2" value="rent"
+                            [(ngModel)]="housedetail.type">
+                        <label class="form-check-label" for="Radios2">
+                            Rent
+                        </label>
+                    </div>
+
+                    <div class="form-group" style="display:none;" id="hi1">
+                        <label for="rentpr" class="mb-0">Rent price</label>
+                        <input type="text" class="form-control" id="rentpr" placeholder="Enter amount(in rupees)"
+                            name="rentpr" [(ngModel)]="housedetail.rentprice">
+                    </div>
+                    <div class="form-group" style="display:none;" id="hi2">
+                        <label for="secudepo" class="mb-0">Security deposit</label>
+                        <input type="text" class="form-control" id="secudepo" placeholder="Enter amount(in rupees)"
+                            name="secudepo" [(ngModel)]="housedetail.securitydeposite">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="beds" class="mb-0">Beds</label>
+                        <input type="number" min="0" class="form-control" id="beds" name="beds"
+                            [(ngModel)]="housedetail.beds">
+                    </div>
+                    <div class="form-group">
+                        <label for="baths" class="mb-0">Baths</label>
+                        <input type="number" min="0" class="form-control" id="baths" name="baths"
+                            [(ngModel)]="housedetail.baths">
+                    </div>
+                    <div class="form-group">
+                        <label for="sqfeet" class="mb-0">Square feet</label>
+                        <input type="number" min="0" step="0.01" class="form-control" id="sqfeet" name="sqfeet"
+                            [(ngModel)]="housedetail.squarefeet">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeys" class="mb-0">Storeys</label>
+                        <input type="number" min="0" class="form-control" id="storeys" name="storeys"
+                            [(ngModel)]="housedetail.storeys">
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" style="display: none;" id="hi3">
+                        <label for="leaseduration" class="mb-0">Lease duration</label>
+                        <select id="leaseduration" class="form-control" name="leaseduration"
+                            [(ngModel)]="housedetail.leaseduration">
+                            <option value="1">1 month</option>
+                            <option value="2">2 month</option>
+                            <option value="3">3 month</option>
+                            <option value="6">6 month</option>
+                            <option value="12">1 year</option>
+                            <option value="24">2 year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="mb-0">Address</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            placeholder="20 chirag park nadiad 387002" [(ngModel)]="housedetail.address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="latitude" class="mb-0">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude" disabled
+                            [(ngModel)]="housedetail.latitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude" class="mb-0">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude" disabled
+                            [(ngModel)]="housedetail.longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="mb-0">Description</label>
+                        <textarea class="form-control" rows="7" id="description" placeholder="Describe your place"
+                            name="description" [(ngModel)]="housedetail.description"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6" id="sec2">
+                    <h2>Contact Information</h2>
+                    <div class="form-group">
+                        <label for="name" class="mb-0">Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            [(ngModel)]="housedetail.contactperson" placeholder="Your name here">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="mb-0">Email</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                            [(ngModel)]="housedetail.contactemail">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="mb-0">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone"
+                            [(ngModel)]="housedetail.contactphone" placeholder="+91 1234567890">
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <br>
+                    <br>
+                    <br>
+                    <label for="typeRadios">For rent by:</label>
+
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="radio" name="for_rent_by" id="property_owner"
+                            value="property_owner" checked [(ngModel)]="housedetail.forrentby">
+                        <label class="form-check-label" for="property_owner">
+                            Property Owner
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="radio" name="for_rent_by" id="manage_broker"
+                            value="manage_broker" [(ngModel)]="housedetail.forrentby">
+                        <label class="form-check-label" for="manage_broker">
+                            Management Comapany or broker
+                        </label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input class="form-check-input" type="radio" name="for_rent_by" id="tenant" value="tenant"
+                            [(ngModel)]="housedetail.forrentby">
+                        <label class="form-check-label" for="tenant">
+                            Tenant
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <div class="col-sm-6" id="sec3">
+                    <h2>Amenities and rules</h2>
+                    <h5 class="font-weight-light">Amenities(optional)</h5>
+                    <hr>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="a/c" name="a/c"
+                            [(ngModel)]="housedetail.amenities.ac">
+                        <label class="form-check-label" for="a/c">A/C</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="balcony_or_deck" name="balcony_or_deck"
+                            [(ngModel)]="housedetail.amenities.balcony_or_deck">
+                        <label class="form-check-label" for="balcony_or_deck">Balcony or deck</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="furnished" name="furnished"
+                            [(ngModel)]="housedetail.amenities.furnished">
+                        <label class="form-check-label" for="furnished">Furnished</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="hardwood_floor" name="hardwood_floor"
+                            [(ngModel)]="housedetail.amenities.hardwood_floor">
+                        <label class="form-check-label" for="hardwood_floor" name>Hardwood floor</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="garage_parking" name="garage_parking"
+                            [(ngModel)]="housedetail.amenities.garage_parking">
+                        <label class="form-check-label" for="garage_parking">Garage parking</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="off_street_parking"
+                            name="off_street_parking" [(ngModel)]="housedetail.amenities.off_street_parking">
+                        <label class="form-check-label" for="off_street_parking">Off street parking</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="indoorgames" name="indoorgames"
+                            [(ngModel)]="housedetail.amenities.indoorgames">
+                        <label class="form-check-label" for="indoorgames">Indoor Games</label>
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="swimmingpool" name="swimmingpool"
+                            [(ngModel)]="housedetail.amenities.swimmingpool">
+                        <label class="form-check-label" for="swimmingpool">Swimming Pool</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="elevator" name="elevator"
+                            [(ngModel)]="housedetail.amenities.elevator" [ngModelOptions]="{standalone: true}">
+                        <label class=" form-check-label" for="Elevator">Elevator</label>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <br>
+                    <br>
+
+                    <h5 class="font-weight-light">PETS</h5>
+                    <hr>
+                    <div class="form-group form-check" id="hi4" style="display:none;">
+                        <input type="checkbox" [(ngModel)]="housedetail.pets" class="form-check-input"
+                            id="no_pets_allowed" name="no_pets_allowed">
+                        <label class="form-check-label" for="no_pets_allowed">No Pets Allowed</label>
+                    </div>
+
+
+
+                </div>
+
+                <br>
+                <br>
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-12 col-11 main-section">
+                            <h1 class="text-center text-danger">Upload Images of Your Place</h1><br>
+
+                            <div>
+                                <input id="input-file-id" multiple="multiple" type="file"
+                                    name="houseimg"/>
+                            </div>
+                            <!-- $('#input-file-id')[0].files; -->
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 text-center">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-info" value="Submit Details" (click)="submitHouseDetails()">
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+</body>

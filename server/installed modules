@@ -2,3 +2,4 @@ npm install --save mongoose
 npm install express body-parser --save
 
 npm install jsonwebtoken --save
+npm install formidable --save

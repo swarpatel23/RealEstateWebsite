@@ -20,6 +20,10 @@
         </ul>
         <ul class="nav navbar-nav ml-auto pr-md-4" *ngIf="_authService.loggedIn();else elseblock">
                 <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
+                        <a class="nav-link" [routerLink]="['/housedetail']" routerLinkActive="router-link-active" 
+                         >House Detail</a>
+                    </li>
+                <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
                         <a class="nav-link" (click)="_authService.logoutUser()"
                          >Logout</a>
                     </li>
