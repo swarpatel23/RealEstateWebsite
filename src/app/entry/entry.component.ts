@@ -33,6 +33,10 @@ export class EntryComponent implements OnInit {
         console.log(res)
         localStorage.setItem('token',res.token)
         this.data.changeMessage(res.user._id);
+        localStorage.setItem('userid',res.user._id)
+        localStorage.setItem('username',res.user.username)
+        localStorage.setItem('email',res.user.email)
+
         this.userid=res.user._id
         console.log(res.user._id)
 
@@ -49,9 +53,14 @@ export class EntryComponent implements OnInit {
       res=>{
         console.log(res)
         localStorage.setItem('token',res.token)
-        this.data.changeMessage(res.user._id);
-        this.userid=res.user._id
-        console.log(res.user._id)
+        this.data.changeMessage(res.registeredUser._id);
+        localStorage.setItem('userid',res.registeredUser._id)
+        localStorage.setItem('username',res.registeredUser.username)
+        localStorage.setItem('email',res.registeredUser.email)
+
+        this.userid=res.registeredUser._id
+        console.log(res.registeredUser._id)
+
         this._router.navigate(['/buy'])
 
       },

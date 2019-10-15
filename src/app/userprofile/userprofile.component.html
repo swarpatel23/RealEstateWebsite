@@ -24,7 +24,7 @@
                                             class="avatar img-thumbnail" alt="avatar">
                                         <h6>Upload a different photo...</h6>
                                         <br>
-                                        <input type="file" class="text-center center-block file-upload">
+                                        <input type="file" class="text-center center-block file-upload" name="userpic" id="userpic">
                                     </div>
                                     <hr><br>
                                 </div>
@@ -35,21 +35,21 @@
                                     <div class="form-group">
                                         <label for="username" class="mb-0">Username</label>
                                         <input type="text" class="form-control" id="username" name="username" value="abc"
-                                            disabled>
+                                            disabled [(ngModel)]="userdetail.username">
                                     </div>
                                     <div class="form-group">
                                         <label for="firstname" class="mb-0">First name</label>
                                         <input type="text" class="form-control" id="firstname" name="firstname"
-                                            value="absdc">
+                                            value="absdc" [(ngModel)]="userdetail.firstname">
                                     </div>
                                     <div class="form-group">
                                         <label for="lastname" class="mb-0">Last name</label>
-                                        <input type="text" class="form-control" id="lastname" name="lastname" value="adsbc">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" value="adsbc" [(ngModel)]="userdetail.lastname">
                                     </div>
                                     <div class="form-group">
                                         <label for="address" class="mb-0">Address</label>
-                                        <textarea class="form-control" rows="6" id="address"
-                                            placeholder="20, Indraprasth Society, near santram mandir,nadiad-387002"></textarea>
+                                        <textarea class="form-control" rows="6" id="address" name="address"
+                                            placeholder="20, Indraprasth Society, near santram mandir,nadiad-387002" [(ngModel)]="userdetail.address"></textarea>
                                     </div>
     
                                 </div>
@@ -59,17 +59,17 @@
                                     <div class="form-group">
                                         <label for="email" class="mb-0">Email</label>
                                         <input type="email" class="form-control" id="email" name="email" value="abc@xyz.com"
-                                            disabled>
+                                            disabled [(ngModel)]="userdetail.email">
                                     </div>
                                     <div class="form-group">
                                         <label for="email2" class="mb-0"> Additional email</label>
                                         <input type="email" class="form-control" id="email2" name="email2"
-                                            value="abc@xyz.com">
+                                            value="abc@xyz.com" [(ngModel)]="userdetail.recoveryemail">
                                     </div>
                                     <div class="form-group">
                                         <label for="contactno" class="mb-0">Contact No</label>
                                         <input type="text" class="form-control" id="contactno" name="contactno"
-                                            value="9999312422">
+                                            value="9999312422" [(ngModel)]="userdetail.contactnumber">
                                     </div>
                                     <div class="">
                                         <label for="Password" class="mb-0">Password</label>
@@ -79,11 +79,11 @@
                                     </div>
                                     <div class="form-group" id="opass" style="display: none ">
                                         <label for="oldpass" class="mb-0">Enter Old Password</label>
-                                        <input type="password" class="form-control" id="oldpass" name="oldpass" value="">
+                                        <input type="password" class="form-control" id="oldpass" name="oldpass" value="" [(ngModel)]="userdetail.password">
                                     </div>
                                     <div class="form-group" style="display: none" id="npass">
                                         <label for="newpass" class="mb-0">Enter New Password</label>
-                                        <input type="text" class="form-control" id="newpass" name="newpass" value="">
+                                        <input type="text" class="form-control" id="newpass" name="newpass" value="" [(ngModel)]="newpassword">
                                     </div>
                                     <!-- <script>
                                         $("#contactno").change(function () {
@@ -111,7 +111,7 @@
                             <div class="col-md-12 text-center">
                                 <br>
                                 <br>
-                                <input type="submit" class="btn btn-info" value="Submit Details">
+                                <input type="submit" class="btn btn-info" value="Submit Details" (click)="updateUserDetail()">
                                 <br>
                                 <br>
                             </div>

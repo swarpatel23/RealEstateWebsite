@@ -2,10 +2,10 @@
         <div class="contact-clean">
             <form method="post" action="#">
                 <h2 class="text-center">Contact us</h2>
-                <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name"></div>
-                <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email"><small class="form-text text-danger">Please enter a correct email address.</small></div>
-                <div class="form-group"><textarea class="form-control" name="message" placeholder="Message" rows="14"></textarea></div>
-                <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
+                <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name" [(ngModel)]="contactdetail.name"></div>
+                <div class="form-group"><input class="form-control is-invalid" type="email" name="email" placeholder="Email" [(ngModel)]="contactdetail.email"><small class="form-text text-danger">Please enter a correct email address.</small></div>
+                <div class="form-group"><textarea class="form-control" name="message" placeholder="Message" rows="14" [(ngModel)]="contactdetail.message"></textarea></div>
+                <div class="form-group"><button class="btn btn-primary" type="submit" (click)="uploadContactDetail()">send </button></div>
             </form>
         </div>
         <div class="map-clean">

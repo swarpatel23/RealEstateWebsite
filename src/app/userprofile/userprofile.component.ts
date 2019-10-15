@@ -9,8 +9,16 @@ import * as $ from 'jquery';
 })
 export class UserprofileComponent implements OnInit {
 
+  newpassword:string=""
+  userdetail={userphoto:"",username:localStorage.getItem('username'),firstname:"",lastname:"",email:localStorage.getItem('email'),password:"",contactnumber:"",address:"",recoveryemail:""}
   constructor() { }
 
+  updateUserDetail(){
+    this.userdetail.userphoto="fixphoto"
+    //this.userdetail.username=localStorage.getItem('username')
+    //this.userdetail.email=localStorage.getItem('email')
+    console.log(this.userdetail)
+  }
   ngOnInit() {
     $(document).ready(function () {
 

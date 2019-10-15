@@ -15,7 +15,7 @@ export class HousedetailComponent implements OnInit {
 
     public userid: string = "";
 
-    housedetail = {user_id:"",
+    housedetail = {user_id:"",saleprice:"",
         type: "", rentprice: "", securitydeposite: "", leaseduration: "", beds: "", baths: "", forrentby: "",
         squarefeet: "", storeys: "", address: "", latitude: "", longitude: "", description: "", contactperson: "", pets: false,
         contactemail: "", contactphone: "", amenities: { ac: false, balcony_or_deck: false, furnished: false, hardwood_floor: false, garage_parking: false, off_street_parking: false, indoorgames: false, swimmingpool: false, elevator: false }, houseimg: []
@@ -26,8 +26,14 @@ export class HousedetailComponent implements OnInit {
     }
     houseimg: string[] = []
     submitHouseDetails() {
-        console.log(this.userid)
+        if(this.userid==null)
+        {
+            this.userid=localStorage.getItem('userid')
 
+        }
+        console.log(this.userid)
+        this.housedetail.latitude=(<HTMLInputElement>document.getElementById("latitude")).value
+        this.housedetail.longitude=(<HTMLInputElement>document.getElementById("longitude")).value 
         this.housedetail.user_id=this.userid
         for (let i = 0; i < (<any>$('#input-file-id')[0]).files.length; i++) {
             this.houseimg.push((<any>$('#input-file-id')[0]).files[i].name)
@@ -63,7 +69,7 @@ export class HousedetailComponent implements OnInit {
 
                 lat = position.coords.latitude;
                 long = position.coords.longitude;
-
+                
                 (<HTMLInputElement>document.getElementById("latitude")).value = lat;
                 (<HTMLInputElement>document.getElementById("longitude")).value = long;
                 // map = new mapboxgl.Map({
@@ -91,6 +97,7 @@ export class HousedetailComponent implements OnInit {
             map.on('click', function (e) {
                 (<HTMLInputElement>document.getElementById("latitude")).value = e.lngLat.lat;
                 (<HTMLInputElement>document.getElementById("longitude")).value = e.lngLat.lng;
+                
             });
             map.on("load", setmarker);
             map.on("click", setmarker);
@@ -146,6 +153,8 @@ export class HousedetailComponent implements OnInit {
                 $("#hi2").hide(1000);
                 $("#hi3").hide(1000);
                 $("#hi4").hide(1000);
+                $("#hi5").show(1000);
+
             });
             $("#Radios2").click(function () {
                 $("#Radios2").prop("checked", true);
@@ -154,6 +163,8 @@ export class HousedetailComponent implements OnInit {
                 $("#hi2").show(1000);
                 $("#hi3").show(1000);
                 $("#hi4").show(1000);
+                $("#hi5").hide(1000);
+
             });
 
             $(':input[type="number"]').change(function () {

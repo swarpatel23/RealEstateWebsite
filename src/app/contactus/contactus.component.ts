@@ -9,7 +9,12 @@ import * as mapboxgl from 'mapbox-gl'
 })
 export class ContactusComponent implements OnInit {
 
+  contactdetail={name:"",email:"",message:""}
   constructor() { }
+
+  uploadContactDetail(){
+      console.log(this.contactdetail)
+  }
 
   ngOnInit() {
     var lat, long;

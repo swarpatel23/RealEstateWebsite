@@ -5,6 +5,10 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     username: String,
     email: String,
+    recoveryemail:String,
+    firstname:String,
+    lastname:String,
+    userphoto:String,
     password: String,
     contactnumber: String,
     address: String
