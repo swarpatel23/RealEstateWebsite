@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { HouseService } from '../house.service';
+import * as mapboxgl from 'mapbox-gl';
+import { DataService } from "./../data.service";
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
   styleUrls: ['./buy.component.css']
 })
 export class BuyComponent implements OnInit {
+
+	beds:number=1; 
+	baths:number=1; 
+	plots:number = 10000;	
+	math:any = Math;
+
 	hcover:string = "";
 	house_price = "";
 	house_address:string = "";
@@ -28,13 +36,18 @@ export class BuyComponent implements OnInit {
 	json_houselist:string;
 	obj_houselist:any;
 	  shouse:any;
+	houseservice:HouseService = null;
 	  constructor(houseservice:HouseService) { 
+		this.houseservice = houseservice;
 		this.json_houselist = houseservice.getHouses();
 		this.obj_houselist = JSON.parse(this.json_houselist);  
 		this.shouse = this.obj_houselist.find(function(){return 1;}); 
 	}
+
+	map:any;
 	
    house_click(house):void {						
+	   
     var hid = house.id;
     var house_list = this.obj_houselist;
     
@@ -55,11 +68,19 @@ export class BuyComponent implements OnInit {
               +'<a href="../../assets/'+this.shouse["photos"][i]+'" target="_blank"><img src="../../assets/'+this.shouse["photos"][i]+'"'
               +'class="img-fluid "></a>'
               +'</div>';
-    }
+	}
+	this.g_feture = [];
     for (let index = 0; index < this.shouse["g_amenities_list"].length; index++) {
       const element = this.shouse["g_amenities_list"][index];
     this.g_feture.push(element);
 	}
+	this.ac = false;
+	this.garage = false;
+	this.swimming = false;
+	this.pet = false;
+	this.gym = false;
+	this.elevator = false;
+	this.indoor_game = false;
     for (let i = 0; i < this.shouse["b_amenities_list"].length; i++) {
       const amenities_list = this.shouse["b_amenities_list"][i];				
       switch (amenities_list) {
@@ -105,7 +126,13 @@ export class BuyComponent implements OnInit {
 	this.plot_size = this.shouse["plot"];	
 	this.overview = this.shouse["overview"];
 	this.total_view = this.shouse["view"];
-   	this.days_on_web = this.shouse["day_web"];
+	this.days_on_web = this.shouse["day_web"];
+	this.map.flyTo({
+		center: [
+			this.shouse["lat"],
+			this.shouse["long"]
+	]
+	});
     $("#house_detail").css("animation", "anim 2s forwards");
     $("#house_detail").css({ "display": "" });
 
@@ -205,8 +232,11 @@ underline_price(element) {
 		default:
 			break;
 	}
-	
-	this.obj_houselist .sort(this.sortbyandorder(sortby, order));
+	//console.log(this.obj_houselist);
+	this.json_houselist = this.houseservice.getHouses();
+	this.obj_houselist = JSON.parse(this.json_houselist);  
+	this.shouse = this.obj_houselist.find(function(){return 1;}); 
+	this.obj_houselist.sort(this.sortbyandorder(sortby, order));
 	//console.log(this.obj_houselist);
 }
 
@@ -222,14 +252,49 @@ underline_price(element) {
 }
   ngOnInit() {
 	  
-    	
+	var lat, long;
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcjIzIiwiYSI6ImNqejlhbmt1YzAxdXAzbm1yZzMzbHFmNHMifQ.xPyQpPklaSXYm5pFCO85Hg';
+	
+	this.map = new mapboxgl.Map({
+		container: 'map',
+		center: [72.8662016, 22.690201599999998], // starting position
+		zoom: 5, // starting zoom
+		style: 'mapbox://styles/mapbox/satellite-streets-v11',
+
+	});
+	// if (navigator.geolocation) {
+	// 	navigator.geolocation.getCurrentPosition(function (position) {
+
+	// 		lat = position.coords.latitude;
+	// 		long = position.coords.longitude;
+
+	// 		(<HTMLInputElement>document.getElementById("latitude")).value = lat;
+	// 		(<HTMLInputElement>document.getElementById("longitude")).value = long;
+	// 		// map = new mapboxgl.Map({
+	// 		//     container: 'map',
+	// 		//     center: [long, lat], // starting position
+	// 		//     zoom: 13, // starting zoom
+	// 		//     style: 'mapbox://styles/mapbox/satellite-streets-v11',
+
+	// 		// });
+	// 		this.map.flyTo({
+	// 			center: [long, lat],
+	// 			zoom: 13,
+	// 		});
+	// 	}, function () {
+
+	// 		(<HTMLInputElement>document.getElementById("latitude")).placeholder = "select your place location in map";
+	// 		(<HTMLInputElement>document.getElementById("longitude")).placeholder = "select your place location in map";
+
+	// 	});
+	// }
 		
 		$(window).resize(function () {
 			if ($(window).width() >= 992) {
 				document.getElementById("field").className = "col-xs-12 col-lg-6";
 				document.getElementById("map").className = "col-xs-12 col-lg-6 d-none d-lg-flex overflow-hidden";
-				document.getElementById("display_houses").className = "nav-link under-line-active";
-				document.getElementById("display_map").className = "nav-link under-line";
+			//	document.getElementById("display_houses").className = "nav-link under-line-active";
+				//document.getElementById("display_map").className = "nav-link under-line";
 			}
 		});
  
@@ -244,9 +309,55 @@ underline_price(element) {
 	return value.toString();
   }
   formatLabelPlot(value:number){
-	if (value >= 1000) {
+	if (value >= 1000) {	
 		return Math.round(value / 1000) + 'k';
-	}
+	}	
 	return value;
+  }
+  updateHouseList(event):void
+  {
+	let sortby = "";
+	let order = 1;//1 ASC	
+	let id = 'price_high_low';
+	if($("#price_high_low").hasClass("under-line-active"))
+	{
+		id = "price_high_low";
+	}	
+	else if ($("#price_low_high").hasClass("under-line-active"))
+	{
+		id = "price_low_high";
+	}
+	else{
+		id = "newest_first";
+	}
+	//$("#price_low_high").attr('class',"col-4 my-roboto under-line");
+//	$("#newest_first").attr('class',"col-4 my-roboto under-line");
+	
+	
+	
+	switch (id) {
+		case "price_high_low":
+			sortby = "user_price";
+			order = -1;
+			break;
+		case "price_low_high":
+			sortby = "user_price";
+			order = 1;
+			break;
+		case "newest_first":
+			sortby = "day_web";
+			order = 1;
+			break;
+		default:
+			break;
+	}
+	console.log(id);
+	console.log('beds :',this.beds );
+	console.log('baths :',this.baths );
+	console.log('plots :',this.plots );
+	this.json_houselist = this.houseservice.getHousesWith(this.baths,this.beds,this.plots);
+	this.obj_houselist = JSON.parse(this.json_houselist);  
+	this.shouse = this.obj_houselist.find(function(){return 1;}); 
+	this.obj_houselist.sort(this.sortbyandorder(sortby, order));
   }
 }

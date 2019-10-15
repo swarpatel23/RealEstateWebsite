@@ -1,9 +1,9 @@
-
 <div class="container-fluid">
     <div class="modal" id="myModal">
         <div class="fas fa-times-circle fa-3x" data-dismiss="modal" style="z-index:1;position: absolute ;top:50px;right:50px;    background-color: white;
             color: black;
             clip-path: circle(48% at 24px 24px);">
+            
         </div>
         <div class="row text-center" style="position: relative;
         top: 50%;
@@ -21,7 +21,7 @@
                     top: 50%;
                     transform: translateY(10%);">
                         <!--style="						
-                        transform: translateY(-50%);"-->                
+                        transform: translateY(-50%);"-->
                     </div>
                 </div>
             </div>
@@ -42,277 +42,296 @@
             style="height:90vh;padding-left: 0px;">
             <!--d-xs-block d-sm-block d-md-block d-lg-block-->
         </div>
-       
+
         <div id="house_detail" class="col-xs-12 col-lg-6"
-				style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: white;">
-				<div class="row text-center">
-					<i class="fas fa-times-circle fa-3x my-close-btn-house-detail" (click)="close_details()"></i>
-					<div class="col-12 house-thumbnail">						
-						<img src="../../assets/{{hcover}}" class="img-fluid" alt="h1" id="main-house-thumbnail"/>
-						<div data-toggle="modal" data-target="#myModal"
-							class="my-more" id="more">
-							More
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<small>Expected Price</small>
-						<div class="row">
-							<div class="col-lg-6 col-xs-12">
-								<h3 id="house_price">{{house_price | currency:'USD':true}}
-									<small>/mo</small>
-								</h3>
-							</div>
-							<div class="col-lg-4 col-xs-12">
-								<p id="house_address">
-									{{house_address}}
-								</p>
-							</div>
-							<div class="col-lg-2 col-xs-12">
-								<small>Year build</small>
-								<p>{{house_year}}</p>
-							</div>
-							<div class="col-12">
-								<div class="row text-center pt-5 pb-5">
-									<div class="col-4">
-										<h4 class="my-hepta" id="no_of_bed">{{no_of_bed}}</h4>
-										<p>
-											<i class="fa fa-bed fa-3x" aria-hidden="true" data-toggle="tooltip"
-												title="Beds"></i>
-										</p>
-									</div>
-									<div class="col-4">
-										<h4 class="my-hepta" id="no_of_bathroom">{{no_of_bathroom}}</h4>
-										<p>
-											<i class="fa fa-bath fa-3x" aria-hidden="true" data-toggle="tooltip"
-												title="Bathrooms	"></i>
-										</p>
-									</div>
-									<div class="col-4">
-										<h6 class="my-hepta" id="plot_size">{{plot_size}}
-											<small>ft</small>
-										</h6>
-										<p>
-											<i class="fas fa-home fa-3x" aria-hidden="true" data-toggle="tooltip"
-												title="Plot size"></i>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-12 mt-sm-5 mt-md-5 text-center">
-								<button id="apply" class="w-50" (click)="appointment_click(this)">Get
-									Appointment</button>
-								<i class="far fa-heart fa-3x float-right pr-0 pr-sm-5 pink-color" 
-									data-toggle="tooltip" title="Like" (click)="heart_clicked();" id="heart"></i>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 mt-4">
-						<h1>Overview</h1>
-						<hr>
-						<p id="overview">{{overview}}</p>
-						<div class="row text-center  mt-5 mb-4">
-							<div class="col-6">
-								<h2 class="my-hepta" id="total_view">{{total_view}}</h2>
-								<p class="text-muted">Views</p>
-							</div>
-							<div class="col-6">
-								<h2 class="my-hepta" id="days_on_web">{{days_on_web}} </h2>
-								<p class="text-muted">Day(s) since on website</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 mt-5">
-						<h1>Ammenities</h1>
-						<hr>
-						<h6>General Fetures</h6>
-						<ul id="g_feture_list">
-                            <li *ngFor="let ammenity of g_feture">
-                                {{ammenity}}
-                            </li>
-							<!-- <li>Balcony or deck</li>
+            style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: white;">
+            <div class="row text-center">
+                <i class="fas fa-times-circle fa-3x my-close-btn-house-detail" (click)="close_details()"></i>
+                <div class="col-12 house-thumbnail">
+                    <img src="../../assets/{{hcover}}" class="img-fluid" alt="h1" id="main-house-thumbnail" />
+                    <div data-toggle="modal" data-target="#myModal" class="my-more" id="more">
+                        More
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <small>Expected Price</small>
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <h3 id="house_price">{{house_price | currency:'USD':true}}
+                                <small>/mo</small>
+                            </h3>
+                        </div>
+                        <div class="col-lg-4 col-xs-12">
+                            <p id="house_address">
+                                {{house_address}}
+                            </p>
+                        </div>
+                        <div class="col-lg-2 col-xs-12">
+                            <small>Year build</small>
+                            <p>{{house_year}}</p>
+                        </div>
+                        <div class="col-12">
+                            <div class="row text-center pt-5 pb-5">
+                                <div class="col-4">
+                                    <h4 class="my-hepta" id="no_of_bed">{{no_of_bed}}</h4>
+                                    <p>
+                                        <i class="fa fa-bed fa-3x" aria-hidden="true" data-toggle="tooltip"
+                                            title="Beds"></i>
+                                    </p>
+                                </div>
+                                <div class="col-4">
+                                    <h4 class="my-hepta" id="no_of_bathroom">{{no_of_bathroom}}</h4>
+                                    <p>
+                                        <i class="fa fa-bath fa-3x" aria-hidden="true" data-toggle="tooltip"
+                                            title="Bathrooms	"></i>
+                                    </p>
+                                </div>
+                                <div class="col-4">
+                                    <h6 class="my-hepta" id="plot_size">{{plot_size}}
+                                        <small>ft</small>
+                                    </h6>
+                                    <p>
+                                        <i class="fas fa-home fa-3x" aria-hidden="true" data-toggle="tooltip"
+                                            title="Plot size"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-sm-5 mt-md-5 text-center">
+                            <button id="apply" class="w-50" (click)="appointment_click(this)">Get
+                                Appointment</button>
+                            <i class="far fa-heart fa-3x float-right pr-0 pr-sm-5 pink-color" data-toggle="tooltip"
+                                title="Like" (click)="heart_clicked();" id="heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <h1>Overview</h1>
+                    <hr>
+                    <p id="overview">{{overview}}</p>
+                    <div class="row text-center  mt-5 mb-4">
+                        <div class="col-6">
+                            <h2 class="my-hepta" id="total_view">{{total_view}}</h2>
+                            <p class="text-muted">Views</p>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="my-hepta" id="days_on_web">{{days_on_web}} </h2>
+                            <p class="text-muted">Day(s) since on website</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <h1>Ammenities</h1>
+                    <hr>
+                    <h6>General Fetures</h6>
+                    <ul id="g_feture_list">
+                        <li *ngFor="let ammenity of g_feture">
+                            {{ammenity}}
+                        </li>
+                        <!-- <li>Balcony or deck</li>
 							<li>Furnished</li>
 							<li>Hardwood floor</li> -->
-						</ul>
-						<h6>Building Fetures</h6>
-						<div class="grid-container" id="b_feture">                                                        
-                            <div class="grid-item" *ngIf="ac"><i class="fas fa-wind fa-2x" aria-hidden="true" data-toggle="tooltip" title="AC"></i><br><small>Air Conditioning </small></div>
-                            <div class="grid-item" *ngIf="garage"><i class="fa fa-car fa-2x" aria-hidden="true" data-toggle="tooltip" title="Garage"></i><br><small>Garage </small></div>
-                            <div class="grid-item" *ngIf="swimming"><i class="fas fa-swimmer fa-2x" aria-hidden="true" data-toggle="tooltip" title="Swimming"></i><br> <small>Swimming Pool</small></div>
-                            <div class="grid-item" *ngIf="pet"><i class="fa fa-paw fa-2x" aria-hidden="true" data-toggle="tooltip" title="Pets Allowed"></i><br> <small>Pets Allowed</small></div>
-                            <div class="grid-item" *ngIf="gym"><i class="fas fa-dumbbell fa-2x" aria-hidden="true" data-toggle="tooltip" title="Gym"></i><br> <small>Gym</small></div>
-                            <div class="grid-item" *ngIf="elevator"><i class="fas fa-arrows-alt-v fa-2x" aria-hidden="true" data-toggle="tooltip" title="Elevator"></i><br> <small>Elevator</small></div>
-                            <div class="grid-item" *ngIf="indoor_game"><i class="fas fa-chess fa-2x" aria-hidden="true" data-toggle="tooltip" title="Indoor game"></i><br> <small>Indoor game</small></div>
-                        </div>
-					</div>
-				</div>				
-			</div>
+                    </ul>
+                    <h6>Building Fetures</h6>
+                    <div class="grid-container" id="b_feture">
+                        <div class="grid-item" *ngIf="ac"><i class="fas fa-wind fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="AC"></i><br><small>Air Conditioning </small></div>
+                        <div class="grid-item" *ngIf="garage"><i class="fa fa-car fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Garage"></i><br><small>Garage </small></div>
+                        <div class="grid-item" *ngIf="swimming"><i class="fas fa-swimmer fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Swimming"></i><br> <small>Swimming Pool</small></div>
+                        <div class="grid-item" *ngIf="pet"><i class="fa fa-paw fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Pets Allowed"></i><br> <small>Pets Allowed</small></div>
+                        <div class="grid-item" *ngIf="gym"><i class="fas fa-dumbbell fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Gym"></i><br> <small>Gym</small></div>
+                        <div class="grid-item" *ngIf="elevator"><i class="fas fa-arrows-alt-v fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Elevator"></i><br> <small>Elevator</small></div>
+                        <div class="grid-item" *ngIf="indoor_game"><i class="fas fa-chess fa-2x" aria-hidden="true"
+                                data-toggle="tooltip" title="Indoor game"></i><br> <small>Indoor game</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="appointment_detail" class="col-xs-12 col-lg-6"
-				style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: #f1f7fc;">
-				<div class="contact-clean">
-					<form method="post">
-						<i class="fas fa-times-circle fa-3x" (click)="close_appointment()"
-							style="position: relative; top:-35px;right:-35px;float: right;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);"></i>
-						<h2 class="text-center">Get Appointment</h2>
-						<div class="form-group"><label for="d1" class="mb-0">Date1:</label><input class="form-control"
-								id="d1" type="date" name="date1"></div>
-						<div class="form-group"><label for="d2" class="mb-0">Date2:</label><input class="form-control"
-								id="d2" type="date" name="date2"></div>
-						<div class="form-group"><label for="currency-field" class="mb-0">Your Purchase/Rent Price:
-							</label>
-							<input type="text" class="form-control" name="currency-field" id="currency-field"
-								 value="" data-type="currency"
-                            ></div>
-						<div class="form-group"><label for="msg" class="mb-0">What you like in my
-								place?</label><textarea id="msg" class="form-control" name="message"
-								placeholder="Write Something...." rows="14"></textarea></div>
-						<div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
-					</form>
-				</div>
-			</div>
-			
-        <div id="field" class="col-xs-12 col-lg-6 " style="height:90vh;overflow-x:hidden;overflow-y: auto;">
+            style="display:none; height:90vh;overflow-x:hidden;overflow-y: auto;background-color: #f1f7fc;">
+            <i class="fas fa-times-circle fa-3x" (click)="close_appointment()"
+                        style="position: relative; top:5px;right:5px;float: right;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);"></i>
+            <!-- <div class="contact-clean">                
+                    <i class="fas fa-times-circle fa-3x" (click)="close_appointment()"
+                        style="position: relative; top:-35px;right:-35px;float: right;z-index: 1;background-color:white;color: black;clip-path:circle(48% at 24px 24px);"></i>
+                    <h2 class="text-center">Get Appointment</h2>
+                 <form method="post">
+                            <mat-form-field>                    
+                    <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <input type="text" matInput name="currency-field" id="currency-field" value=""
+                            data-type="currency">
+                    <textarea matInput id="msg" name="message"
+                            placeholder="Write Something...." rows="14"></textarea>
+                    <div class="form-group"><button class="btn btn-primary" type="submit">send </button></div>
+                </mat-form-field>                    
+                </form>
+            </div> -->
+            
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mt-5">Get Appointment</h2>
+                </div>
+            </div>
+            <div class="container mt-5 pt-3" style="width:70%;">
+                <div class="row">
+                        <mat-form-field class="col-12">
+                            <input matInput [matDatepicker]="picker1" placeholder="Choose first preffered date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    
+                </div>
+                <div class="row">
+                        <mat-form-field class="col-12">
+                            <input matInput [matDatepicker]="picker2" placeholder="Choose second date">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    
+                </div>
+                <div class="row">
+                    <mat-form-field class="col-12">
+                        
+                            <input matInput placeholder="Your Purchase/Rent Price (In USD):">
+                        </mat-form-field>
+                    
+                </div>
+                <div class="row">
+                        <mat-form-field class="col-12">
+                            <textarea matInput placeholder="What you like in my place?"></textarea>
+                        </mat-form-field>
+                    
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-primary" type="submit" style="padding: 10px 32px">Send </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="field" class="col-xs-12 col-lg-6 " style="height:90vh;overflow-x:hidden;overflow-y: hidden;">
             <nav class="navbar navbar-white bg-white row" style="position: sticky;
             top: -0.1vh;z-index: 1;">
-                <div class="row col-12 pt-2 pb-1 text-center">
+                <div class="row col-12 pt-2 pb-11 text-center">
                     <div class="col-4 my-roboto under-line-active" style="font-size:1.1rem;"
                         (click)="underline_price(price_high_low)" #price_high_low id="price_high_low">
                         Price -- high to low
 
                     </div>
-                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" (click)="underline_price(price_low_high)"
-                        #price_low_high id="price_low_high">
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;"
+                        (click)="underline_price(price_low_high)" #price_low_high id="price_low_high">
                         Price -- low to high
                     </div>
-                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;" (click)="underline_price(newest_first)"
-                        #newest_first id="newest_first">
+                    <div class="col-4 my-roboto under-line" style="font-size:1.1rem;"
+                        (click)="underline_price(newest_first)" #newest_first id="newest_first">
                         Newest First
                     </div>
                 </div>
-                <div class=" collapsed" type="" data-toggle="collapse" data-target="#navbarsExample01"
-                    aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                <div class=" collapsed" type="" data-toggle="collapse" data-target="#navbarfield"
+                    aria-controls="navbarfield" aria-expanded="false" aria-label="Toggle navigation">
                     <img class="float-right" src="../../assets/image/Incon- bar.svg"
-                        style="width:25px; position: relative; right: 1px;" />
+                        style="width:25px; position: relative; right: -8px;" />
                 </div>
-                <div class="navbar-collapse collapse" id="navbarsExample01" style="height: 85vh;">						
-                    <div class="accordion mt-5 mb-5 pb-1" id="accordionExample">
-                        <div class="card">
-                            <div class="card-header my-shodows" id="headingOne">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse"
-                                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Bathrooms
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                data-parent="#accordionExample">
-                                <div class="card-body my-shadow-body">
-                                    <div class="row mt-4 mb-3 ml-3">
-                                        <div class="col-3">
-                                            <i class="fa fa-bath fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="bathrooms"></i>
-                                        </div>
-                                        <div class="col-8 mr-1">
-                                            <mat-slider style="width: 100%;"
-                                            min="1"
-                                            max="5"
-                                            thumbLabel
-                                            [displayWith]="formatLabel"
-                                            ></mat-slider>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header my-shodows" id="headingTwo">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        BedRooms
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                data-parent="#accordionExample">
-                                <div class="card-body my-shadow-body">
-                                    <div class="row mt-4 mb-3 ml-3">
-                                        <div class="col-3">
-                                            <i class="fa fa-bed fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="Beds"></i>
-                                        </div>
-                                        <div class="col-8 mr-1">
-                                            <mat-slider style="width: 100%;"
-                                            min="1"
-                                            max="8"
-                                            thumbLabel
-                                            [displayWith]="formatLabel"
-                                            ></mat-slider>
-                                        </div>
-                                    </div>										
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header my-shodows" id="headingThree">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        Size of Plot<small> (sqft)</small>
-                                    </button>
-                                </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                data-parent="#accordionExample">
-                                <div class="card-body my-shadow-body">
-                                    <div class="row mt-4 mb-5 ml-3">
-                                        <div class="col-3">
-                                            <i class="far fa-square fa-2x" aria-hidden="true" data-toggle="tooltip" title="" data-original-title="plot size"></i>
-                                        </div>
-                                        <div class="col-8 mr-1">
-                                            <mat-slider style="width: 100%;"
-                                            min="10000"
-                                            max="100000"
-                                            thumbLabel
-                                            [displayWith]="formatLabelPlot"
-                                            ></mat-slider>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="navbar-collapse collapse" id="navbarfield" style="padding-top: 10px;">
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Bedrooms
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <span style="padding-right: 5px;">{{beds}}</span>
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">king_bed</mat-icon>
+                                </mat-panel-description>
+
+                            </mat-expansion-panel-header>
+                            <mat-slider min="1" max="5" thumbLabel [displayWith]="formatLabel" style="width: 100%;"
+                                [(ngModel)]="beds" (change)="updateHouseList($event)">
+                            </mat-slider>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Bathrooms
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <span style="padding-right: 5px;">{{baths}}</span>
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">bathtub</mat-icon>
+                                </mat-panel-description>
+
+                            </mat-expansion-panel-header>
+                            <mat-slider min="1" max="5" thumbLabel [displayWith]="formatLabel" style="width: 100%;"
+                                [(ngModel)]="baths" (change)="updateHouseList($event)">
+                            </mat-slider>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Plot size
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <span style="padding-right: 5px;">{{math.round(plots / 1000)}}K</span>
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon">crop_square</mat-icon>
+                                </mat-panel-description>
+
+                            </mat-expansion-panel-header>
+                            (sqft)
+                            <mat-slider style="width: 100%;" min="10000" max="100000" thumbLabel [(ngModel)]="plots"
+                                [displayWith]="formatLabelPlot" (change)="updateHouseList($event)"></mat-slider>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
                 </div>
             </nav>
-            <div class="row "style="padding-right:0px" id="list_of_house">
-                <div #house id="{{ base_house['hid'] }}" *ngFor="let base_house of obj_houselist"  (click)="house_click(house)" class="card col-xs-12 col-xl-6">
-                    <img class="card-img-top" src="../../assets/{{base_house['photos'][0]  }}" alt="Card image cap">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-5">
-                                <h5>{{base_house['user_price'] | currency:'USD':true}}</h5>
-                            </div>
-                            <div class="col-7">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>{{base_house["bedroom"]}} Bds| {{base_house["bathroom"]}} Ba|
-                                            {{base_house["plot"]}} ft</h6>
-                                        <small> {{base_house["address"]}} </small>
+
+            <cdk-virtual-scroll-viewport style="height:100%;width: 104%" itemSize="200" class="row">
+                <div class="row" style="padding-right:0px;margin-left:0;" id="list_of_house">
+                    <div #house id="{{ base_house['hid'] }}" *cdkVirtualFor="let base_house of obj_houselist"
+                        (click)="house_click(house)" class="card col-xs-12 col-xl-6">
+                        <img class="card-img-top" src="../../assets/{{base_house['photos'][0]}}" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5">
+                                    <h5>{{base_house['user_price'] | currency:'USD'}}</h5>
+                                </div>
+                                <div class="col-7">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6>{{base_house["bedroom"]}} Bds| {{base_house["bathroom"]}} Ba|
+                                                {{base_house["plot"]}} ft</h6>
+                                            <small> {{base_house["address"]}} </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    </div>                    
                 </div>
-            </div>
-            </div>
+                <div class="row mt-4">
+                    <div class="col-5"> </div>
+                    <div class="col-2">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div class="col-5"> </div>
+                </div>
+            </cdk-virtual-scroll-viewport>
+
         </div>
     </div>
-
-
-    
- 
+</div>
