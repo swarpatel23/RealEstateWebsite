@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BuyComponent } from './buy/buy.component';
 import { FooterComponent } from './footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntryComponent } from './entry/entry.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
@@ -17,8 +17,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material';
 import { HousedetailComponent } from './housedetail/housedetail.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
-import { ContactusComponent } from './contactus/contactus.component'
-
+import { ContactusComponent } from './contactus/contactus.component';
+import {ScrollingModule} from "@angular/cdk/scrolling";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +34,11 @@ import { ContactusComponent } from './contactus/contactus.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ScrollingModule
   ],
   providers: [AuthService,AuthGuard,{
     provide: HTTP_INTERCEPTORS,
