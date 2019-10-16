@@ -1,10 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const User = require('../models/user')
+const House = require('../models/house')
 const jwt = require('jsonwebtoken')
 const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
 const router = express.Router()
 const IncomingForm = require('formidable').IncomingForm
+var ObjectId = require('mongodb').ObjectId;
 
 mongoose.connect(db,function(err){
     if(err)
@@ -93,9 +95,56 @@ router.post('/login',function(req,res)
     })
 })
 
-router.post('/upload_house_details',function(req,res)
+router.post('/finduserhouse',function(req,res)
 {
+    let user = req.body
+    //console.log("reqjaskdfj:: "+user.useri)
+    //console.log("mesage::"+user)
+    var uidobject = new ObjectId(user.useri)
+    House.find({user_id:uidobject},function(err,houses)
+    {
+        if(err)
+        {
+            console.log(err)
+        }
+        else
+        {
+            res.status(200).send({houses})
+        }
+    })
+})
+
+router.get('/gethouses',function(req,res) {
+    House.find({},function(err,houses){
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            res.status(200).send({houses})
+        }
+    })
     
+})
+
+router.post('/uploadhousedetails',function(req,res)
+{
+    let housedata = req.body
+    let house = new House(housedata)
+    house.save(function(err,houseinfo)
+    {
+        if(err)
+        {
+            console.log(err)
+        }
+        else{
+            
+            res.status(200).send({houseinfo})
+        }
+    })
 
 })
+
+
 module.exports = router;

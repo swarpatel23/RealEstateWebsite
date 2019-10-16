@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { HouseService } from '../house.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,13 +13,27 @@ export class UserprofileComponent implements OnInit {
 
   newpassword:string=""
   userdetail={userphoto:"",username:localStorage.getItem('username'),firstname:"",lastname:"",email:localStorage.getItem('email'),password:"",contactnumber:"",address:"",recoveryemail:""}
-  constructor() { }
+  constructor(private _house:HouseService,private _router:Router) { }
 
+  houses=[]
   updateUserDetail(){
     this.userdetail.userphoto="fixphoto"
     //this.userdetail.username=localStorage.getItem('username')
     //this.userdetail.email=localStorage.getItem('email')
     console.log(this.userdetail)
+  }
+
+  findhouses()
+  {
+    this._house.getHouseDetailOfUser().subscribe(
+      res=>{
+          console.log(res);
+          this.houses=res.houses;
+      },
+      err=>{
+          console.log(err);
+      }
+  )
   }
   ngOnInit() {
     $(document).ready(function () {

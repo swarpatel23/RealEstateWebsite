@@ -3,6 +3,8 @@ import * as $ from 'jquery';
 import * as mapboxgl from 'mapbox-gl'
 import { flushMicrotasks } from '@angular/core/testing';
 import { DataService } from "./../data.service"
+import { ActivatedRoute, Router } from "@angular/router";
+import { HouseService } from '../house.service';
 
 
 
@@ -15,35 +17,66 @@ export class HousedetailComponent implements OnInit {
 
     public userid: string = "";
 
-    housedetail = {user_id:"",saleprice:"",
+    housedetail = {
+        user_id: "", saleprice: "", views: 0, yearbuilt: "", postingdate: "",
         type: "", rentprice: "", securitydeposite: "", leaseduration: "", beds: "", baths: "", forrentby: "",
         squarefeet: "", storeys: "", address: "", latitude: "", longitude: "", description: "", contactperson: "", pets: false,
         contactemail: "", contactphone: "", amenities: { ac: false, balcony_or_deck: false, furnished: false, hardwood_floor: false, garage_parking: false, off_street_parking: false, indoorgames: false, swimmingpool: false, elevator: false }, houseimg: []
     }
     loadAPI: Promise<any>;
-    constructor(private data: DataService) {
-        
+    constructor(private data: DataService,private _house:HouseService,private _router:Router) {
+
     }
     houseimg: string[] = []
     submitHouseDetails() {
-        if(this.userid==null)
-        {
-            this.userid=localStorage.getItem('userid')
+        var today = new Date();
+        let dd = <any>today.getDate();
+
+        let mm = <any>today.getMonth() + 1;
+        let yyyy = <any>today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        this.housedetail.postingdate = mm + '/' + dd + '/' + yyyy;
+        if (this.userid == null) {
+            this.userid = localStorage.getItem('userid')
 
         }
         console.log(this.userid)
-        this.housedetail.latitude=(<HTMLInputElement>document.getElementById("latitude")).value
-        this.housedetail.longitude=(<HTMLInputElement>document.getElementById("longitude")).value 
-        this.housedetail.user_id=this.userid
+        this.housedetail.latitude = (<HTMLInputElement>document.getElementById("latitude")).value
+        this.housedetail.longitude = (<HTMLInputElement>document.getElementById("longitude")).value
+        this.housedetail.user_id = this.userid
         for (let i = 0; i < (<any>$('#input-file-id')[0]).files.length; i++) {
             this.houseimg.push((<any>$('#input-file-id')[0]).files[i].name)
         }
         console.log(this.houseimg)
         this.housedetail.houseimg = this.houseimg;
         console.log(this.housedetail)
+
+        this._house.uploadHouseDetail(this.housedetail).subscribe(
+            res=>{
+                console.log(res.houseinfo);
+                this._router.navigate(['/buy'])
+            },
+            err=>{
+                console.log(err);
+            }
+        )
     }
 
     ngOnInit() {
+
+        var start = 1900;
+        var end = new Date().getFullYear();
+        var options = "";
+        for (var year = start; year <= end; year++) {
+            options += "<option>" + year + "</option>";
+        }
+        document.getElementById("year").innerHTML = options;
         // this.loadAPI = new Promise((resolve) => {
         //   this.loadScript();
         //   resolve(true);
@@ -69,7 +102,7 @@ export class HousedetailComponent implements OnInit {
 
                 lat = position.coords.latitude;
                 long = position.coords.longitude;
-                
+
                 (<HTMLInputElement>document.getElementById("latitude")).value = lat;
                 (<HTMLInputElement>document.getElementById("longitude")).value = long;
                 // map = new mapboxgl.Map({
@@ -97,7 +130,7 @@ export class HousedetailComponent implements OnInit {
             map.on('click', function (e) {
                 (<HTMLInputElement>document.getElementById("latitude")).value = e.lngLat.lat;
                 (<HTMLInputElement>document.getElementById("longitude")).value = e.lngLat.lng;
-                
+
             });
             map.on("load", setmarker);
             map.on("click", setmarker);

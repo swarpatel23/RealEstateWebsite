@@ -251,6 +251,15 @@ underline_price(element) {
 	}
 }
   ngOnInit() {
+
+	this.houseservice.getAllhouses().subscribe(
+		res=>{
+			console.log(res);
+		},
+		err=>{
+			console.log(err);
+		}
+	)
 	  
 	var lat, long;
 	mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcjIzIiwiYSI6ImNqejlhbmt1YzAxdXAzbm1yZzMzbHFmNHMifQ.xPyQpPklaSXYm5pFCO85Hg';
