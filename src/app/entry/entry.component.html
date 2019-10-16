@@ -1,44 +1,67 @@
 <body class="sbody">
-<div class="quote">
-    Chase your dreams<br> but always know the road<br> that will lead you home again.
-</div>
-<div class="tab-content">
-<div class="signup">
-    <form method="POST" action="">
-        <h2 class="h2header">Sign Up</h2>
-        <input type="text" [(ngModel)]="registeredUserData.username" name="username" placeholder="Username" spellcheck="false" required autocomplete=”off”>
-        <input type="email" placeholder="E-mail" [(ngModel)]="registeredUserData.email" name="email" spellcheck="false" autocomplete="off" required>
-        <input type="password" placeholder="Password" [(ngModel)]="registeredUserData.password" name="password" required>
-        <input type="tel" placeholder="Contact Number" [(ngModel)]="registeredUserData.contactnumber" name="contactnumber" required>
-        <input type="text" placeholder="Address" [(ngModel)]="registeredUserData.address" name="address" spellcheck="false" required>
-        <br>
-        <input type="checkbox" value="check" required><span id="privacytext">I agree to the Privacy
-            Policy</span>
-        <br>
-        <br>
-        <input type="submit" (click)="signup()" value="Register" required>
+    <div class="quote">
+        Chase your dreams<br> but always know the road<br> that will lead you home again.
+    </div>
+    <div class="tab-content" class="mt-2">
+        <div class="signup">
+            <form method="POST" #registerForm="ngForm">
+                <h2 class="h2header">Sign Up</h2>
+                <input type="text" [class.is-invalid]="username.invalid && username.touched" #username="ngModel"
+                    [(ngModel)]="registeredUserData.username" name="username" placeholder="Username" spellcheck="false"
+                    required autocomplete=”off”>
+                <p class="text-center"><small class="text-danger"
+                        [class.d-none]="username.valid || username.untouched">Username is required</small></p>
+
+                <input type="email" placeholder="E-mail" #email="ngModel" [(ngModel)]="registeredUserData.email"
+                    name="email" spellcheck="false" autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <p class="text-center"><small class="text-danger"
+                        [class.d-none]="email.valid || email.untouched">Invalid email</small></p>
+                <input type="password" placeholder="Password" #password="ngModel"
+                    [(ngModel)]="registeredUserData.password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                    <p class="text-center"><small class="text-danger"
+                        [class.d-none]="password.valid || password.untouched">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</small></p>
 
 
-    </form>
-    <p class="link">Already have a account? <a href="#signin">Sign in</a>"</p>
-    <p class="copyright">&copy; copyright 2019</p>
-</div>
-<div class="signin">
-    <form method="POST" action="">
-        <h2 class="h2header">Sign In</h2>
-        <input type="email" placeholder="E-mail" [(ngModel)]="loginUserData.email" name="email" autocomplete="off" spellcheck="false" required>
-        <input type="password" placeholder="Password" [(ngModel)]="loginUserData.password" name="password" autocomplete="off" required>
-        <div *ngIf="loginerr">
-            <p class="text-danger text-center">{{ loginerr }}</p>
+                <input type="tel" placeholder="Contact Number" pattern="^\d{10}" #contactnumber="ngModel"
+                    [(ngModel)]="registeredUserData.contactnumber" name="contactnumber" required autocomplete="off" required>
+                <p class="text-center"><small class="text-danger" [class.d-none]="contactnumber.valid || contactnumber.untouched">Phone number must have 10 digits</small></p>
+                <!-- <div *ngIf="contactnumber.errors && (contactnumber.invalid || contactnumber.touched)">
+                    <p class="text-center"><small class="text-danger"
+                            *ngIf="contactnumber.errors.pattern">Phone number must have 10
+                            digits</small></p>
+                </div> -->
+                <input type="text" placeholder="Address" #address="ngModel" [(ngModel)]="registeredUserData.address"
+                    name="address" spellcheck="false" required>
+                <br>
+                <input type="checkbox" value="check" name="check" #agreement="ngModel" [(ngModel)]="agreements" required><span id="privacytext">I agree to the Privacy
+                    Policy</span>
+                <br>
+                <br>
+                <input type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary" (click)="signup()" value="Register" required>
+
+
+            </form>
+            <p class="link">Already have a account? <a href="#signin">Sign in</a>"</p>
+            <p class="copyright">&copy; copyright 2019</p>
         </div>
-        <input type="submit" value="Login" (click)="signin()">
+        <div class="signin">
+            <form method="POST" action="">
+                <h2 class="h2header">Sign In</h2>
+                <input type="email" placeholder="E-mail" [(ngModel)]="loginUserData.email" name="email"
+                    autocomplete="off" spellcheck="false" required>
+                <input type="password" placeholder="Password" [(ngModel)]="loginUserData.password" name="password"
+                    autocomplete="off" required>
+                <div *ngIf="loginerr">
+                    <p class="text-danger text-center">{{ loginerr }}</p>
+                </div>
+                <input type="submit" value="Login" (click)="signin()">
 
-    </form>
-    <p class="link">Creata a account? <a href="#signup">Sign Up</a>"</p>
-    <p class="copyright">&copy; copyright 2019</p>
-</div>
-</div>  
-<script>
-    
-</script>
+            </form>
+            <p class="link">Creata a account? <a href="#signup">Sign Up</a>"</p>
+            <p class="copyright">&copy; copyright 2019</p>
+        </div>
+    </div>
+    <script>
+
+    </script>
 </body>

@@ -17,6 +17,7 @@ export class EntryComponent implements OnInit {
 
   registeredUserData={username:"",password:"",email:"",contactnumber:"",address:""}
   loginUserData={email:"",password:""}
+  agreements:boolean;
 
   loginerr:string=""
   returnUrl: string=null
