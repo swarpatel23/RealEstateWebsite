@@ -18,6 +18,9 @@ export class EntryComponent implements OnInit {
   registeredUserData={username:"",password:"",email:"",contactnumber:"",address:""}
   loginUserData={email:"",password:""}
 
+  loginerr:string=""
+  returnUrl: string=null
+
   constructor(private route: ActivatedRoute,private data: DataService,private _auth:AuthService,
     private _router:Router) {
     this.route.url.subscribe(url => {
@@ -40,9 +43,21 @@ export class EntryComponent implements OnInit {
         this.userid=res.user._id
         console.log(res.user._id)
 
+        if(this.returnUrl==null)
+        {
         this._router.navigate(['/buy'])
+        }
+        else
+        {
+          this._router.navigateByUrl(this.returnUrl);
+
+        }      
       },
-      err=>console.log(err)
+      err=>{
+        console.log(err)
+        this.loginerr=err.error
+
+      }
     )
   }
 
@@ -60,11 +75,19 @@ export class EntryComponent implements OnInit {
 
         this.userid=res.registeredUser._id
         console.log(res.registeredUser._id)
-
+        if(this.returnUrl==null)
+        {
         this._router.navigate(['/buy'])
+        }
+        else
+        {
+          this._router.navigateByUrl(this.returnUrl);
 
+        }
       },
-      err=>console.log(err)
+      err=>{console.log(err)
+      console.log(err.error)
+      }
     )
     
   }
@@ -87,7 +110,7 @@ export class EntryComponent implements OnInit {
 
   ngOnInit() {
 
-  
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     let disp = this.route.snapshot.paramMap.get("disp")
     if (disp == "signup") {

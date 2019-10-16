@@ -28,6 +28,9 @@
         <h2 class="h2header">Sign In</h2>
         <input type="email" placeholder="E-mail" [(ngModel)]="loginUserData.email" name="email" autocomplete="off" spellcheck="false" required>
         <input type="password" placeholder="Password" [(ngModel)]="loginUserData.password" name="password" autocomplete="off" required>
+        <div *ngIf="loginerr">
+            <p class="text-danger text-center">{{ loginerr }}</p>
+        </div>
         <input type="submit" value="Login" (click)="signin()">
 
     </form>

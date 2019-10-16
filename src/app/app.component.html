@@ -19,14 +19,28 @@
             </li>
         </ul>
         <ul class="nav navbar-nav ml-auto pr-md-4" *ngIf="_authService.loggedIn();else elseblock">
-                <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
+                <!-- <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
                         <a class="nav-link" [routerLink]="['/housedetail']" routerLinkActive="router-link-active" 
                          >House Detail</a>
                     </li>
                 <li class="nav-item my-maven-pro pl-xs-0  pr-md-5 ml-xs-0">
                         <a class="nav-link" (click)="_authService.logoutUser()"
                          >Logout</a>
-                    </li>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class='img-circle' width='50' height='50' src='./../assets/image/userphoto.jpg' style="border-radius: 50%;"/>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                          <p class="dropdown-item"><b>{{ _authService.getUsername() }}</b></p>  
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" [routerLink]="['/userprofile']" routerLinkActive="router-link-active">Your Profile</a>
+                          <a class="dropdown-item" [routerLink]="['/housedetail']" routerLinkActive="router-link-active">Sell/Rent House</a>
+                          <a class="dropdown-item" [routerLink]="['/contactus']" routerLinkActive="router-link-active">Contact Us</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" (click)="_authService.logoutUser()">Logout</a>
+                        </div>
+                      </li>
         </ul>
         <ng-template #elseblock>
             <ul class="nav navbar-nav ml-auto pr-md-4">

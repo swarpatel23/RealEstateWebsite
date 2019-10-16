@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   public userid:string="";
   public message:string;
   
-  
+  public username:String = localStorage.getItem('username')
 
   constructor(private data:DataService,public _authService:AuthService){
 

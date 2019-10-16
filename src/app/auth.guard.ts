@@ -9,12 +9,12 @@ import { AuthService } from './auth.service'
 export class AuthGuard implements CanActivate {
 
   constructor(private _authService:AuthService,private _router:Router){}
-  canActivate():boolean{
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean{
     if(this._authService.loggedIn()){
       return true
     }
     else{
-      this._router.navigate(['/entry'])
+      this._router.navigate(['/entry'],{ queryParams: { returnUrl: state.url }})
       return false
     }
 
