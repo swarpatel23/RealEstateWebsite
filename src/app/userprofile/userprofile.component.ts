@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { HouseService } from '../house.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -11,15 +12,33 @@ import { Router } from '@angular/router';
 })
 export class UserprofileComponent implements OnInit {
 
+  previousdetail=""
   newpassword:string=""
-  userdetail={userphoto:"",username:localStorage.getItem('username'),firstname:"",lastname:"",email:localStorage.getItem('email'),password:"",contactnumber:"",address:"",recoveryemail:""}
-  constructor(private _house:HouseService,private _router:Router) { }
+  userdetail={userphoto:"",username:localStorage.getItem('username'),firstname:"",lastname:"",email:localStorage.getItem('email'),password:"",contactnumber:"",address:"",recoveryemail:"",newpassword:""}
+  constructor(private _house:HouseService,private _router:Router,private _auth:AuthService) { }
 
   houses=[]
+  updateusererror:String=null
+  updateteduser:boolean=false
+
   updateUserDetail(){
+    
+    this.updateteduser=false;
+    this.updateusererror=null
     this.userdetail.userphoto="fixphoto"
     //this.userdetail.username=localStorage.getItem('username')
     //this.userdetail.email=localStorage.getItem('email')
+    this._auth.updateUserDetail(this.userdetail).subscribe(
+      res=>{
+        console.log(res);
+        this.updateteduser=true;
+      },
+      err=>
+      {
+        console.log(err.error)
+       this.updateusererror=err; 
+      }
+    )
     console.log(this.userdetail)
   }
 
@@ -36,6 +55,21 @@ export class UserprofileComponent implements OnInit {
   )
   }
   ngOnInit() {
+    this._auth.getUserDetail().subscribe(
+      res=>{
+        console.log(res);
+        this.userdetail.firstname=res.userinfo.firstname;
+        this.userdetail.lastname=res.userinfo.lastname;
+        this.userdetail.address=res.userinfo.address;
+        this.userdetail.contactnumber=res.userinfo.contactnumber;
+        this.userdetail.recoveryemail=res.userinfo.recoveryemail;
+        
+      },
+      err=>
+      {
+        console.log(err.error)
+      }
+    )
     $(document).ready(function () {
 
 

@@ -8,6 +8,9 @@ export class AuthService {
 
   private _registerUrl="http://localhost:8000/api/register"
   private _loginUrl="http://localhost:8000/api/login";
+  private _updateuserUrl="http://localhost:8000/api/updateuser";
+  private _getuserUrl="http://localhost:8000/api/getuser";
+
 
   constructor(private http:HttpClient,private _router:Router) { }
 
@@ -16,7 +19,14 @@ export class AuthService {
   {
     return this.http.post<any>(this._registerUrl,user)
   }
-
+  getUserDetail()
+  {
+    return this.http.post<any>(this._getuserUrl,{useremail:localStorage.getItem('email')})
+  }
+  updateUserDetail(user)
+  {
+      return this.http.post<any>(this._updateuserUrl,user)
+  }
   loginUser(user)
   {
     return this.http.post<any>(this._loginUrl,user)

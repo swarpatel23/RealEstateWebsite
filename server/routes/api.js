@@ -8,30 +8,25 @@ const router = express.Router()
 const IncomingForm = require('formidable').IncomingForm
 var ObjectId = require('mongodb').ObjectId;
 
-mongoose.connect(db,function(err){
-    if(err)
-    {
+mongoose.connect(db, function (err) {
+    if (err) {
         console.log(err)
     }
-    else
-    {
+    else {
         console.log("Connected to MongoDB")
     }
 })
 //use this as middleware for request which needed login required(testing remaining)
-function verifyToken(req,res,next)
-{
-    if(!req.headers.authorization)
-    {
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
         return res.status(401).send('Unauthorized Request')
     }
     let token = req.headers.authorization.split(' ')[1]
-    if(token==null)
-    {
+    if (token == null) {
         return res.status(401).send('Unauthorized Request')
     }
-    let payload = just.verify(token,'secretKey')
-    if(!payload){
+    let payload = just.verify(token, 'secretKey')
+    if (!payload) {
         return res.status(401).send('Unauthorized Request')
     }
 
@@ -39,108 +34,138 @@ function verifyToken(req,res,next)
     next()
 }
 
-router.get('/',function(req,res){
+router.get('/', function (req, res) {
     res.end("jsadkfjaksd")
 })
 
 
 
-router.post('/register',function(req,res)
-{
+router.post('/register', function (req, res) {
     let userData = req.body
     let user = new User(userData)
-    user.save(function(err,registeredUser)
-    {
-        if(err)
-        {
+    user.save(function (err, registeredUser) {
+        if (err) {
             console.log(err)
         }
-        else{
-            let payload = { subject: registeredUser._id}
-            let token = jwt.sign(payload,'secretKey')
-            res.status(200).send({token,registeredUser })
+        else {
+            let payload = { subject: registeredUser._id }
+            let token = jwt.sign(payload, 'secretKey')
+            res.status(200).send({ token, registeredUser })
         }
     })
 })
 
-router.post('/login',function(req,res)
-{
+router.post('/login', function (req, res) {
     let userData = req.body;
 
-    User.findOne({email: userData.email},function(err,user)
-    {
-        if(err)
-        {
+    User.findOne({ email: userData.email }, function (err, user) {
+        if (err) {
             console.log(err)
         }
-        else{
-            if(!user)
-            {
+        else {
+            if (!user) {
                 res.status(401).send('Invalid email')
             }
-            else
-            {
-                if(user.password != userData.password)
-                {
+            else {
+                if (user.password != userData.password) {
                     res.status(401).send('Invalid Password')
                 }
-                else
-                {   
-                    let payload = { subject: user._id}
-                    let token = jwt.sign(payload,'secretKey')
-                    res.status(200).send({token,user})
+                else {
+                    let payload = { subject: user._id }
+                    let token = jwt.sign(payload, 'secretKey')
+                    res.status(200).send({ token, user })
                 }
             }
         }
     })
 })
 
-router.post('/finduserhouse',function(req,res)
+router.post('/updateuser', function (req, res) {
+    let userData = req.body
+    User.findOne({ email: userData.email }, function (err, user) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            if (!user) {
+                res.status(401).send('Invalid user')
+            }
+            else {
+                if (userData.password!="" && user.password != userData.password) {
+                    res.status(401).send('Invalid Password')
+                }
+                else {
+                    user.firstname=userData.firstname
+                    user.lastname=userData.lastname
+                    user.recoveryemail=userData.recoveryemail
+                    if(userData.newpassword!=""){
+                        user.password=userData.newpassword
+                    }
+                    user.contactnumber=userData.contactnumber
+                    user.address=userData.address
+                    user.save()
+
+                    res.status(200).send({user})
+                    
+                }
+            }
+        }
+    })
+
+})
+router.post('/getuser',function(req,res)
 {
+    let reqbody= req.body
+
+    User.findOne({email:reqbody.useremail},function(err,userinfo)
+    {
+        if(err)
+        {
+            console.log(err)
+        }
+        else
+        {
+            res.status(200).send({userinfo})
+        }
+    })
+})
+router.post('/finduserhouse', function (req, res) {
     let user = req.body
     //console.log("reqjaskdfj:: "+user.useri)
     //console.log("mesage::"+user)
     var uidobject = new ObjectId(user.useri)
-    House.find({user_id:uidobject},function(err,houses)
-    {
-        if(err)
-        {
+    House.find({ user_id: uidobject }, function (err, houses) {
+        if (err) {
             console.log(err)
         }
-        else
-        {
-            res.status(200).send({houses})
+        else {
+            res.status(200).send({ houses })
         }
     })
 })
 
-router.get('/gethouses',function(req,res) {
-    House.find({},function(err,houses){
-        if(err)
-        {
+router.get('/gethouses', function (req, res) {
+    House.find({}, function (err, houses) {
+        if (err) {
             console.log(err);
         }
-        else
-        {
-            res.status(200).send({houses})
+        else {
+            res.status(200).send({ houses })
         }
     })
-    
+
 })
 
-router.post('/uploadhousedetails',function(req,res)
-{
+router.post('/uploadhousedetails', function (req, res) {
     let housedata = req.body
     let house = new House(housedata)
-    house.save(function(err,houseinfo)
-    {
-        if(err)
-        {
+    house.save(function (err, houseinfo) {
+        if (err) {
             console.log(err)
         }
-        else{
-            
-            res.status(200).send({houseinfo})
+        else {
+
+            res.status(200).send({ houseinfo })
         }
     })
 
