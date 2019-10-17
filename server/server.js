@@ -6,6 +6,9 @@ const PORT = 8000
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use('/api',api)
 app.get('/',function(req,res){
     res.end("hello from server")

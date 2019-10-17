@@ -5,6 +5,10 @@ const House = require('../models/house')
 const jwt = require('jsonwebtoken')
 const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
 const router = express.Router()
+
+const  multipart  =  require('connect-multiparty');
+const  usermultipartMiddleware  =  multipart({ uploadDir:  './../src/assets/image/uploads/userphotos/' });
+
 const IncomingForm = require('formidable').IncomingForm
 var ObjectId = require('mongodb').ObjectId;
 
@@ -103,6 +107,7 @@ router.post('/updateuser', function (req, res) {
                     }
                     user.contactnumber=userData.contactnumber
                     user.address=userData.address
+                    user.userphoto=userData.userphoto
                     user.save()
 
                     res.status(200).send({user})
@@ -112,6 +117,15 @@ router.post('/updateuser', function (req, res) {
         }
     })
 
+})
+
+router.post('/uploaduserphoto',usermultipartMiddleware,function(req,res)
+{
+    //console.log(req.files.uploads[0].path);
+    var ret = req.files.uploads[0].path.replace('../src/assets/image/uploads/userphotos/','');
+    res.json({
+        'message': ret
+    });
 })
 router.post('/getuser',function(req,res)
 {

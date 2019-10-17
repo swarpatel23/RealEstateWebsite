@@ -1,6 +1,6 @@
 <body>
     <div class="pt-5"></div>
-    <form method="POST" action="#">
+    <form method="POST" action="#" enctype="multipart/form-data">
         <diV class="container">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
@@ -22,11 +22,11 @@
                             <br>
                             <br>
                             <div class="text-center">
-                                <img src="../../assets/image/userphoto.jpg" class="avatar img-thumbnail"
+                                <img src={{userpic}} class="avatar img-thumbnail"
                                     alt="avatar">
                                 <h6>Upload a different photo...</h6>
                                 <br>
-                                <input type="file" class="text-center center-block file-upload" name="userpic"
+                                <input type="file" (change)="fileChange($event)" class="text-center center-block file-upload" name="userpic"
                                     id="userpic">
                             </div>
                             <hr><br>
