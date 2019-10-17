@@ -188,7 +188,7 @@
             <div class="container mt-5 pt-3" style="width:70%;">
                 <div class="row">
                         <mat-form-field class="col-12">
-                            <input matInput [matDatepicker]="picker1" placeholder="Choose first preffered date">
+                            <input matInput [matDatepicker]="picker1" [(ngModel)]="appointmentdetail.date1" placeholder="Choose first preffered date">
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="row">
                         <mat-form-field class="col-12">
-                            <input matInput [matDatepicker]="picker2" placeholder="Choose second date">
+                            <input matInput [matDatepicker]="picker2" [(ngModel)]="appointmentdetail.date2" placeholder="Choose second date">
                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                         </mat-form-field>
@@ -205,19 +205,19 @@
                 <div class="row">
                     <mat-form-field class="col-12">
                         
-                            <input matInput placeholder="Your Purchase/Rent Price (In USD):">
+                            <input matInput [(ngModel)]="appointmentdetail.userpreferdprice" placeholder="Your Purchase/Rent Price (In USD):">
                         </mat-form-field>
                     
                 </div>
                 <div class="row">
                         <mat-form-field class="col-12">
-                            <textarea matInput placeholder="What you like in my place?"></textarea>
+                            <textarea matInput [(ngModel)]="appointmentdetail.description" placeholder="What you like in my place?"></textarea>
                         </mat-form-field>
                     
                 </div>
                 <div class="row mt-5">
                     <div class="col-12 text-center">
-                        <button class="btn btn-primary"  type="submit" style="padding: 10px 32px">Send </button>
+                        <button class="btn btn-primary" (click)="scheduleAppointment()" type="submit" style="padding: 10px 32px">Send </button>
                     </div>
                 </div>
             </div>
