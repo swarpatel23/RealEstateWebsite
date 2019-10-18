@@ -24,11 +24,38 @@ export class HousedetailComponent implements OnInit {
         contactemail: "", contactphone: "", amenities: { ac: false, balcony_or_deck: false, furnished: false, hardwood_floor: false, garage_parking: false, off_street_parking: false, indoorgames: false, swimmingpool: false, elevator: false }, houseimg: []
     }
     loadAPI: Promise<any>;
-    constructor(private data: DataService,private _house:HouseService,private _router:Router) {
+    constructor(private data: DataService, private _house: HouseService, private _router: Router) {
 
     }
     houseimg: string[] = []
+    uploadedFiles: Array<File> = null;
+
+    fileChange(element) {
+        this.uploadedFiles = element.target.files;
+        console.log(this.uploadedFiles)
+    }
+
     submitHouseDetails() {
+
+        if (this.uploadedFiles != null) {
+            let formData = new FormData();
+            for (var i = 0; i < this.uploadedFiles.length; i++) {
+                formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
+
+            }
+
+            this._house.uploadHousePhoto(formData).subscribe(
+                res => {
+                    this.housedetail.houseimg = res.message;
+                    console.log(this.housedetail);
+                    console.log(res.message);
+                    console.log(res);
+                },
+                err => {
+                    console.log(err.error)
+                })
+        }
+
         var today = new Date();
         let dd = <any>today.getDate();
 
@@ -56,16 +83,17 @@ export class HousedetailComponent implements OnInit {
         console.log(this.houseimg)
         this.housedetail.houseimg = this.houseimg;
         console.log(this.housedetail)
-
+        setTimeout(function () {
         this._house.uploadHouseDetail(this.housedetail).subscribe(
-            res=>{
+            res => {
                 console.log(res.houseinfo);
                 this._router.navigate(['/buy'])
             },
-            err=>{
+            err => {
                 console.log(err);
             }
         )
+        }.bind(this),1000);
     }
 
     ngOnInit() {

@@ -3,16 +3,18 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 const House = require('../models/house')
 const jwt = require('jsonwebtoken')
-const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
+//const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
 const router = express.Router()
+const db = 'mongodb://localhost:27017/RealEstatePs'
 
 const  multipart  =  require('connect-multiparty');
 const  usermultipartMiddleware  =  multipart({ uploadDir:  './uploads/userphotos/' });
+const  housemultipartMiddleware  =  multipart({ uploadDir:  './uploads/housephotos/' });
 
 const IncomingForm = require('formidable').IncomingForm
 var ObjectId = require('mongodb').ObjectId;
 
-mongoose.connect(db, function (err) {
+mongoose.connect(db,function (err) {
     if (err) {
         console.log(err)
     }
@@ -122,7 +124,22 @@ router.post('/updateuser', function (req, res) {
 router.post('/uploaduserphoto',usermultipartMiddleware,function(req,res)
 {
     //console.log(req.files.uploads[0].path);
+    //console.log(req.files);
+
+    
     var ret = req.files.uploads[0].path.replace('uploads/userphotos/','');
+    res.json({
+        'message': ret
+    });
+})
+
+router.post('/uploadhousephoto',housemultipartMiddleware,function(req,res)
+{
+    var ret=[];
+    for(i=0;i<req.files.uploads.length;i++)
+    {
+        ret.push(req.files.uploads[i].path.replace('uploads/housephotos/',''));
+    }
     res.json({
         'message': ret
     });

@@ -10,12 +10,18 @@ export class HouseService {
   private _registerUrl="http://localhost:8000/api/uploadhousedetails"
   private _userhouse="http://localhost:8000/api/finduserhouse"
   private _alluserhouse="http://localhost:8000/api/gethouses"
+  private _uploadhouse="http://localhost:8000/api/uploadhousephoto"
 
 
   userobj;
   uploadHouseDetail(housedetail)
   {
     return this.http.post<any>(this._registerUrl,housedetail)
+  }
+
+  uploadHousePhoto(formdata)
+  {
+    return this.http.post<any>(this._uploadhouse,formdata)
   }
 
   getHouseDetailOfUser()
