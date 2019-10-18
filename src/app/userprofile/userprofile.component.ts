@@ -18,10 +18,10 @@ export class UserprofileComponent implements OnInit {
   constructor(private _house: HouseService, private _router: Router, private _auth: AuthService) { }
 
   houses = []
-  userpic=""
+  userpic:String=""
   updateusererror: String = null
   updateteduser: boolean = false
-  uploadedFiles: Array<File>;
+  uploadedFiles: Array<File>=null;
   fileChange(element) {
     this.uploadedFiles = element.target.files;
     console.log(this.uploadedFiles)
@@ -32,12 +32,13 @@ export class UserprofileComponent implements OnInit {
 
   }
   updateUserDetail() {
+    if (this.uploadedFiles!=null) {
     let formData = new FormData();
     for (var i = 0; i < this.uploadedFiles.length; i++) {
       formData.append("uploads[]", this.uploadedFiles[i], this.uploadedFiles[i].name);
 
     }
-    if (this.uploadedFiles.length != 0) {
+    
       this._auth.uploadUserPhoto(formData).subscribe(
         res => {
           this.userdetail.userphoto = res.message;
@@ -65,6 +66,14 @@ export class UserprofileComponent implements OnInit {
         res => {
           console.log(res);
           this.updateteduser = true;
+          if(res.user.userphoto!=""){
+            this.userpic="http://localhost:8000/userphotos/"+res.user.userphoto;
+          }
+          else
+          {
+            this.userpic="assets/image/userphoto.jpg"
+          }
+
         },
         err => {
           console.log(err.error)
@@ -95,7 +104,17 @@ export class UserprofileComponent implements OnInit {
         this.userdetail.address = res.userinfo.address;
         this.userdetail.contactnumber = res.userinfo.contactnumber;
         this.userdetail.recoveryemail = res.userinfo.recoveryemail;
-        this.userpic="../../assets/image/uploads/userphotos/"+res.userinfo.userphoto;
+        this.userdetail.userphoto = res.userinfo.userphoto;
+        if(res.userinfo.userphoto!=""){
+            this.userpic="http://localhost:8000/userphotos/"+res.userinfo.userphoto;
+          }
+          else
+          {
+            this.userpic="assets/image/userphoto.jpg"
+          }
+
+        //this.userpic="./../../assets/image/uploads/userphotos/"+res.userinfo.userphoto;
+        console.log("userpic: "+this.userpic);
       },
       err => {
         console.log(err.error)

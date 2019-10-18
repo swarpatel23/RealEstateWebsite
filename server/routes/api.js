@@ -7,7 +7,7 @@ const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?r
 const router = express.Router()
 
 const  multipart  =  require('connect-multiparty');
-const  usermultipartMiddleware  =  multipart({ uploadDir:  './../src/assets/image/uploads/userphotos/' });
+const  usermultipartMiddleware  =  multipart({ uploadDir:  './uploads/userphotos/' });
 
 const IncomingForm = require('formidable').IncomingForm
 var ObjectId = require('mongodb').ObjectId;
@@ -122,7 +122,7 @@ router.post('/updateuser', function (req, res) {
 router.post('/uploaduserphoto',usermultipartMiddleware,function(req,res)
 {
     //console.log(req.files.uploads[0].path);
-    var ret = req.files.uploads[0].path.replace('../src/assets/image/uploads/userphotos/','');
+    var ret = req.files.uploads[0].path.replace('uploads/userphotos/','');
     res.json({
         'message': ret
     });
