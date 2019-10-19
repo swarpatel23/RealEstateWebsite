@@ -45,6 +45,7 @@ export class UserprofileComponent implements OnInit {
           console.log(this.userdetail);
           console.log(res.message);
           console.log(res);
+          localStorage.setItem('userpic',res.message);
         },
         err => {
           console.log(err.error)
@@ -95,6 +96,12 @@ export class UserprofileComponent implements OnInit {
       }
     )
   }
+  displayhouse(house)
+  {
+    sessionStorage.setItem('clickedhouse',JSON.stringify(house))
+    this._router.navigate(['/housedetail'])
+    console.log(house);
+  }
   ngOnInit() {
     this._auth.getUserDetail().subscribe(
       res => {
@@ -117,6 +124,7 @@ export class UserprofileComponent implements OnInit {
         console.log("userpic: "+this.userpic);
       },
       err => {
+        
         console.log(err.error)
       }
     )

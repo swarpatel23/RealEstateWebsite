@@ -40,6 +40,7 @@ export class EntryComponent implements OnInit {
         localStorage.setItem('userid',res.user._id)
         localStorage.setItem('username',res.user.username)
         localStorage.setItem('email',res.user.email)
+        localStorage.setItem('userpic',res.user.userphoto)
 
         this.userid=res.user._id
         console.log(res.user._id)

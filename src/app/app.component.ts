@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   private title:string = 'realtor';
   public userid:string="";
   public message:string;
+  public userpic:String="http://localhost:8000/userphotos/"+localStorage.getItem('userpic')
   
   public username:String = localStorage.getItem('username')
 

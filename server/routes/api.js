@@ -7,14 +7,14 @@ const jwt = require('jsonwebtoken')
 const router = express.Router()
 const db = 'mongodb://localhost:27017/RealEstatePs'
 
-const  multipart  =  require('connect-multiparty');
-const  usermultipartMiddleware  =  multipart({ uploadDir:  './uploads/userphotos/' });
-const  housemultipartMiddleware  =  multipart({ uploadDir:  './uploads/housephotos/' });
+const multipart = require('connect-multiparty');
+const usermultipartMiddleware = multipart({ uploadDir: './uploads/userphotos/' });
+const housemultipartMiddleware = multipart({ uploadDir: './uploads/housephotos/' });
 
 const IncomingForm = require('formidable').IncomingForm
 var ObjectId = require('mongodb').ObjectId;
 
-mongoose.connect(db,function (err) {
+mongoose.connect(db, function (err) {
     if (err) {
         console.log(err)
     }
@@ -97,23 +97,23 @@ router.post('/updateuser', function (req, res) {
                 res.status(401).send('Invalid user')
             }
             else {
-                if (userData.password!="" && user.password != userData.password) {
+                if (userData.password != "" && user.password != userData.password) {
                     res.status(401).send('Invalid Password')
                 }
                 else {
-                    user.firstname=userData.firstname
-                    user.lastname=userData.lastname
-                    user.recoveryemail=userData.recoveryemail
-                    if(userData.newpassword!=""){
-                        user.password=userData.newpassword
+                    user.firstname = userData.firstname
+                    user.lastname = userData.lastname
+                    user.recoveryemail = userData.recoveryemail
+                    if (userData.newpassword != "") {
+                        user.password = userData.newpassword
                     }
-                    user.contactnumber=userData.contactnumber
-                    user.address=userData.address
-                    user.userphoto=userData.userphoto
+                    user.contactnumber = userData.contactnumber
+                    user.address = userData.address
+                    user.userphoto = userData.userphoto
                     user.save()
 
-                    res.status(200).send({user})
-                    
+                    res.status(200).send({ user })
+
                 }
             }
         }
@@ -121,42 +121,91 @@ router.post('/updateuser', function (req, res) {
 
 })
 
-router.post('/uploaduserphoto',usermultipartMiddleware,function(req,res)
-{
+router.post('/uploadhousedetails', function (req, res) {
+    let housedata = req.body
+    
+    //console.log(req.body)
+    if (req.body.house_id!="") {
+        var hidobject = new ObjectId(req.body.house_id)
+        House.findOne({ _id: hidobject }, function (err, fhouse) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                
+                fhouse.saleprice = housedata.saleprice;
+                fhouse.yearbuilt = housedata.yearbuilt;
+                fhouse.postingdate = housedata.postingdate;
+                fhouse.rentprice = housedata.rentprice;
+                fhouse.views = housedata.views;
+                fhouse.type = housedata.type;
+                fhouse.securitydeposite = housedata.securitydeposite;
+                fhouse.leaseduration = housedata.leaseduration;
+                fhouse.beds = housedata.beds;
+                fhouse.baths = housedata.baths;
+                fhouse.forrentby = housedata.forrentby;
+                fhouse.address = housedata.address;
+                fhouse.latitude = housedata.latitude;
+                fhouse.longitude = housedata.longitude;
+                fhouse.description = housedata.description;
+                fhouse.contactperson = housedata.contactperson;
+                fhouse.contactemail = housedata.contactemail;
+                fhouse.contactphone = housedata.contactphone;
+                fhouse.amenities = housedata.amenities;
+                fhouse.houseimg=housedata.houseimg;
+
+
+                fhouse.save();
+
+                res.status(200).send({ fhouse })
+            }
+        }
+        )
+    }
+    else {
+        let house = new House(housedata)
+        house.save(function (err, houseinfo) {
+            if (err) {
+                console.log(err)
+            }
+            else {
+
+                res.status(200).send({ houseinfo })
+            }
+        })
+    }
+})
+
+
+router.post('/uploaduserphoto', usermultipartMiddleware, function (req, res) {
     //console.log(req.files.uploads[0].path);
     //console.log(req.files);
 
-    
-    var ret = req.files.uploads[0].path.replace('uploads/userphotos/','');
+
+    var ret = req.files.uploads[0].path.replace('uploads/userphotos/', '');
     res.json({
         'message': ret
     });
 })
 
-router.post('/uploadhousephoto',housemultipartMiddleware,function(req,res)
-{
-    var ret=[];
-    for(i=0;i<req.files.uploads.length;i++)
-    {
-        ret.push(req.files.uploads[i].path.replace('uploads/housephotos/',''));
+router.post('/uploadhousephoto', housemultipartMiddleware, function (req, res) {
+    var ret = [];
+    for (i = 0; i < req.files.uploads.length; i++) {
+        ret.push(req.files.uploads[i].path.replace('uploads/housephotos/', ''));
     }
     res.json({
         'message': ret
     });
 })
-router.post('/getuser',function(req,res)
-{
-    let reqbody= req.body
+router.post('/getuser', function (req, res) {
+    let reqbody = req.body
 
-    User.findOne({email:reqbody.useremail},function(err,userinfo)
-    {
-        if(err)
-        {
+    User.findOne({ email: reqbody.useremail }, function (err, userinfo) {
+        if (err) {
             console.log(err)
         }
-        else
-        {
-            res.status(200).send({userinfo})
+        else {
+            res.status(200).send({ userinfo })
         }
     })
 })
@@ -187,20 +236,6 @@ router.get('/gethouses', function (req, res) {
 
 })
 
-router.post('/uploadhousedetails', function (req, res) {
-    let housedata = req.body
-    let house = new House(housedata)
-    house.save(function (err, houseinfo) {
-        if (err) {
-            console.log(err)
-        }
-        else {
-
-            res.status(200).send({ houseinfo })
-        }
-    })
-
-})
 
 
 module.exports = router;

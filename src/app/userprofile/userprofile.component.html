@@ -22,7 +22,7 @@
                             <br>
                             <br>
                             <div class="text-center">
-                                <img [src]="userpic" class="avatar img-thumbnail"
+                                <img [src]="userpic" class="avatar img-thumbnail shadow"
                                     alt="avatar">
                                 <h6>Upload a different photo...</h6>
                                 <br>
@@ -139,8 +139,8 @@
                                 <br>
                                 <div class="card-deck" *ngFor="let house of houses">
                                     <!-- <a href="../housedetail/housedetail.html"> -->
-
-                                    <div class="card shadow">
+                                    <!-- <a href="" class="custom-card" style="color:inherit;text-decoration: none;"> -->
+                                    <div class="card shadow" (click)="displayhouse(house)">
                                         <img class="card-img-top" src="http://localhost:8000/housephotos/{{house.houseimg[0]}}"
                                             alt="Card image cap">
                                         <div class="card-block">
@@ -151,6 +151,7 @@
 
                                         </div>
                                     </div>
+                                    <!-- </a> -->
                                     <!-- </a> -->
                                     <!-- <br> -->
                                     <!-- <a href="../housedetail/housedetail.html">

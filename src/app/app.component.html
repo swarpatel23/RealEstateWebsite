@@ -29,9 +29,9 @@
                     </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class='img-circle' width='50' height='50' src='./../assets/image/userphoto.jpg' style="border-radius: 50%;"/>
+                            <img class='img-circle' width='50' height='50' src="http://localhost:8000/userphotos/{{_authService.getuserpic()}}" style="border-radius: 50%;"/>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="navbarDropdown">
                           <p class="dropdown-item"><b>{{ _authService.getUsername() }}</b></p>  
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" [routerLink]="['/userprofile']" routerLinkActive="router-link-active">Your Profile</a>
