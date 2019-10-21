@@ -392,15 +392,16 @@ router.post('/setStatus',(req,res)=>{
 router.get('/checkStatus',(req,res)=>{
     let user_id = req.query.user_id;
     Status.aggregate([{$lookup:{
-        from: 'appointments',
+        from: 'appointments',        
         localField: 'appointment_id',
         foreignField: '_id',
-        as: 'appointment'
+        as: 'appointment',        
     }}],function(err,res1){
         if(err)
             console.log('err :', err);
         else
-            console.log('res1 :', res1);
+            console.log('res1 :',res1);         
+            res1 = res1.filter((x)=>x.appointment["0"].user_id==user_id);            
             res.status(200).send(res1);
     })
     // Appointment.find({user_id:user_id},(err,appointments)=>

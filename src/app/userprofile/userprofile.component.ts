@@ -32,6 +32,7 @@ export class UserprofileComponent implements OnInit {
     this.appointmentService.getAppointment(localStorage.getItem('userid')).subscribe(res=>{
       console.log('res from appointment service :', res);     
       this.appointments = res["appointments"];
+      this.appointments = this.appointments.filter(x=>x.status==false);
       this.hadress = res["houses"];
     })
     this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{
@@ -44,10 +45,16 @@ export class UserprofileComponent implements OnInit {
    {     
       this._snackBar.open(message,"Close",{duration:3000});
    }
+   appointmentslistslength()
+   {
+    //return this.appointments.filter(x=>x.status==false).length;
+    return this.appointments.length;
+   }
    appointmentslists()
    {
-     //console.log('this.appointments :', this.appointments);     
-     return this.appointments.filter(x=>x.status==false);
+     console.log('this.appointments :', this.appointments);     
+     //return this.appointments.filter(x=>x.status==false);
+     return this.appointments;
    }
   houses = []
   userpic:String=""
@@ -213,7 +220,8 @@ export class UserprofileComponent implements OnInit {
     })
     this.appointmentService.getAppointment(localStorage.getItem('userid')).subscribe(res=>{
       console.log('res from appointment service :', res);     
-      this.appointments = res["appointments"];
+      this.appointments = res["appointments"];      
+      this.appointments = this.appointments.filter(x=>x.status==false)
       this.hadress = res["houses"];
     })
     this._auth.getUserDetail().subscribe(

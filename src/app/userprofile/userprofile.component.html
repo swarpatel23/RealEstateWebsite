@@ -348,10 +348,9 @@
                     <div class="tab-pane container" id="appointment">
                         <br>
                         <br>
-                        <div class="container">
-                            <div *ngIf="appointmentslists().length == 0" else elseblock><h1> No Appointment</h1>  </div>
-                            <ng-template #elseblock>
-                                    <div class="row mt-5" *ngFor="let appointment of appointmentslists()" #app
+                        <div class="container">                                                     
+                             <div *ngIf="appointments.length" else elseblock>                                 
+                                 <div class="row mt-5" *ngFor="let appointment of appointments" #app
                                 id="{{appointment['_id']}}">
 
                                 <div class="col-sm-12 col-md-4">
@@ -401,7 +400,13 @@
                                 </div>
 
                             </div>
+                                </div> 
+                            <ng-template #elseblock>                                
+                                    <h1> No Appointment</h1>  
                             </ng-template>
+                            <div *ngIf="appointments.length == 0 ">
+                                    <h1> No Appointment</h1>  
+                            </div>
                         
                         </div>
                         <br>
