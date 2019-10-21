@@ -1,0 +1,31 @@
+<div class="row text-center">
+    <div class="col-2" style="align-self:center">
+        <a class="carousel-control" href="#demo" role="button" data-slide="prev">
+                <i class="material-icons">
+                        arrow_back_ios
+                </i>
+        </a>
+    </div>
+    <div class="col-8">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="background:none;">
+            <div class="carousel-inner">
+                <div class="carousel-item active">                    
+                    <a href="http://localhost:8000/housephotos/{{hcover}}" target="_blank"><img
+                            src="http://localhost:8000/housephotos/{{hcover}}" class="img-fluid "></a>
+                </div>
+
+                <div class="carousel-item" *ngFor="let photo of subphoto">
+                    <a href="http://localhost:8000/housephotos/{{photo}}" target="_blank"><img
+                            src="http://localhost:8000/housephotos/{{photo}}" class="img-fluid "></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2" style="align-self:center">
+        <a class="carousel-control" href="#demo" role="button" data-slide="next">
+                <i class="material-icons">
+                        arrow_forward_ios
+                </i>
+        </a>
+    </div>
+</div>

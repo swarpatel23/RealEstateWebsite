@@ -8,8 +8,9 @@ const appointmentSchema = new Schema({
     
     date1: { type: Date },
     date2: { type: Date },
-    userpreferedprice:'Number',
-    description:String
+    userpreferedprice:Number,
+    description:String,  
+    status:Boolean
 
 })
 

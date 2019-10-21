@@ -19,6 +19,8 @@ import { HousedetailComponent } from './housedetail/housedetail.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import { CarousalComponent } from './carousal/carousal.component';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     EntryComponent,
     HousedetailComponent,
     UserprofileComponent,
-    ContactusComponent
+    ContactusComponent,
+    CarousalComponent    
   ],
   imports: [
     BrowserModule,
@@ -38,13 +41,15 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ScrollingModule
+    ScrollingModule,
+    CountdownTimerModule.forRoot()
   ],
   providers: [AuthService,AuthGuard,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CarousalComponent]
 })
 export class AppModule { }

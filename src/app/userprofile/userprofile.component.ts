@@ -3,6 +3,9 @@ import * as $ from 'jquery';
 import { HouseService } from '../house.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import {AppointmentService} from '../appointment.service';
+import {StatusService} from '../status.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -11,12 +14,41 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./userprofile.component.css']
 })
 export class UserprofileComponent implements OnInit {
-
+  tempdate:any;
+  appointments:any = [];
+  hadress:any = [];
   previousdetail = ""
   newpassword: string = ""
   public userdetail = { userphoto: "", username: localStorage.getItem('username'), firstname: "", lastname: "", email: localStorage.getItem('email'), password: "", contactnumber: "", address: "", recoveryemail: "", newpassword: "" }
-  constructor(private _house: HouseService, private _router: Router, private _auth: AuthService) { }
+  constructor(
+    private _snackBar:MatSnackBar,
+    private statusService:StatusService,
+    private _house: HouseService, 
+    private _router: Router,
+    private _auth: AuthService, 
+    private appointmentService:AppointmentService    
+    ) {
 
+    this.appointmentService.getAppointment(localStorage.getItem('userid')).subscribe(res=>{
+      console.log('res from appointment service :', res);     
+      this.appointments = res["appointments"];
+      this.hadress = res["houses"];
+    })
+    this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{
+    //  console.log('res from statusService service :', res);     
+      this.notification = res;    
+      
+    })
+   }
+   open_snackbar(message:string)
+   {     
+      this._snackBar.open(message,"Close",{duration:3000});
+   }
+   appointmentslists()
+   {
+     //console.log('this.appointments :', this.appointments);     
+     return this.appointments.filter(x=>x.status==false);
+   }
   houses = []
   userpic:String=""
   updateusererror: String = null
@@ -96,13 +128,94 @@ export class UserprofileComponent implements OnInit {
       }
     )
   }
+  gethouseslength()
+  {
+    return this.houses.length;
+  }
+  gethousesList()
+  {
+    this.houses;
+  }
   displayhouse(house)
   {
     sessionStorage.setItem('clickedhouse',JSON.stringify(house))
     this._router.navigate(['/housedetail'])
     console.log(house);
   }
-  ngOnInit() {
+  getProfile(uid)
+  {        
+    //console.log(this.appointmentService.getProfile(uid));
+   // this.appointmentService.getProfile(uid).subscribe((data)=>{
+   //   console.log('data :', data);
+   // });
+    return "hello";
+  }
+ 
+
+  getAddress(hid)
+  {
+    for (let index = 0; index < this.hadress.length; index++) {
+      const element = this.hadress[index];
+      if(element["hid"]==hid)
+      {
+        return element["address"];
+
+      }
+      
+    }
+  }
+  date;
+  accept(appointment)
+  {
+    
+    console.log("accept: ",appointment);    
+    console.log(this.appointments);    
+    this.statusService.setStatus(appointment.id,this.date)
+    .subscribe(
+      res=>{
+        this.appointments = this.appointments.filter(x=>x._id != appointment.id); 
+        console.log('res :', res);
+        this.open_snackbar("Accepted Request ");
+      },
+      err=>{
+        console.log('err :', err);
+      }
+    );
+  }
+  reject(appointment)
+  {
+    
+    console.log("reject: ",appointment);
+    this.statusService.rejectStatus(appointment.id,this.date)
+    .subscribe(
+      res=>{
+        this.appointments = this.appointments.filter(x=>x._id != appointment.id); 
+        console.log('res :', res);
+        this.open_snackbar("Reject Request ");
+      },
+      err=>{
+        console.log('err :', err);
+      }
+    );
+  }
+  notification:any;
+  getNotifications()
+  { 
+    //console.log('this.notification :', this.notification);
+    return this.notification;
+  } 
+  ngOnInit() {    
+    this.findhouses();
+    this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{
+    //  console.log('res from statusService service :', res);     
+      this.notification = res; 
+      
+    })
+    this.appointmentService.getAppointment(localStorage.getItem('userid')).subscribe(res=>{
+      console.log('res from appointment service :', res);     
+      this.appointments = res["appointments"];
+      this.hadress = res["houses"];
+    })
     this._auth.getUserDetail().subscribe(
       res => {
         console.log(res);
@@ -184,5 +297,6 @@ export class UserprofileComponent implements OnInit {
       $("#npass").show(1000);
     });
   }
+
 
 }

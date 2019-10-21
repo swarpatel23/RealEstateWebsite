@@ -11,3 +11,11 @@ div.shadow:hover {
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
+.my-mat-card
+{
+	margin-bottom: 2em;
+
+}
+.my-mat-card mat-card-subtitle,h4{
+	color:white;
+}
