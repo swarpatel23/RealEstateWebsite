@@ -7,7 +7,7 @@ import { AppointmentService } from "./../appointment.service"
 import { OverlayRef } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material';
 import {CarousalComponent} from '../carousal/carousal.component';
-import {MatDialogRef} from '@angular/material'
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
 	selector: 'app-buy',
 	templateUrl: './buy.component.html',
@@ -44,7 +44,7 @@ export class BuyComponent implements OnInit {
 	shouse: any;
 	houseservice: HouseService = null;
 	subphoto:any = [];
-	constructor(houseservice: HouseService, private _appointment: AppointmentService,private dialog:MatDialog,
+	constructor(private _snackBar:MatSnackBar,houseservice: HouseService, private _appointment: AppointmentService,private dialog:MatDialog,
 		private data:DataService) {
 
 		this.houseservice = houseservice;
@@ -154,6 +154,10 @@ export class BuyComponent implements OnInit {
 
 
 	}	
+	open_snackbar(message:string)
+   {     
+      this._snackBar.open(message,"Close",{duration:3000});
+   }
 	map: any;
 	forappointment=""
 	thid:any = 1;
@@ -305,7 +309,9 @@ export class BuyComponent implements OnInit {
             err=>{
                 console.log(err);
             }
-        )
+		)
+		this.open_snackbar("Requested Succesfully for the appointment");
+		this.close_appointment();
 	}
 
 	underline(element) {

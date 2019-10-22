@@ -9,7 +9,8 @@ export class StatusService {
   private _checkstatus = "http://localhost:8000/api/checkStatus";
   private _setstatus = "http://localhost:8000/api/setStatus";
   private _rejectstatus = "http://localhost:8000/api/setStatus";
-  private _sendmail="http://localhost:8000/api/sendmail"
+  private _sendmail="http://localhost:8000/api/sendmail";
+  private _checkmeetings="http://localhost:8000/api/checkMeetings";
   constructor(private http:HttpClient) { }
   
   sendmail(app,user)
@@ -40,5 +41,11 @@ export class StatusService {
     return this.http.post<any>(this._rejectstatus,params);
   }
 
+  checkMeetings(user_id:string):any{
+    console.log('user_id :', user_id);
+    let params = new HttpParams();
+    params = params.append('user_id',user_id);
+    return this.http.get<any>(this._checkmeetings,{params:params});
+  }
 
 }

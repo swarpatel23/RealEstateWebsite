@@ -37,10 +37,18 @@ export class UserprofileComponent implements OnInit {
       this.hadress = res["houses"];
     })
     this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{
-    //  console.log('res from statusService service :', res);     
-      this.notification = res;    
+      console.log('res from statusService service checkStatus:', res);     
+      this.notification = res;  
+      this.notification.reverse();  
       
     })
+    this.statusService.checkMeetings(localStorage.getItem("userid")).subscribe(res=>{
+      console.log('res from checkMeetings service checkStatus:', res);     
+      this.meetings = res;
+      this.meetings.reverse();
+      
+    })
+    
    }
    open_snackbar(message:string)
    {     
@@ -167,7 +175,7 @@ export class UserprofileComponent implements OnInit {
         this.appointmentimg="http://localhost:8000/userphotos/"+this.appointmentuserimg
         //this.appointmentimg = this.appointmentimg.replace("uploads\\","");
         //console.log(this.appointmentimg)
-       
+        return this.appointmentimg;
         
       },
       err => {
@@ -175,8 +183,27 @@ export class UserprofileComponent implements OnInit {
       });
     return this.appointmentimg;
   }
- 
-
+  nameobj = {};
+  getName(uid)
+  {        
+    //console.log(this.appointmentService.getProfile(uid));
+    let name;
+   this._auth.getUserByIdForName(uid).subscribe(res => {        
+        //console.log(res.firstname+ res.lastname);
+    //   console.log('res for name :', res);
+     //  console.log('res.userinfo.username :', res.userinfo.username);
+       name = res.userinfo.username               
+        //this.nameobj.push({name:name,id:res.userinfo._id});              
+        this.nameobj[uid.toString()] = name;
+       //return res.userinfo.username;
+        
+      },
+      err => {
+        console.log(err);
+      });      
+    //  console.log('this.nameobj :', this.nameobj);
+      
+  }
   getAddress(hid)
   {
     for (let index = 0; index < this.hadress.length; index++) {
@@ -229,7 +256,12 @@ export class UserprofileComponent implements OnInit {
       }
     );
   }
-  notification:any;
+  meetings:any=[];
+  getMeetings()
+  {
+    return this.meetings;
+  }
+  notification:any=[];
   getNotifications()
   { 
     //console.log('this.notification :', this.notification);
@@ -245,6 +277,7 @@ export class UserprofileComponent implements OnInit {
     this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{
     //  console.log('res from statusService service :', res);     
       this.notification = res; 
+      this.notification.reverse();
       
     })
     this.appointmentService.getAppointment(localStorage.getItem('userid')).subscribe(res=>{

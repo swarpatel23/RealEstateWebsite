@@ -261,6 +261,19 @@ router.post('/getuserbyid', function (req, res) {
         }
     })
 })
+router.post('/getuserbyidforname', function (req, res) {
+    let reqbody = req.body
+
+    var uidobject = new ObjectId(reqbody.userid)
+    User.findOne({ _id: uidobject }, function (err, userinfo) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            res.status(200).send({ userinfo })
+        }
+    })
+})
 
 router.post('/finduserhouse', function (req, res) {
     let user = req.body
@@ -440,22 +453,112 @@ router.get('/checkStatus', (req, res) => {
     }], function (err, res1) {
         if (err)
             console.log('err :', err);
-        else
-            //console.log('res1 :',res1);         
-            res1 = res1.filter((x) => x.appointment["0"].user_id == user_id);
-        res.status(200).send(res1);
-    })
-    // Appointment.find({user_id:user_id},(err,appointments)=>
-    // {
-    //     if(err){
-    //         console.log('err :', err);
-    //         res.status(500).send({error:err});
-    //     }
-    //     else
-    //     {
-    //         res.status(200).send(appointments);
-    //     }
+        else{
+           // console.log('res1 :',res1);            
+            res1 = res1.filter((x) => {
+                if(x.appointment.length>0)
+                    return x.appointment["0"].user_id == user_id;
+                else
+                    return false;
+                });
+            res.status(200).send(res1);
+        }
+            
+        
+    })    
+})
 
-    // })
+router.get('/checkMeetings',(req,res)=>{
+    console.log('CHECK meertingfs' );
+    let user_id = req.query.user_id;        
+    House.find({user_id:user_id},(err,houses)=>
+    {
+        if(houses!=[])
+        {
+            Appointment.find({ 
+                house_id : { 
+                    $in : houses
+                }
+            },(err,apps)=>
+            {
+                if(apps.length<0)
+                {
+                    console.log('Empty apps :');
+                    res.status(500).send([]);
+                }
+                else
+                {
+                    Status.find({
+                        appointment_id:{
+                            $in: apps
+                        },
+                        status:true
+                    },(err,stat)=>{
+                        if(err){
+                            console.log('Empty Status :');
+                            res.status(500).send([""]);
+                        }
+                        else{
+                 //           res.status(200).send(stat);
+                            let tempaid = [];
+                            for (let index = 0; index < stat.length; index++) {
+                                const element = stat[index];
+                                tempaid.push(element.appointment_id);                                
+                            }
+                            Appointment.find(
+                                {_id:{                                
+                                    $in : tempaid
+                                }
+                            },(req,ap)=>{
+                                if(err)
+                                {
+                                    console.log('err :', err);
+                                    res.status(200).send([]);
+                                }
+                                else
+                                {
+                                    Status.aggregate([{
+                                        $lookup: {
+                                            from: 'appointments',
+                                            localField: 'appointment_id',
+                                            foreignField: '_id',
+                                            as: 'appointment',
+                                        }
+                                    }], function (err, res1) {
+                                        if (err)
+                                            console.log('err :', err);
+                                        else{
+                                           // console.log('res1 :',res1);            
+                                            res1 = res1.filter((x) => {
+                                                console.log('x appoint :', x.appointment_id);
+                                                for (let index = 0; index < ap.length; index++) {
+                                                    const element = ap[index];
+                                                    console.log('element._id:', element._id);
+                                                    if(x.appointment_id.toString() == element["_id"])    
+                                                    {
+                                                        console.log('true ');
+                                                        return true;
+                                                    }
+                                                } 
+                                                return false;
+                                                });
+                                            res.status(200).send(res1);
+                                        }
+                                            
+                                        
+                                    })    
+                                    //res.status(200).send(ap);
+                                }
+                            })
+                            
+                        }
+                    });   
+                }
+            })
+        }
+        else{
+            res.status(200).send(["in houses elese"]);
+        }
+    })
 })
 module.exports = router;
