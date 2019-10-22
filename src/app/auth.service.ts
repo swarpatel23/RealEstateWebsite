@@ -62,7 +62,10 @@ export class AuthService {
 
   getuserpic()
   {
-    return localStorage.getItem('userpic')
+    let temp = localStorage.getItem('userpic');
+    temp = temp.replace("uploads\\","");
+    //return localStorage.getItem('userpic')
+    return temp;
   }
   getUsername()
   {
