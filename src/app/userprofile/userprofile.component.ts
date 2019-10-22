@@ -152,17 +152,18 @@ export class UserprofileComponent implements OnInit {
   }
   appointmentuserimg=""
   appointmentimg=""
+  appointuser=""
   getProfile(uid)
   {        
     //console.log(this.appointmentService.getProfile(uid));
    this._auth.getUserById(uid).subscribe(res => {
-        console.log(res);
-        
-          this.appointmentuserimg=res.userinfo.userphoto
-        console.log(this.appointmentuserimg)
-        console.log(res.userphoto)
+        //console.log(res);
+        this.appointuser=res
+        this.appointmentuserimg=res.userinfo.userphoto
+        //console.log(this.appointmentuserimg)
+        //console.log(res.userphoto)
         this.appointmentimg="http://localhost:8000/userphotos/"+this.appointmentuserimg
-        console.log(this.appointmentimg)
+        //console.log(this.appointmentimg)
        
         
       },
@@ -186,9 +187,15 @@ export class UserprofileComponent implements OnInit {
     }
   }
   date;
-  accept(appointment)
+  accept(appointment,user)
   {
-    
+    // this.getProfile(user);
+    // console.log(this.appointuser)
+    // console.log(appointment.id)
+    // this.statusService.sendmail({appid:appointment.id},this.appointuser).subscribe(
+    //   res=>{},
+    //   err=>{}
+    // );
     console.log("accept: ",appointment);    
     console.log(this.appointments);    
     this.statusService.setStatus(appointment.id,this.date)
