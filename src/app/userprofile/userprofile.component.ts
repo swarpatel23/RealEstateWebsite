@@ -108,8 +108,8 @@ export class UserprofileComponent implements OnInit {
           console.log(res);
           this.updateteduser = true;
           if(res.user.userphoto!=""){
-            this.userpic="http://localhost:8000/"+res.user.userphoto;
-            this.userpic=this.userpic.replace("uploads\\","");
+            this.userpic="http://localhost:8000/userphotos/"+res.user.userphoto;
+            //this.userpic=this.userpic.replace("uploads\\","");
             
           }
           else
@@ -164,8 +164,8 @@ export class UserprofileComponent implements OnInit {
         this.appointmentuserimg=res.userinfo.userphoto
         //console.log(this.appointmentuserimg)
         //console.log(res.userphoto)
-        this.appointmentimg="http://localhost:8000/"+this.appointmentuserimg
-        this.appointmentimg = this.appointmentimg.replace("uploads\\","");
+        this.appointmentimg="http://localhost:8000/userphotos/"+this.appointmentuserimg
+        //this.appointmentimg = this.appointmentimg.replace("uploads\\","");
         //console.log(this.appointmentimg)
        
         
@@ -263,8 +263,8 @@ export class UserprofileComponent implements OnInit {
         this.userdetail.recoveryemail = res.userinfo.recoveryemail;
         this.userdetail.userphoto = res.userinfo.userphoto;
         if(res.userinfo.userphoto!=""){
-            this.userpic="http://localhost:8000/"+res.userinfo.userphoto;            
-            this.userpic=this.userpic.replace("uploads\\","");
+            this.userpic="http://localhost:8000/userphotos/"+res.userinfo.userphoto;            
+            //this.userpic=this.userpic.replace("uploads\\","");
           }
           else
           {
