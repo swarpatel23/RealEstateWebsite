@@ -11,6 +11,7 @@ export class AuthService {
   private _updateuserUrl="http://localhost:8000/api/updateuser";
   private _getuserUrl="http://localhost:8000/api/getuser";
   private _uploadUserPhotoUrl="http://localhost:8000/api/uploaduserphoto";
+  private _getuserbyid="http://localhost:8000/api/getuserbyid"
 
 
 
@@ -27,6 +28,11 @@ export class AuthService {
   getUserDetail()
   {
     return this.http.post<any>(this._getuserUrl,{useremail:localStorage.getItem('email')})
+  }
+
+  getUserById(uid)
+  {
+    return this.http.post<any>(this._getuserbyid,{userid:uid})
   }
   updateUserDetail(user)
   {

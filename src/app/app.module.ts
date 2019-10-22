@@ -51,5 +51,6 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
   }],
   bootstrap: [AppComponent],
   entryComponents: [CarousalComponent]
+
 })
 export class AppModule { }

@@ -215,6 +215,21 @@ router.post('/getuser', function (req, res) {
         }
     })
 })
+
+router.post('/getuserbyid',function(req,res){
+    let reqbody = req.body
+
+   var uidobject = new ObjectId(reqbody.userid)
+   User.findOne({ _id: uidobject }, function (err, userinfo) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            res.status(200).send({ userinfo })
+        }
+    })
+})
+
 router.post('/finduserhouse', function (req, res) {
     let user = req.body
     //console.log("reqjaskdfj:: "+user.useri)

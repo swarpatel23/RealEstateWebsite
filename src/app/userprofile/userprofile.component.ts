@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import * as $ from 'jquery';
 import { HouseService } from '../house.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
-  styleUrls: ['./userprofile.component.css']
+  styleUrls: ['./userprofile.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserprofileComponent implements OnInit {
   tempdate:any;
@@ -149,13 +150,26 @@ export class UserprofileComponent implements OnInit {
     this._router.navigate(['/housedetail'])
     console.log(house);
   }
+  appointmentuserimg=""
+  appointmentimg=""
   getProfile(uid)
   {        
     //console.log(this.appointmentService.getProfile(uid));
-   // this.appointmentService.getProfile(uid).subscribe((data)=>{
-   //   console.log('data :', data);
-   // });
-    return "hello";
+   this._auth.getUserById(uid).subscribe(res => {
+        console.log(res);
+        
+          this.appointmentuserimg=res.userinfo.userphoto
+        console.log(this.appointmentuserimg)
+        console.log(res.userphoto)
+        this.appointmentimg="http://localhost:8000/userphotos/"+this.appointmentuserimg
+        console.log(this.appointmentimg)
+       
+        
+      },
+      err => {
+        console.log(err);
+      });
+    return this.appointmentimg;
   }
  
 
@@ -211,6 +225,11 @@ export class UserprofileComponent implements OnInit {
     //console.log('this.notification :', this.notification);
     return this.notification;
   } 
+  pchange()
+  {
+    $("#opass").show(1000);
+      $("#npass").show(1000);
+  }
   ngOnInit() {    
     this.findhouses();
     this.statusService.checkStatus(localStorage.getItem("userid")).subscribe(res=>{

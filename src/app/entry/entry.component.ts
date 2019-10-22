@@ -58,7 +58,6 @@ export class EntryComponent implements OnInit {
       err=>{
         console.log(err)
         this.loginerr=err.error
-
       }
     )
   }
