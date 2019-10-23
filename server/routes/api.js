@@ -213,7 +213,7 @@ router.post('/uploadhousedetails', function (req, res) {
 router.post('/uploaduserphoto', usermultipartMiddleware, function (req, res) {
     //console.log(req.files.uploads[0].path);
     //console.log(req.files);
-
+    
 
     var ret = req.files.uploads[0].path.replace('uploads/userphotos/', '');
     ret = req.files.uploads[0].path.replace('uploads\\userphotos\\', '');
