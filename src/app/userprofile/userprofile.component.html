@@ -287,7 +287,8 @@
                                 <div class="">
                                     <label for="Password" class="mb-0">Password</label>
                                     <br>
-                                    <p id="pchange" (click)="pchange()" style="color:#00b0ff;text-decoration: underline;cursor: pointer;">
+                                    <p id="pchange" (click)="pchange()"
+                                        style="color:#00b0ff;text-decoration: underline;cursor: pointer;">
                                         Change Password</p>
                                 </div>
                                 <div class="form-group" id="opass" style="display: none ">
@@ -321,94 +322,94 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="places">                    
-                        <div class="tab-pane container active" id="places">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <div class="row mx-auto">
-                                            <br>                                            
-                                            <div class="card-deck" *ngFor="let house of houses">                                    
-                                                <div class="card shadow" (click)="displayhouse(house)">
-                                                    <img class="card-img-top" src="http://localhost:8000/housephotos/{{house.houseimg[0]}}"
-                                                        alt="Card image cap">
-                                                    <div class="card-block">
-                                                        <br>                                            
-                                                        <h4 class="card-title p-2">Address : {{house.address}}</h4>
-                                                        <p class="card-text p-2">Overview: {{house.description}}</p>
-            
-                                                    </div>
-                                                </div>                                    
+                <mat-tab label="places">
+                    <div class="tab-pane container active" id="places">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="row mx-auto">
+                                    <br>
+                                    <div class="card-deck" *ngFor="let house of houses">
+                                        <div class="card shadow" (click)="displayhouse(house)">
+                                            <img class="card-img-top"
+                                                src="http://localhost:8000/housephotos/{{house.houseimg[0]}}"
+                                                alt="Card image cap">
+                                            <div class="card-block">
+                                                <br>
+                                                <h4 class="card-title p-2">Address : {{house.address}}</h4>
+                                                <p class="card-text p-2">Overview: {{house.description}}</p>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>   
+                            </div>
+                        </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="appointment">
                     <div class="tab-pane container" id="appointment">
                         <br>
                         <br>
-                        <div class="container">                                                     
-                             <div *ngIf="appointments.length" else elseblock>                                 
-                                 <div class="row mt-5" *ngFor="let appointment of appointments" #app
-                                id="{{appointment['_id']}}">
+                        <div class="container">
+                            <div *ngIf="appointments.length" else elseblock>
+                                <div class="row mt-5" *ngFor="let appointment of appointments" #app
+                                    id="{{appointment['_id']}}">
 
-                                <div class="col-sm-12 col-md-4">
-                                    
-                                    <img src="{{getProfile(appointment['user_id'])}}"
-                                        class="img-fluid" alt="Responsive image">
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <p>Appointment For: <span>{{getAddress(appointment['house_id'])}}</span></p>
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="description" class="mb-0">What he likes in your house?</label>
-                                        <textarea class="form-control" rows="6"
-                                            placeholder="{{appointment['description']}}" disabled></textarea>
+                                    <div class="col-sm-12 col-md-4">
+
+                                        <img src="{{getProfile(appointment['user_id'])}}" class="img-fluid"
+                                            alt="Responsive image">
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4">
-                                    <label for="money" class="mb-0">His price for your place?</label><br>
-                                    <div class="input-group mb-3">
-
-                                        <input type="text" class="form-control" aria-describedby="basic-addon2" disabled
-                                            value="{{ appointment['userpreferedprice'] | currency   :'USD' }}">
-
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-inr"></i></span>
+                                    <div class="col-sm-12 col-md-4">
+                                        <p>Appointment For: <span>{{getAddress(appointment['house_id'])}}</span></p>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="description" class="mb-0">What he likes in your house?</label>
+                                            <textarea class="form-control" rows="6"
+                                                placeholder="{{appointment['description']}}" disabled></textarea>
                                         </div>
                                     </div>
-                                    <mat-radio-group aria-labelledby="example-radio-group-label" [(ngModel)]="date"
-                                        name="date">
-                                        <mat-radio-button [value]="1">
-                                            {{appointment['date1']| date: 'dd/MM/yyyy'}}
-                                        </mat-radio-button>
-                                        <br>
-                                        <mat-radio-button [value]="2">
-                                            {{appointment['date2']| date: 'dd/MM/yyyy'}}
-                                        </mat-radio-button>
-                                    </mat-radio-group>
-                                    <br><br>
-                                    <button class="btn btn-success"
-                                        (click)="accept(app,appointment['user_id'])">Accept</button>&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-danger" (click)="reject(app)">Reject</button>
+                                    <div class="col-sm-12 col-md-4">
+                                        <label for="money" class="mb-0">His price for your place?</label><br>
+                                        <div class="input-group mb-3">
 
-                                    <p style="display:none">Status: <span class="badge badge-success">Accepted</span>
-                                    </p>
-                                    <p style="display: none">Status: <span class="badge badge-danger">Rejected</span>
-                                    </p>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon2"
+                                                disabled
+                                                value="{{ appointment['userpreferedprice'] | currency   :'USD' }}">
+
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-inr"></i></span>
+                                            </div>
+                                        </div>
+                                        <mat-radio-group aria-labelledby="example-radio-group-label" [(ngModel)]="date"
+                                            name="date">
+                                            <mat-radio-button [value]="1">
+                                                {{appointment['date1']| date: 'dd/MM/yyyy'}}
+                                            </mat-radio-button>
+                                            <br>
+                                            <mat-radio-button [value]="2">
+                                                {{appointment['date2']| date: 'dd/MM/yyyy'}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                        <br><br>
+                                        <button class="btn btn-success"
+                                            (click)="accept(app,appointment['user_id'])">Accept</button>&nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-danger" (click)="reject(app)">Reject</button>
+
+                                        <p style="display:none">Status: <span
+                                                class="badge badge-success">Accepted</span>
+                                        </p>
+                                        <p style="display: none">Status: <span
+                                                class="badge badge-danger">Rejected</span>
+                                        </p>
+
+                                    </div>
 
                                 </div>
-
                             </div>
-                                </div> 
-                            <ng-template #elseblock>                                
-                                    <h1> No Appointment</h1>  
+                            <ng-template [ngIf]="appointments.length == 0 " #elseblock>
+                                <h1> No Appointment</h1>
                             </ng-template>
-                            <div *ngIf="appointments.length == 0 ">
-                                    <h1> No Appointment</h1>  
-                            </div>
-                        
                         </div>
                         <br>
                         <br>
@@ -416,46 +417,125 @@
                 </mat-tab>
                 <mat-tab label="notification">
                     <div class="tab-pane container" id="notification">
-                        <br>
-                        <br>                        
-                        <mat-card *ngFor="let notice of getNotifications()" [ngStyle]="{'background-color':notice['status'] === false ? '#FF5252' : '#8BC34A'}" class="my-mat-card container"> 
-                                <mat-card-header>                                  
-                                  <mat-card-title><h1>Request To</h1></mat-card-title>
-                                  <mat-card-subtitle>{{notice["appointment"]["0"]["user_id"]}} for {{notice["appointment"]["0"]["house_id"]}}</mat-card-subtitle>
+                        <br><br>
+                        <ng-template [ngIf]="getNotifications()" else elsenoti>
+
+                            <mat-card *ngFor="let notice of notification"
+                                [ngStyle]="{'background-color':notice['status'] === false ? '#FF5252' : '#8BC34A'}"
+                                class="my-mat-card container">
+
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        <h1>Request To</h1>
+                                    </mat-card-title>
+                                    <mat-card-subtitle>{{getName(notice['appointment']['0']['user_id'])}}
+                                        {{nameobj[notice['appointment']['0']['user_id']]}} for
+                                        {{getAddress(notice["appointment"]["0"]["house_id"])}}</mat-card-subtitle>
                                 </mat-card-header>
                                 <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-                                
-                                <mat-card-content class="container">                                    
-                                        <div *ngIf="notice['status']==true" >
-                                            
-                                                Your Description : <h4 class="container">{{ notice["appointment"]["0"]["description"]}}</h4>
-                                                <br>
-                                                <div *ngIf="notice['date']==1">
-                                                        <h6>On</h6><h1  class="container">{{notice["appointment"]["0"]["date1"] | date: 'dd/MM/yyyy'}}</h1>                                                    
-                                                        Time left : <h1 class="container">                                                    
-                                                                <countdown-timer id='{{notice["appointment"]["0"]["_id"]}}' style="font-size:3.5rem;color:white;" [end]='notice.appointment[0].date1| date: "yyyy-MM-dd hh:mm:ss"'></countdown-timer></h1>                                                    
-            
 
-                                                </div>                                                                                                        
-                                                <div *ngIf="notice['date']==2">
-                                                    <h6>On</h6><h1  class="container">{{notice["appointment"]["0"]["date2"] | date: 'dd/MM/yyyy'}}</h1>
-                                                    Time left : <h1 class="container">                                                    
-                                                            <countdown-timer id='{{notice["appointment"]["0"]["_id"]}}' style="font-size:3.5rem;color:white;" [end]='notice.appointment[0].date2| date: "yyyy-MM-dd hh:mm:ss"'></countdown-timer></h1>                                                    
-        
-                                                </div>
-                                                
-                                            </div>
-                                            <div *ngIf="notice['status']==false">
-                                                    <h6>Your Description :</h6> <h4 class="container">{{ notice["appointment"]["0"]["description"]}}</h4>
-                                                    <h6>Your expected price : </h6><h1 class="container">{{notice["appointment"]["0"]["userpreferedprice"] | currency : 'USD'}}</h1>
-                                            </div>        
+                                <mat-card-content class="container">
+                                    <div *ngIf="notice['status']==true">
+
+                                        Your Description : <h4 class="container">
+                                            {{ notice["appointment"]["0"]["description"]}}</h4>
+                                        <br>
+                                        <div *ngIf="notice['date']==1">
+                                            <h6>On</h6>
+                                            <h1 class="container">
+                                                {{notice["appointment"]["0"]["date1"] | date: 'dd/MM/yyyy'}}</h1>
+                                            Time left : <h1 class="container">
+                                                <countdown-timer id='{{notice["appointment"]["0"]["_id"]}}'
+                                                    style="font-size:3.5rem;color:white;"
+                                                    [end]='notice.appointment[0].date1| date: "yyyy-MM-dd hh:mm:ss"'>
+                                                </countdown-timer>
+                                            </h1>
+
+
+                                        </div>
+                                        <div *ngIf="notice['date']==2">
+                                            <h6>On</h6>
+                                            <h1 class="container">
+                                                {{notice["appointment"]["0"]["date2"] | date: 'dd/MM/yyyy'}}</h1>
+                                            Time left : <h1 class="container">
+                                                <countdown-timer id='{{notice["appointment"]["0"]["_id"]}}'
+                                                    style="font-size:3.5rem;color:white;"
+                                                    [end]='notice.appointment[0].date2| date: "yyyy-MM-dd hh:mm:ss"'>
+                                                </countdown-timer>
+                                            </h1>
+
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="notice['status']==false">
+                                        <h6>Your Description :</h6>
+                                        <h4 class="container">{{ notice["appointment"]["0"]["description"]}}</h4>
+                                        <h6>Your expected price : </h6>
+                                        <h1 class="container">
+                                            {{notice["appointment"]["0"]["userpreferedprice"] | currency : 'USD'}}</h1>
+                                    </div>
                                 </mat-card-content>
                                 <mat-card-actions>
-                                  <button mat-raised-button *ngIf="notice['status']==false">Ok</button>
-                                  <button mat-raised-button *ngIf="notice['status']==true"><a href="tel:9878564125"><i class="material-icons" style="font-size: 4em;">phone</i></a></button>
-                                  <button mat-raised-button *ngIf="notice['status']==true"><a href="mailto:someone@example.com?Subject=Hello%20again"><i class="material-icons" style="font-size: 4em;">email</i></a></button>
+                                    <button mat-raised-button *ngIf="notice['status']==false">Ok</button>
+                                    <button mat-raised-button *ngIf="notice['status']==true"><a href="tel:9878564125"><i
+                                                class="material-icons" style="font-size: 4em;">phone</i></a></button>
+                                    <button mat-raised-button *ngIf="notice['status']==true"><a
+                                            href="mailto:someone@example.com?Subject=Hello%20again"><i
+                                                class="material-icons" style="font-size: 4em;">email</i></a></button>
                                 </mat-card-actions>
-                              </mat-card>
+
+                            </mat-card>
+                        </ng-template>
+                        <ng-template [ngIf]="notification.length == 0" #elsenoti>
+                            <h1 class="mb-5"> No Notifications</h1>
+                        </ng-template>
+
+                    </div>
+                </mat-tab>
+                <mat-tab label="meetings">
+                    <div class="tab-panel container" id="meeting">
+                        <br><br>
+                        <ng-template [ngIf]="meetings.length!=0" else elsemeet>
+                            <div class="tab-pane container active" id="places">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <div class="row mx-auto">
+                                            <br>
+                                            <div class="card-deck" *ngFor="let meeting of meetings">
+
+                                                <div class="card shadow">
+                                                    <img src="../../assets/image/user.png" class="img-fluid"
+                                                        alt="Profile img">
+                                                    <div class="card-block">
+                                                        <div class="card-header">
+                                                            {{getName(meeting['appointment']['0']['user_id'])}}
+                                                            <h5>{{nameobj[meeting['appointment']['0']['user_id']]}}</h5>
+
+
+                                                        </div>
+                                                        <div class="card-body">
+                                                            Requested for<br>
+                                                            <small>{{getAddress(meeting["appointment"]["0"]["house_id"])}}</small>
+                                                            and he says
+                                                            <h6>{{meeting["appointment"]["0"]["description"]}}</h6>
+
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            With price
+                                                            <b>{{meeting['appointment'][0]['userpreferedprice'] | currency : 'USD'}}</b>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template #elsemeet [ngIf]="meetings.length==0">
+                            <h1 class="mb-5"> No Meetings Scheduled</h1>
+                        </ng-template>
                     </div>
                 </mat-tab>
             </mat-tab-group>

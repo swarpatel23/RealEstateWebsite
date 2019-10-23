@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  private _registerUrl="http://localhost:8000/api/register"
+  private _registerUrl="http://localhost:8000/api/register";
   private _loginUrl="http://localhost:8000/api/login";
   private _updateuserUrl="http://localhost:8000/api/updateuser";
   private _getuserUrl="http://localhost:8000/api/getuser";
   private _uploadUserPhotoUrl="http://localhost:8000/api/uploaduserphoto";
-  private _getuserbyid="http://localhost:8000/api/getuserbyid"
+  private _getuserbyid="http://localhost:8000/api/getuserbyid";
+  private _getuserbyidforname="http://localhost:8000/api/getuserbyidforname";
 
 
 
@@ -34,6 +35,11 @@ export class AuthService {
   {
     return this.http.post<any>(this._getuserbyid,{userid:uid})
   }
+  getUserByIdForName(uid)
+  {
+    return this.http.post<any>(this._getuserbyidforname,{userid:uid})
+  }
+  
   updateUserDetail(user)
   {
       return this.http.post<any>(this._updateuserUrl,user)
