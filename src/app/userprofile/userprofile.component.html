@@ -335,7 +335,7 @@
                                                 alt="Card image cap">
                                             <div class="card-block">
                                                 <br>
-                                                <h4 class="card-title p-2">Address : {{house.address}}</h4>
+                                                <h4 class="card-title p-2" style="color: black;">Address : {{house.address}}</h4>
                                                 <p class="card-text p-2">Overview: {{house.description}}</p>
 
                                             </div>
@@ -429,8 +429,9 @@
                                         <h1>Request To</h1>
                                     </mat-card-title>
                                     <mat-card-subtitle>{{getName(notice['appointment']['0']['user_id'])}}
-                                        {{nameobj[notice['appointment']['0']['user_id']]}} for
-                                        {{getAddress(notice["appointment"]["0"]["house_id"])}}</mat-card-subtitle>
+                                        {{nameobj[notice['appointment']['0']['user_id']]}}
+                                        <!-- {{getAddress(notice["appointment"]["0"]["house_id"])}} -->
+                                    </mat-card-subtitle>
                                 </mat-card-header>
                                 <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
 

@@ -161,6 +161,7 @@ export class BuyComponent implements OnInit {
 	map: any;
 	forappointment=""
 	thid:any = 1;
+	
 	house_click(house): void {
 		this.forappointment=house
 		var hid = house.id;
@@ -255,16 +256,68 @@ export class BuyComponent implements OnInit {
 		
 		this.map.flyTo({
 			center: [
-				this.shouse["lat"],
-				this.shouse["long"]
-			]
-		});
+				this.shouse["long"],
+				this.shouse["lat"]
+			], zoom: 16
+		},this.setmarker());
+
 		$("#house_detail").css("animation", "anim 2s forwards");
 		$("#house_detail").css({ "display": "" });
 		$("#field").css({ "display": "none" });
-
-
+		setTimeout(() => {
+			this.setmarker();
+		}, 600);
+			
 	}
+	
+	setmarker() {
+                    //console.log("hi");
+                    var mapLayer = this.map.getLayer('markers');
+                    if (typeof mapLayer !== 'undefined') { 
+                        // Remove map layer & source.
+                        this.map.removeLayer('markers').removeSource('markers');
+					}
+					console.log(this.shouse["long"]);
+					/* Image: An image is loaded and added to the map. */
+					var map = this.map
+					var long = this.shouse["long"];
+					var late = this.shouse["lat"];
+					console.log(late);
+                    this.map.loadImage("../../assets/image/marker.png", function (error, image) {
+                        if (error) throw error
+						map.addImage("custom-marker", image);
+						//console.log("jaskdlfjaskl;f")
+
+						//console.log(this.shouse['long'])
+						//console.log(this.shouse["lat"])
+                        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+                        map.addLayer({
+                            id: "markers",
+                            type: "symbol",
+                            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+                            source: {
+                                type: "geojson",
+                                data: {
+                                    type: 'FeatureCollection',
+                                    features: [
+                                        {
+                                            type: 'Feature',
+                                            properties: {},
+                                            geometry: {
+                                                type: "Point",
+                                                coordinates: [long,late]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            layout: {
+                                "icon-image": "custom-marker",
+                            }
+						});
+						//console.log(a;jfklasd)
+                    });
+                }
 
 	heart_clicked() {
 		if ($("#heart").hasClass("far")) {
@@ -512,6 +565,7 @@ export class BuyComponent implements OnInit {
 			style: 'mapbox://styles/mapbox/satellite-streets-v11',
 
 		});
+		//this.map.on("click", this.setmarker);
 		// if (navigator.geolocation) {
 		// 	navigator.geolocation.getCurrentPosition(function (position) {
 

@@ -216,7 +216,7 @@ router.post('/uploaduserphoto', usermultipartMiddleware, function (req, res) {
     
 
     var ret = req.files.uploads[0].path.replace('uploads/userphotos/', '');
-    ret = req.files.uploads[0].path.replace('uploads\\userphotos\\', '');
+    //ret = req.files.uploads[0].path.replace('uploads\\userphotos\\', '');
     res.json({
         'message': ret
     });
@@ -227,7 +227,7 @@ router.post('/uploadhousephoto', housemultipartMiddleware, function (req, res) {
     for (i = 0; i < req.files.uploads.length; i++) {
         console.log(req.files.uploads[i].path);
         var x = req.files.uploads[i].path.replace("uploads/housephotos/", "");
-        x = req.files.uploads[i].path.replace("uploads\\housephotos\\", "");
+        //x = req.files.uploads[i].path.replace("uploads\\housephotos\\", "");
         ret.push(x);
         console.log(x);
     }

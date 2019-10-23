@@ -115,6 +115,7 @@ export class UserprofileComponent implements OnInit {
         res => {
           console.log(res);
           this.updateteduser = true;
+          this.open_snackbar("Updated User profile succesfully!!");
           if(res.user.userphoto!=""){
             this.userpic="http://localhost:8000/userphotos/"+res.user.userphoto;
             //this.userpic=this.userpic.replace("uploads\\","");
@@ -122,7 +123,7 @@ export class UserprofileComponent implements OnInit {
           }
           else
           {
-            this.userpic="assets/image/userphoto.jpg"
+            this.userpic="../assets/image/userphoto.jpg"
           }
 
         },
@@ -132,7 +133,7 @@ export class UserprofileComponent implements OnInit {
         }
       )
       console.log(this.userdetail)
-    }.bind(this), 1000)
+    }.bind(this), 700)
   }
 
   findhouses() {
