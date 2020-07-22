@@ -23,7 +23,7 @@
   background-size: cover;
   display: table;
   background-image: radial-gradient(circle, rgb(255, 225, 52),rgb(255, 217, 0),rgb(255, 183, 0));  
-
+  /* background:rgba(255,0,255); */
 
 }
 

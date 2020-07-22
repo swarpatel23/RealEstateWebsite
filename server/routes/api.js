@@ -8,8 +8,8 @@ const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer');
 //const db = 'mongodb+srv://pc:pc810@realestateps-9mo4b.mongodb.net/RealEststePS?retryWrites=true&w=majority'
 const router = express.Router()
-const db = 'mongodb://localhost:27017/RealEstatePs'
-
+//const db = 'mongodb://localhost:27017/RealEstatePs'
+const db = 'mongodb://database/mean-docker'
 const multipart = require('connect-multiparty');
 const usermultipartMiddleware = multipart({ uploadDir: './uploads/userphotos/' });
 const housemultipartMiddleware = multipart({ uploadDir: './uploads/housephotos/' });

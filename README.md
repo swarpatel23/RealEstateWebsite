@@ -1,27 +1,17 @@
-# Realtor
+# Real Estate Website - House, Apartment Selling and Renting Website.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
+- We choosen this project to make ease of communication b/w house seller and buyer.
+- we used angular framework for frontend and node js as server and mongodb as database.
+- why mongodb? as we require all house data at once querying is faster if they resides at one place. if we choose RDBMS we need to do join operation
+  which is costly.
+- also we used mapbox api to display house location.
 
-## Development server
+## main features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- user can publish thier house for either selling or for rent.
+- buyer can place appointment on available days of seller.
+- buyer than approv for appointment.
+- serach house by place and using other filter like price amenities and number of bedroom,kitchen,bathroom.
+- Designing UI - house to display proper way details of house - so for that we taken reference of other real estate website that how they display house
+  details and we taken some ideas from differnt idea and combined and created our UI.
+- for getting place location we used geolocation api.
