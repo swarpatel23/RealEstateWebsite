@@ -6,8 +6,8 @@ import { DataService } from "./../data.service";
 import { AppointmentService } from "./../appointment.service"
 import { OverlayRef } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material';
-import {CarousalComponent} from '../carousal/carousal.component';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { CarousalComponent } from '../carousal/carousal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
 	selector: 'app-buy',
 	templateUrl: './buy.component.html',
@@ -15,7 +15,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class BuyComponent implements OnInit {
 
-	
+
 	beds: number = 1;
 	baths: number = 1;
 	plots: number = 10000;
@@ -43,24 +43,24 @@ export class BuyComponent implements OnInit {
 	obj_houselist: any;
 	shouse: any;
 	houseservice: HouseService = null;
-	subphoto:any = [];
-	constructor(private _snackBar:MatSnackBar,houseservice: HouseService, private _appointment: AppointmentService,private dialog:MatDialog,
-		private data:DataService) {
+	subphoto: any = [];
+	constructor(private _snackBar: MatSnackBar, houseservice: HouseService, private _appointment: AppointmentService, private dialog: MatDialog,
+		private data: DataService) {
 
 		this.houseservice = houseservice;
-		this.obj_houselist = [];		
+		this.obj_houselist = [];
 		this.houseservice.getAllhouses().subscribe(
 			res => {
 				this.obj_houselist = [];
 				let temparr = null;
-		//		console.log(res);
+				//		console.log(res);
 				temparr = res["houses"]
-		//		console.log('temparr :', temparr);
-				let hid,cid,uid,address,lat,long,year_bulit,user_price,bathroom,bedroom,stories,plot,overview,g_amenities_list,b_amenities_list,sales_rent,view,days_on_web,photos;
-				
+				//		console.log('temparr :', temparr);
+				let hid, cid, uid, address, lat, long, year_bulit, user_price, bathroom, bedroom, stories, plot, overview, g_amenities_list, b_amenities_list, sales_rent, view, days_on_web, photos;
+
 				for (let index = 0; index < temparr.length; index++) {
 					const element = temparr[index];
-			//		console.log('element :', element);
+					//		console.log('element :', element);
 					hid = element["_id"];
 					uid = element["user_id"];
 					cid = 1;
@@ -68,17 +68,15 @@ export class BuyComponent implements OnInit {
 					lat = element["latitude"];
 					long = element["longitude"];
 					year_bulit = element["yearbuilt"];
-					if(element["type"]=="sale")
-					{
+					if (element["type"] == "sale") {
 						user_price = element["saleprice"];
 						sales_rent = 1;
 					}
-					else
-					{
+					else {
 						user_price = element["rentprice"];
 						sales_rent = 0;
 					}
-					
+
 					bathroom = element["baths"];
 					bedroom = element["beds"];
 					stories = element["beds"];
@@ -86,66 +84,54 @@ export class BuyComponent implements OnInit {
 					overview = element["description"];
 					view = element["views"];
 					//days_on_web = element["postingdate"];
-					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime())/(1000 * 3600 * 24));
+					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime()) / (1000 * 3600 * 24));
 					photos = element["houseimg"];
-					g_amenities_list= [];					
+					g_amenities_list = [];
 					b_amenities_list = [];
-					if(element["amenities"]["ac"])
-					{
+					if (element["amenities"]["ac"]) {
 						b_amenities_list.push("cooling");
 					}
-					if(element["amenities"]["balcony_or_deck"])
-					{
+					if (element["amenities"]["balcony_or_deck"]) {
 						g_amenities_list.push("Balcony");
-					}if(element["amenities"]["elevator"])
-					{
+					} if (element["amenities"]["elevator"]) {
 						b_amenities_list.push("elevator");
-					}if(element["amenities"]["furnished"])
-					{
+					} if (element["amenities"]["furnished"]) {
 						g_amenities_list.push("furnished");
-					}if(element["amenities"]["garage_parking"])
-					{
+					} if (element["amenities"]["garage_parking"]) {
 						b_amenities_list.push("garage");
-					}if(element["amenities"]["hardwood_floor"])
-					{
+					} if (element["amenities"]["hardwood_floor"]) {
 						g_amenities_list.push("Hardwood floor");
-					}if(element["amenities"]["indoorgames"])
-					{
+					} if (element["amenities"]["indoorgames"]) {
 						b_amenities_list.push("indoor_game");
-					}if(element["amenities"]["swimmingpool"])
-					{
+					} if (element["amenities"]["swimmingpool"]) {
 						b_amenities_list.push("swimming");
 					}
 					var tempobj = {
-						hid:hid,
-						uid:uid,
-						cid:cid,
-						address:address,
-						lat:lat,
-						long:long,
-						year_bulit:year_bulit,
-						user_price:user_price,
-						bathroom:bathroom,
-						bedroom:bedroom,
-						stories:stories,
-						plot:plot,
-						overview:overview,
-						g_amenities_list:g_amenities_list,
-						b_amenities_list:b_amenities_list,
-						sales_rent:sales_rent,
-						view:view,
-						day_web:days_on_web,
-						photos:photos
+						hid: hid,
+						uid: uid,
+						cid: cid,
+						address: address,
+						lat: lat,
+						long: long,
+						year_bulit: year_bulit,
+						user_price: user_price,
+						bathroom: bathroom,
+						bedroom: bedroom,
+						stories: stories,
+						plot: plot,
+						overview: overview,
+						g_amenities_list: g_amenities_list,
+						b_amenities_list: b_amenities_list,
+						sales_rent: sales_rent,
+						view: view,
+						day_web: days_on_web,
+						photos: photos
 					};
-			//		console.log(tempobj);
-					 this.obj_houselist.push(tempobj);					
-					 
+					this.obj_houselist.push(tempobj);
+
 				}
-			//	this.json_houselist = houseservice.getHouses();
-				//console.log('this.json_houselist :',this.json_houselist );
-		//		this.obj_houselist = JSON.parse(this.json_houselist);
-			console.log('Inside this.obj_houselist :', this.obj_houselist);
-			this.shouse = this.obj_houselist.find(function () { return 1; });
+				//			console.log('Inside this.obj_houselist :', this.obj_houselist);
+				this.shouse = this.obj_houselist.find(function () { return 1; });
 			},
 			err => {
 				console.log(err);
@@ -153,17 +139,16 @@ export class BuyComponent implements OnInit {
 		);
 
 
-	}	
-	open_snackbar(message:string)
-   {     
-      this._snackBar.open(message,"Close",{duration:3000});
-   }
+	}
+	open_snackbar(message: string) {
+		this._snackBar.open(message, "Close", { duration: 3000 });
+	}
 	map: any;
-	forappointment=""
-	thid:any = 1;
-	
+	forappointment = ""
+	thid: any = 1;
+
 	house_click(house): void {
-		this.forappointment=house
+		this.forappointment = house
 		var hid = house.id;
 		this.thid = house.id;
 
@@ -238,7 +223,7 @@ export class BuyComponent implements OnInit {
 
 		}
 		this.house_price = this.shouse["user_price"];
-	//	$("#demo").html(inner_carosal);
+		//	$("#demo").html(inner_carosal);
 		this.house_address = this.shouse["address"];
 		this.house_year = this.shouse["year_bulit"];
 		this.no_of_bed = this.shouse["bedroom"];
@@ -247,19 +232,19 @@ export class BuyComponent implements OnInit {
 		this.overview = this.shouse["overview"];
 		this.total_view = this.shouse["view"];
 		this.days_on_web = this.shouse["day_web"];
-		
-		this.houseservice.incrementHouseView(hid).subscribe(res=>{
+
+		this.houseservice.incrementHouseView(hid).subscribe(res => {
 			console.log('res :', res);
 			this.total_view = res["views"];
 		});
-		
-		
+
+
 		this.map.flyTo({
 			center: [
 				this.shouse["long"],
 				this.shouse["lat"]
 			], zoom: 16
-		},this.setmarker());
+		}, this.setmarker());
 
 		$("#house_detail").css("animation", "anim 2s forwards");
 		$("#house_detail").css({ "display": "" });
@@ -267,57 +252,57 @@ export class BuyComponent implements OnInit {
 		setTimeout(() => {
 			this.setmarker();
 		}, 600);
-			
-	}
-	
-	setmarker() {
-                    //console.log("hi");
-                    var mapLayer = this.map.getLayer('markers');
-                    if (typeof mapLayer !== 'undefined') { 
-                        // Remove map layer & source.
-                        this.map.removeLayer('markers').removeSource('markers');
-					}
-					console.log(this.shouse["long"]);
-					/* Image: An image is loaded and added to the map. */
-					var map = this.map
-					var long = this.shouse["long"];
-					var late = this.shouse["lat"];
-					console.log(late);
-                    this.map.loadImage("../../assets/image/marker.png", function (error, image) {
-                        if (error) throw error
-						map.addImage("custom-marker", image);
-						//console.log("jaskdlfjaskl;f")
 
-						//console.log(this.shouse['long'])
-						//console.log(this.shouse["lat"])
-                        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-                        map.addLayer({
-                            id: "markers",
-                            type: "symbol",
-                            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
-                            source: {
-                                type: "geojson",
-                                data: {
-                                    type: 'FeatureCollection',
-                                    features: [
-                                        {
-                                            type: 'Feature',
-                                            properties: {},
-                                            geometry: {
-                                                type: "Point",
-                                                coordinates: [long,late]
-                                            }
-                                        }
-                                    ]
-                                }
-                            },
-                            layout: {
-                                "icon-image": "custom-marker",
-                            }
-						});
-						//console.log(a;jfklasd)
-                    });
-                }
+	}
+
+	setmarker() {
+		//console.log("hi");
+		var mapLayer = this.map.getLayer('markers');
+		if (typeof mapLayer !== 'undefined') {
+			// Remove map layer & source.
+			this.map.removeLayer('markers').removeSource('markers');
+		}
+		console.log(this.shouse["long"]);
+		/* Image: An image is loaded and added to the map. */
+		var map = this.map
+		var long = this.shouse["long"];
+		var late = this.shouse["lat"];
+		console.log(late);
+		this.map.loadImage("../../assets/image/marker.png", function (error, image) {
+			if (error) throw error
+			map.addImage("custom-marker", image);
+			//console.log("jaskdlfjaskl;f")
+
+			//console.log(this.shouse['long'])
+			//console.log(this.shouse["lat"])
+			/* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+			map.addLayer({
+				id: "markers",
+				type: "symbol",
+				/* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+				source: {
+					type: "geojson",
+					data: {
+						type: 'FeatureCollection',
+						features: [
+							{
+								type: 'Feature',
+								properties: {},
+								geometry: {
+									type: "Point",
+									coordinates: [long, late]
+								}
+							}
+						]
+					}
+				},
+				layout: {
+					"icon-image": "custom-marker",
+				}
+			});
+			//console.log(a;jfklasd)
+		});
+	}
 
 	heart_clicked() {
 		if ($("#heart").hasClass("far")) {
@@ -337,8 +322,8 @@ export class BuyComponent implements OnInit {
 	}
 	appointment_click(hid) {
 		//console.log("clicked",hid);
-		
-	//	console.log(localStorage.getItem("userid"));
+
+		//	console.log(localStorage.getItem("userid"));
 		$("#appointment_detail").css("animation", "anim 2s forwards");
 		$("#appointment_detail").css({ "display": "" });
 
@@ -348,7 +333,7 @@ export class BuyComponent implements OnInit {
 	}
 	/*remaining to do for houseid*/
 	appointmentdetail = {
-		date1: "", date2: "",house_id:this.thid,
+		date1: "", date2: "", house_id: this.thid,
 		userpreferedprice: "", description: "", user_id: localStorage.getItem('userid'),
 		status: false
 	}
@@ -356,12 +341,12 @@ export class BuyComponent implements OnInit {
 		this.appointmentdetail.house_id = this.thid;
 		console.log(this.appointmentdetail)
 		this._appointment.setAppointment(this.appointmentdetail).subscribe(
-            res=>{
-            //    console.log(res);
-            },
-            err=>{
-                console.log(err);
-            }
+			res => {
+				//    console.log(res);
+			},
+			err => {
+				console.log(err);
+			}
 		)
 		this.open_snackbar("Requested Succesfully for the appointment");
 		this.close_appointment();
@@ -379,12 +364,12 @@ export class BuyComponent implements OnInit {
 			//col-xs-12 col-lg-6
 		}
 		if (element.id == "display_houses") {
-		//	console.log("houses");
+			//	console.log("houses");
 			document.getElementById("field").className = "col-xs-12 col-lg-6";
 			document.getElementById("map").className = "d-none";
 		}
 		else {
-		//	console.log("fields");
+			//	console.log("fields");
 			document.getElementById("field").className = "d-none";
 			document.getElementById("map").className = "col-xs-12 d-lg-flex overflow-hidden";
 
@@ -431,23 +416,23 @@ export class BuyComponent implements OnInit {
 				break;
 		}
 		//console.log(this.obj_houselist);
-	//	this.json_houselist = this.houseservice.getHouses();
+		//	this.json_houselist = this.houseservice.getHouses();
 		//this.obj_houselist = JSON.parse(this.json_houselist);
-//		this.shouse = this.obj_houselist.find(function () { return 1; });
+		//		this.shouse = this.obj_houselist.find(function () { return 1; });
 
-		this.obj_houselist = [];		
+		this.obj_houselist = [];
 		this.houseservice.getAllhouses().subscribe(
 			res => {
 				this.obj_houselist = [];
 				let temparr = null;
-		//		console.log(res);
+				//		console.log(res);
 				temparr = res["houses"]
-		//		console.log('temparr :', temparr);
-				let hid,cid,uid,address,lat,long,year_bulit,user_price,bathroom,bedroom,stories,plot,overview,g_amenities_list,b_amenities_list,sales_rent,view,days_on_web,photos;
-				
+				//		console.log('temparr :', temparr);
+				let hid, cid, uid, address, lat, long, year_bulit, user_price, bathroom, bedroom, stories, plot, overview, g_amenities_list, b_amenities_list, sales_rent, view, days_on_web, photos;
+
 				for (let index = 0; index < temparr.length; index++) {
 					const element = temparr[index];
-			//		console.log('element :', element);
+					//		console.log('element :', element);
 					hid = element["_id"];
 					uid = element["user_id"];
 					cid = 1;
@@ -455,17 +440,15 @@ export class BuyComponent implements OnInit {
 					lat = element["latitude"];
 					long = element["longitude"];
 					year_bulit = element["yearbuilt"];
-					if(element["type"]=="sale")
-					{
+					if (element["type"] == "sale") {
 						user_price = element["saleprice"];
 						sales_rent = 1;
 					}
-					else
-					{
+					else {
 						user_price = element["rentprice"];
 						sales_rent = 0;
 					}
-					
+
 					bathroom = element["baths"];
 					bedroom = element["beds"];
 					stories = element["beds"];
@@ -473,67 +456,59 @@ export class BuyComponent implements OnInit {
 					overview = element["description"];
 					view = element["views"];
 					//days_on_web = element["postingdate"];
-					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime())/(1000 * 3600 * 24));
+					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime()) / (1000 * 3600 * 24));
 					photos = element["houseimg"];
-					g_amenities_list= [];					
+					g_amenities_list = [];
 					b_amenities_list = [];
-					if(element["amenities"]["ac"])
-					{
+					if (element["amenities"]["ac"]) {
 						b_amenities_list.push("cooling");
 					}
-					if(element["amenities"]["balcony_or_deck"])
-					{
+					if (element["amenities"]["balcony_or_deck"]) {
 						g_amenities_list.push("Balcony");
-					}if(element["amenities"]["elevator"])
-					{
+					} if (element["amenities"]["elevator"]) {
 						b_amenities_list.push("elevator");
-					}if(element["amenities"]["furnished"])
-					{
+					} if (element["amenities"]["furnished"]) {
 						g_amenities_list.push("furnished");
-					}if(element["amenities"]["garage_parking"])
-					{
+					} if (element["amenities"]["garage_parking"]) {
 						b_amenities_list.push("garage");
-					}if(element["amenities"]["hardwood_floor"])
-					{
+					} if (element["amenities"]["hardwood_floor"]) {
 						g_amenities_list.push("Hardwood floor");
-					}if(element["amenities"]["indoorgames"])
-					{
+					} if (element["amenities"]["indoorgames"]) {
 						b_amenities_list.push("indoor_game");
-					}if(element["amenities"]["swimmingpool"])
-					{
+					} if (element["amenities"]["swimmingpool"]) {
 						b_amenities_list.push("swimming");
 					}
 					var tempobj = {
-						hid:hid,
-						uid:uid,
-						cid:cid,
-						address:address,
-						lat:lat,
-						long:long,
-						year_bulit:year_bulit,
-						user_price:user_price,
-						bathroom:bathroom,
-						bedroom:bedroom,
-						stories:stories,
-						plot:plot,
-						overview:overview,
-						g_amenities_list:g_amenities_list,
-						b_amenities_list:b_amenities_list,
-						sales_rent:sales_rent,
-						view:view,
-						day_web:days_on_web,
-						photos:photos
+						hid: hid,
+						uid: uid,
+						cid: cid,
+						address: address,
+						lat: lat,
+						long: long,
+						year_bulit: year_bulit,
+						user_price: user_price,
+						bathroom: bathroom,
+						bedroom: bedroom,
+						stories: stories,
+						plot: plot,
+						overview: overview,
+						g_amenities_list: g_amenities_list,
+						b_amenities_list: b_amenities_list,
+						sales_rent: sales_rent,
+						view: view,
+						day_web: days_on_web,
+						photos: photos
 					};
-			//		console.log(tempobj);
-					 this.obj_houselist.push(tempobj);					
-					 
+					//		console.log(tempobj);
+					this.obj_houselist.push(tempobj);
+
 				}
-			//	this.json_houselist = houseservice.getHouses();
+				//	this.json_houselist = houseservice.getHouses();
 				//console.log('this.json_houselist :',this.json_houselist );
-		//		this.obj_houselist = JSON.parse(this.json_houselist);
-			this.obj_houselist.sort(this.sortbyandorder(sortby, order));
-		//	console.log('Inside this.obj_houselist :', this.obj_houselist);
-			this.shouse = this.obj_houselist.find(function () { return 1; });
+				//		this.obj_houselist = JSON.parse(this.json_houselist);
+				this.obj_houselist.sort(this.sortbyandorder(sortby, order));
+				//	console.log('Inside this.obj_houselist :', this.obj_houselist);
+				this.shouse = this.obj_houselist.find(function () { return 1; });
 			},
 			err => {
 				console.log(err);
@@ -554,9 +529,9 @@ export class BuyComponent implements OnInit {
 	}
 	ngOnInit() {
 
-		
+
 		var lat, long;
-		mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcjIzIiwiYSI6ImNqejlhbmt1YzAxdXAzbm1yZzMzbHFmNHMifQ.xPyQpPklaSXYm5pFCO85Hg';
+		mapboxgl.accessToken = '';
 
 		this.map = new mapboxgl.Map({
 			container: 'map',
@@ -651,28 +626,28 @@ export class BuyComponent implements OnInit {
 			default:
 				break;
 		}
-	/*	console.log(id);
-		console.log('beds :', this.beds);
-		console.log('baths :', this.baths);
-		console.log('plots :', this.plots);
-		*/
-	//	this.json_houselist = this.houseservice.getHousesWith(this.baths, this.beds, this.plots);
-	//	this.obj_houselist = JSON.parse(this.json_houselist);
-	//	this.shouse = this.obj_houselist.find(function () { return 1; });
-		this.obj_houselist = [];		
-		this.houseservice.getHousesWith(this.baths.toString() ,this.beds.toString(), this.plots.toString()).subscribe(
+		/*	console.log(id);
+			console.log('beds :', this.beds);
+			console.log('baths :', this.baths);
+			console.log('plots :', this.plots);
+			*/
+		//	this.json_houselist = this.houseservice.getHousesWith(this.baths, this.beds, this.plots);
+		//	this.obj_houselist = JSON.parse(this.json_houselist);
+		//	this.shouse = this.obj_houselist.find(function () { return 1; });
+		this.obj_houselist = [];
+		this.houseservice.getHousesWith(this.baths.toString(), this.beds.toString(), this.plots.toString()).subscribe(
 			res => {
-			//	console.log('res :', res);
+				//	console.log('res :', res);
 				this.obj_houselist = [];
 				let temparr = null;
-		//		console.log(res);
+				//		console.log(res);
 				temparr = res["houses"]
-		//		console.log('temparr :', temparr);
-				let hid,cid,uid,address,lat,long,year_bulit,user_price,bathroom,bedroom,stories,plot,overview,g_amenities_list,b_amenities_list,sales_rent,view,days_on_web,photos;
-				
+				//		console.log('temparr :', temparr);
+				let hid, cid, uid, address, lat, long, year_bulit, user_price, bathroom, bedroom, stories, plot, overview, g_amenities_list, b_amenities_list, sales_rent, view, days_on_web, photos;
+
 				for (let index = 0; index < temparr.length; index++) {
 					const element = temparr[index];
-			//		console.log('element :', element);
+					//		console.log('element :', element);
 					hid = element["_id"];
 					uid = element["user_id"];
 					cid = 1;
@@ -680,17 +655,15 @@ export class BuyComponent implements OnInit {
 					lat = element["latitude"];
 					long = element["longitude"];
 					year_bulit = element["yearbuilt"];
-					if(element["type"]=="sale")
-					{
+					if (element["type"] == "sale") {
 						user_price = element["saleprice"];
 						sales_rent = 1;
 					}
-					else
-					{
+					else {
 						user_price = element["rentprice"];
 						sales_rent = 0;
 					}
-					
+
 					bathroom = element["baths"];
 					bedroom = element["beds"];
 					stories = element["beds"];
@@ -698,67 +671,59 @@ export class BuyComponent implements OnInit {
 					overview = element["description"];
 					view = element["views"];
 					//days_on_web = element["postingdate"];
-					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime())/(1000 * 3600 * 24));
+					days_on_web = Math.floor((new Date().getTime() - new Date(element["postingdate"]).getTime()) / (1000 * 3600 * 24));
 					photos = element["houseimg"];
-					g_amenities_list= [];					
+					g_amenities_list = [];
 					b_amenities_list = [];
-					if(element["amenities"]["ac"])
-					{
+					if (element["amenities"]["ac"]) {
 						b_amenities_list.push("cooling");
 					}
-					if(element["amenities"]["balcony_or_deck"])
-					{
+					if (element["amenities"]["balcony_or_deck"]) {
 						g_amenities_list.push("Balcony");
-					}if(element["amenities"]["elevator"])
-					{
+					} if (element["amenities"]["elevator"]) {
 						b_amenities_list.push("elevator");
-					}if(element["amenities"]["furnished"])
-					{
+					} if (element["amenities"]["furnished"]) {
 						g_amenities_list.push("furnished");
-					}if(element["amenities"]["garage_parking"])
-					{
+					} if (element["amenities"]["garage_parking"]) {
 						b_amenities_list.push("garage");
-					}if(element["amenities"]["hardwood_floor"])
-					{
+					} if (element["amenities"]["hardwood_floor"]) {
 						g_amenities_list.push("Hardwood floor");
-					}if(element["amenities"]["indoorgames"])
-					{
+					} if (element["amenities"]["indoorgames"]) {
 						b_amenities_list.push("indoor_game");
-					}if(element["amenities"]["swimmingpool"])
-					{
+					} if (element["amenities"]["swimmingpool"]) {
 						b_amenities_list.push("swimming");
 					}
 					var tempobj = {
-						hid:hid,
-						uid:uid,
-						cid:cid,
-						address:address,
-						lat:lat,
-						long:long,
-						year_bulit:year_bulit,
-						user_price:user_price,
-						bathroom:bathroom,
-						bedroom:bedroom,
-						stories:stories,
-						plot:plot,
-						overview:overview,
-						g_amenities_list:g_amenities_list,
-						b_amenities_list:b_amenities_list,
-						sales_rent:sales_rent,
-						view:view,
-						day_web:days_on_web,
-						photos:photos
+						hid: hid,
+						uid: uid,
+						cid: cid,
+						address: address,
+						lat: lat,
+						long: long,
+						year_bulit: year_bulit,
+						user_price: user_price,
+						bathroom: bathroom,
+						bedroom: bedroom,
+						stories: stories,
+						plot: plot,
+						overview: overview,
+						g_amenities_list: g_amenities_list,
+						b_amenities_list: b_amenities_list,
+						sales_rent: sales_rent,
+						view: view,
+						day_web: days_on_web,
+						photos: photos
 					};
-			//		console.log(tempobj);
-					 this.obj_houselist.push(tempobj);					
-					 
+					//		console.log(tempobj);
+					this.obj_houselist.push(tempobj);
+
 				}
-			//	this.json_houselist = houseservice.getHouses();
+				//	this.json_houselist = houseservice.getHouses();
 				//console.log('this.json_houselist :',this.json_houselist );
-		//		this.obj_houselist = JSON.parse(this.json_houselist);
-			this.obj_houselist.sort(this.sortbyandorder(sortby, order));
-		//	console.log('Inside this.obj_houselist :', this.obj_houselist);
-			this.shouse = this.obj_houselist.find(function () { return 1; });
+				//		this.obj_houselist = JSON.parse(this.json_houselist);
+				this.obj_houselist.sort(this.sortbyandorder(sortby, order));
+				//	console.log('Inside this.obj_houselist :', this.obj_houselist);
+				this.shouse = this.obj_houselist.find(function () { return 1; });
 			},
 			err => {
 				console.log(err);
@@ -766,7 +731,7 @@ export class BuyComponent implements OnInit {
 		);
 		//this.obj_houselist.sort(this.sortbyandorder(sortby, order));
 	}
-	popup(){
+	popup() {
 		this.dialog.open(CarousalComponent);
 	}
 }

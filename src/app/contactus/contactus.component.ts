@@ -3,39 +3,39 @@ import * as mapboxgl from 'mapbox-gl'
 
 
 @Component({
-  selector: 'app-contactus',
-  templateUrl: './contactus.component.html',
-  styleUrls: ['./contactus.component.css']
+    selector: 'app-contactus',
+    templateUrl: './contactus.component.html',
+    styleUrls: ['./contactus.component.css']
 })
 export class ContactusComponent implements OnInit {
 
-  contactdetail={name:"",email:"",message:""}
-  constructor() { }
+    contactdetail = { name: "", email: "", message: "" }
+    constructor() { }
 
-  uploadContactDetail(){
-      console.log(this.contactdetail)
-  }
+    uploadContactDetail() {
+        console.log(this.contactdetail)
+    }
 
-  ngOnInit() {
-    var lat, long;
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcjIzIiwiYSI6ImNqejlhbmt1YzAxdXAzbm1yZzMzbHFmNHMifQ.xPyQpPklaSXYm5pFCO85Hg';
-    var map;
-    map = new mapboxgl.Map({
-        container: 'map',
-        center: [72.863365,22.691586], // starting position
-        zoom: 16, // starting zoom
-        style: 'mapbox://styles/mapbox/satellite-streets-v11',
+    ngOnInit() {
+        var lat, long;
+        mapboxgl.accessToken = '';
+        var map;
+        map = new mapboxgl.Map({
+            container: 'map',
+            center: [72.863365, 22.691586], // starting position
+            zoom: 16, // starting zoom
+            style: 'mapbox://styles/mapbox/satellite-streets-v11',
 
-    });
-    
-        
+        });
+
+
         map.on("load", setmarker);
-        
+
         function setmarker() {
             //console.log("hi");
             var mapLayer = map.getLayer('markers');
 
-           
+
             /* Image: An image is loaded and added to the map. */
             map.loadImage("../../assets/image/marker.png", function (error, image) {
                 if (error) throw error;
@@ -55,7 +55,7 @@ export class ContactusComponent implements OnInit {
                                     properties: {},
                                     geometry: {
                                         type: "Point",
-                                        coordinates: [72.863365,22.691586]
+                                        coordinates: [72.863365, 22.691586]
                                     }
                                 }
                             ]
@@ -69,11 +69,11 @@ export class ContactusComponent implements OnInit {
             });
 
         }
-    
 
 
 
 
-  }
+
+    }
 
 }

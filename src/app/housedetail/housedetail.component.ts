@@ -18,7 +18,7 @@ export class HousedetailComponent implements OnInit {
     public userid: string = "";
 
     housedetail = {
-        user_id: "",house_id:"", saleprice: "", views: 0, yearbuilt: "", postingdate: "",
+        user_id: "", house_id: "", saleprice: "", views: 0, yearbuilt: "", postingdate: "",
         type: "", rentprice: "", securitydeposite: "", leaseduration: "", beds: "", baths: "", forrentby: "",
         squarefeet: "", storeys: "", address: "", latitude: "", longitude: "", description: "", contactperson: "", pets: false,
         contactemail: "", contactphone: "", amenities: { ac: false, balcony_or_deck: false, furnished: false, hardwood_floor: false, garage_parking: false, off_street_parking: false, indoorgames: false, swimmingpool: false, elevator: false }, houseimg: []
@@ -81,12 +81,10 @@ export class HousedetailComponent implements OnInit {
             this.houseimg.push((<any>$('#input-file-id')[0]).files[i].name)
         }
         console.log(this.houseimg)
-        if(this.houseimg.length!=0)
-        {
-        this.housedetail.houseimg = this.houseimg;
-        }else
-        {
-            
+        if (this.houseimg.length != 0) {
+            this.housedetail.houseimg = this.houseimg;
+        } else {
+
         }
         console.log(this.housedetail)
         setTimeout(function () {
@@ -118,46 +116,44 @@ export class HousedetailComponent implements OnInit {
 
         this.data.currentMessage.subscribe(x => this.userid = x)
 
-        let existedhouse:boolean=false;
-        if (sessionStorage.getItem('clickedhouse') != null)
-         {
-            existedhouse=true;
+        let existedhouse: boolean = false;
+        if (sessionStorage.getItem('clickedhouse') != null) {
+            existedhouse = true;
             let shouse = sessionStorage.getItem('clickedhouse')
             let house = JSON.parse(shouse);
             console.log(house);
             this.housedetail.address = house.address;
             this.housedetail.contactemail = house.contactemail;
-            this.housedetail.baths=house.baths;
-            this.housedetail.beds=house.beds;
-            this.housedetail.postingdate=house.postingdate;
-            this.housedetail.houseimg=house.houseimg;
-            this.housedetail.house_id=house._id;
+            this.housedetail.baths = house.baths;
+            this.housedetail.beds = house.beds;
+            this.housedetail.postingdate = house.postingdate;
+            this.housedetail.houseimg = house.houseimg;
+            this.housedetail.house_id = house._id;
 
-            this.housedetail.contactperson=house.contactperson;
-            this.housedetail.contactphone=house.contactphone;
-            this.housedetail.description=house.description;
-            this.housedetail.forrentby=house.forrentby;
-            this.housedetail.latitude=house.latitude;
-            this.housedetail.longitude=house.longitude;
-            this.housedetail.leaseduration=house.leaseduration;
-            this.housedetail.pets=house.pets;
-            this.housedetail.saleprice=house.saleprice;
-            this.housedetail.rentprice=house.rentprice;
-            this.housedetail.securitydeposite=house.securitydeposite;
-            this.housedetail.squarefeet=house.squarefeet;
-            this.housedetail.storeys=house.storeys;
-            this.housedetail.yearbuilt=house.yearbuilt;
-            this.housedetail.user_id=house.user_id;
-            this.housedetail.type=house.type;
-            if(this.housedetail.type=="rent")
-            {
-             $("#hi1").show(1000);
+            this.housedetail.contactperson = house.contactperson;
+            this.housedetail.contactphone = house.contactphone;
+            this.housedetail.description = house.description;
+            this.housedetail.forrentby = house.forrentby;
+            this.housedetail.latitude = house.latitude;
+            this.housedetail.longitude = house.longitude;
+            this.housedetail.leaseduration = house.leaseduration;
+            this.housedetail.pets = house.pets;
+            this.housedetail.saleprice = house.saleprice;
+            this.housedetail.rentprice = house.rentprice;
+            this.housedetail.securitydeposite = house.securitydeposite;
+            this.housedetail.squarefeet = house.squarefeet;
+            this.housedetail.storeys = house.storeys;
+            this.housedetail.yearbuilt = house.yearbuilt;
+            this.housedetail.user_id = house.user_id;
+            this.housedetail.type = house.type;
+            if (this.housedetail.type == "rent") {
+                $("#hi1").show(1000);
                 $("#hi2").show(1000);
                 $("#hi3").show(1000);
                 $("#hi4").show(1000);
-                $("#hi5").hide(1000);   
+                $("#hi5").hide(1000);
             }
-            this.housedetail.views=house.views;
+            this.housedetail.views = house.views;
 
             this.housedetail.amenities.ac = house.amenities.ac
             this.housedetail.amenities.balcony_or_deck = house.amenities.balcony_or_deck
@@ -175,7 +171,7 @@ export class HousedetailComponent implements OnInit {
         }
 
         var lat, long;
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic3dhcjIzIiwiYSI6ImNqejlhbmt1YzAxdXAzbm1yZzMzbHFmNHMifQ.xPyQpPklaSXYm5pFCO85Hg';
+        mapboxgl.accessToken = '';
         var map;
         map = new mapboxgl.Map({
             container: 'map',
@@ -199,12 +195,12 @@ export class HousedetailComponent implements OnInit {
                 //     style: 'mapbox://styles/mapbox/satellite-streets-v11',
 
                 // });
-                if(existedhouse==false){
-                map.flyTo({
-                    center: [long, lat],
-                    zoom: 16,
-                });
-            }
+                if (existedhouse == false) {
+                    map.flyTo({
+                        center: [long, lat],
+                        zoom: 16,
+                    });
+                }
             }, function () {
 
                 (<HTMLInputElement>document.getElementById("latitude")).placeholder = "select your place location in map";
@@ -224,8 +220,8 @@ export class HousedetailComponent implements OnInit {
             map.on("load", setmarker);
             map.on("click", setmarker);
             function setmarker() {
-                lat=(<HTMLInputElement>document.getElementById("latitude")).value
-                long=(<HTMLInputElement>document.getElementById("longitude")).value 
+                lat = (<HTMLInputElement>document.getElementById("latitude")).value
+                long = (<HTMLInputElement>document.getElementById("longitude")).value
                 //console.log("hi");
                 var mapLayer = map.getLayer('markers');
 
@@ -234,7 +230,7 @@ export class HousedetailComponent implements OnInit {
                     map.removeLayer('markers').removeSource('markers');
 
                 }
-                
+
                 /* Image: An image is loaded and added to the map. */
                 map.loadImage("../../assets/image/marker.png", function (error, image) {
                     if (error) throw error;
@@ -300,11 +296,11 @@ export class HousedetailComponent implements OnInit {
             });
         });
 
-        
+
 
     }
 
-    
+
 
 
     // public loadScript() {
